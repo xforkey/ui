@@ -1,0 +1,83 @@
+export const title = "Input";
+export const description = "Displays a form input field or a component that looks like an input field.";
+export const links = {
+  doc: "https://ui.shadcn.com/docs/components/input",
+  api: "https://ui.shadcn.com/docs/components/input#api-reference"
+}
+
+A form input component for collecting user input.
+
+<ComponentPreview demoName="input-demo" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add input
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="input" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import { Input } from "@/components/ui/input"
+```
+
+```tsx
+<Input />
+```
+
+</CodeExampleStack>
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="input-demo" />
+
+### File
+
+<ComponentPreview demoName="input-file" />
+
+### Disabled
+
+<ComponentPreview demoName="input-disabled" />
+
+### With Label
+
+<ComponentPreview demoName="input-with-label" />
+
+### With Button
+
+<ComponentPreview demoName="input-with-button" />
+
+### Form
+
+<ComponentPreview demoName="input-form" hint="Try submitting the form" />

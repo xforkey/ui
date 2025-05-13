@@ -1,0 +1,379 @@
+import { ApiTable } from "@/docs/components/api-table.tsx";
+import { CodeExample,CodeExampleStack, CodeExampleGroup, CodeBlock, HighlightedCode, svelte, html, css, tsx } from "@/docs/components/code-example.tsx";
+import { Example } from "@/docs/components/example.tsx";
+import { Figure } from "@/docs/components/figure.tsx";
+import { Iframe } from "@/docs/components/iframe.tsx";
+import { TipGood, TipBad, TipInfo, TipCompat } from "@/docs/components/tips";
+import { UsingACustomValue, ResponsiveDesign, CustomizingYourTheme } from "@/docs/components/content.tsx";
+import { CollapseWrapper } from "@/docs/components/collapse-wrapper.tsx";
+import { NavList, NavListHeading, NavListItems, NavListItem, NavListLink } from "@/docs/components/nav-list";
+import TableOfContents from "@/docs/components/table-of-contents";
+import { Stripes } from "@/docs/components/stripes";
+import { DynamicViewportExample } from "@/docs/components/dynamic-viewport-example";
+import { Resizable } from "@/docs/components/resizable";
+import getSourceCode from "@/docs/get-source-code";
+
+export const title = "Documentation Components Showcase";
+export const description = "A showcase of all the documentation components available in this project.";
+
+This page demonstrates all the documentation components available in this project. You can use these components to create rich, interactive documentation pages.
+
+## API Table Component
+
+The `ApiTable` component displays a reference table of classes and their corresponding styles. It automatically handles collapsing large tables and provides a "Show more" button.
+
+<ApiTable
+  rows={[
+    ["bg-<color>-<shade>", "background-color: <value>;"],
+    ["text-<color>-<shade>", "color: <value>;"],
+    ["border-<color>-<shade>", "border-color: <value>;"],
+    ["ring-<color>-<shade>", "box-shadow: 0 0 0 2px <value>;"],
+    ["shadow-<size>", "box-shadow: <value>;"],
+    ["opacity-<value>", "opacity: <value>;"],
+    ["rounded-<size>", "border-radius: <value>;"],
+    ["p-<size>", "padding: <value>;"],
+    ["m-<size>", "margin: <value>;"],
+    ["w-<size>", "width: <value>;"],
+    ["h-<size>", "height: <value>;"],
+    ["flex-<value>", "flex: <value>;"],
+    ["grid-cols-<value>", "grid-template-columns: <value>;"],
+    ["gap-<size>", "gap: <value>;"],
+    ["font-<weight>", "font-weight: <value>;"],
+    ["text-<size>", "font-size: <value>;"],
+    ["leading-<size>", "line-height: <value>;"],
+    ["tracking-<size>", "letter-spacing: <value>;"],
+    ["z-<index>", "z-index: <value>;"],
+    ["transition-<property>", "transition-property: <value>;"],
+  ]}
+/>
+
+## Code Example Component
+
+The `CodeExample` component displays syntax-highlighted code examples with optional collapsible functionality.
+
+
+<CodeExample example={html`
+<div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-gray-800">Hello World</h2>
+  <p class="mt-2 text-gray-600">This is a simple card component</p>
+  <button class="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+    Click me
+  </button>
+</div>
+`} />
+
+```html
+<!-- [!code filename:index.html] -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+```
+
+
+### Collapsible Code Example
+
+The `CodeExample` component can be made collapsible by setting the `collapsible` prop to `true`.
+
+
+<CodeExample collapsible={true} example={tsx`
+<CodeExample collapsible={true} example={tsx\`
+import React from 'react';
+
+function ComplexComponent() {
+  const [count, setCount] = React.useState(0);
+  
+  const increment = () => {
+    setCount(prevCount => prevCount + 1);
+  };
+  
+  const decrement = () => {
+    setCount(prevCount => prevCount - 1);
+  };
+  
+  return (
+    <div className="p-4 border rounded-md">
+      <h2 className="text-lg font-bold">Counter: {count}</h2>
+      <div className="flex space-x-2 mt-2">
+        <button 
+          className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          onClick={increment}
+        >
+          Increment
+        </button>
+        <button 
+          className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
+          onClick={decrement}
+        >
+          Decrement
+        </button>
+      </div>
+    </div>
+  );
+}
+
+export default ComplexComponent;
+\`} />
+`} />
+
+
+### Code Example Group
+
+The `CodeExampleGroup` component allows you to display multiple code examples with tabs.
+<CodeExampleGroup filenames={["App.jsx", "styles.css"]}>
+  <CodeBlock example={tsx`
+<CodeExampleGroup filenames={["App.jsx", "styles.css"]}>
+  <CodeBlock example={tsx\`
+import React from 'react';
+import './styles.css';
+
+function App() {
+  return (
+    <div className="container">
+      <h1 className="title">Hello World</h1>
+      <p className="description">Welcome to my app</p>
+    </div>
+  );
+}
+
+export default App;
+\`} />
+  <CodeBlock example={css\`
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #666;
+}
+\`} />
+</CodeExampleGroup>
+`} />
+  <CodeBlock example={css`
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  color: #666;
+}
+`} />
+</CodeExampleGroup>
+
+
+
+## Example Component
+
+The `Example` component displays interactive examples with optional resizing functionality.
+
+<Figure hint="Resize the container to see the alignment behavior">
+
+<Example resizable>
+  {
+    <div className="grid grid-cols-1 gap-8">
+      <div>
+        <p className="text-center font-mono text-xs font-medium text-gray-500 dark:text-gray-400">justify-items-end</p>
+        <div className="mt-4 grid auto-rows-fr grid-cols-3 justify-items-stretch gap-10 text-center font-mono text-sm leading-6 font-bold text-white">
+          <div className="grid grid-cols-1 justify-items-end">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-blue-500 p-4">01</div>
+          </div>
+          <div className="grid grid-cols-1 justify-items-end">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-blue-500 p-4">02</div>
+          </div>
+          <div className="grid grid-cols-1 justify-items-end">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-blue-500 p-4">03</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <p className="text-center font-mono text-xs font-medium text-gray-500 dark:text-gray-400">
+          justify-items-end-safe
+        </p>
+        <div className="mt-4 grid auto-rows-fr grid-cols-3 justify-items-stretch gap-10 text-center font-mono text-sm leading-6 font-bold text-white">
+          <div className="grid grid-cols-1 justify-items-end-safe">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-purple-500 p-4">01</div>
+          </div>
+          <div className="grid grid-cols-1 justify-items-end-safe">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-purple-500 p-4">02</div>
+          </div>
+          <div className="grid grid-cols-1 justify-items-end-safe">
+            <Stripes border className="col-start-1 row-start-1 justify-self-stretch rounded-lg" />
+            <div className="col-start-1 row-start-1 size-14 rounded-lg bg-purple-500 p-4">03</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</Example>
+
+<CodeExampleStack>
+
+```html
+<!-- [!code filename:justify-items-end] -->
+<!-- [!code classes:justify-items-end] -->
+<div class="grid grid-flow-col justify-items-end ...">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+```html
+<!-- [!code filename:justify-items-end-safe] -->
+<!-- [!code classes:justify-items-end-safe] -->
+<div class="grid grid-flow-col justify-items-end-safe ...">
+  <div>01</div>
+  <div>02</div>
+  <div>03</div>
+</div>
+```
+
+</ CodeExampleStack>
+
+</Figure>
+
+## Figure Component
+
+The `Figure` component wraps examples and provides an optional hint.
+
+<Figure>
+
+<Example>
+  {
+    <div className="flex flex-col gap-8">
+      <div>
+        <span className="mb-3 font-mono text-xs font-medium text-gray-500 dark:text-gray-400">font-sans</span>
+        <p className="font-sans text-lg font-medium text-gray-900 dark:text-gray-200">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      </div>
+      <div>
+        <span className="mb-3 font-mono text-xs font-medium text-gray-500 dark:text-gray-400">font-serif</span>
+        <p className="font-serif text-lg font-medium text-gray-900 dark:text-gray-200">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      </div>
+      <div>
+        <span className="mb-3 font-mono text-xs font-medium text-gray-500 dark:text-gray-400">font-mono</span>
+        <p className="font-mono text-lg font-medium text-gray-900 dark:text-gray-200">
+          The quick brown fox jumps over the lazy dog.
+        </p>
+      </div>
+    </div>
+  }
+</Example>
+
+```html
+<!-- [!code classes:font-sans,font-serif,font-mono] -->
+<p class="font-sans ...">The quick brown fox ...</p>
+<p class="font-serif ...">The quick brown fox ...</p>
+<p class="font-mono ...">The quick brown fox ...</p>
+```
+
+</Figure>
+
+## Tips Components
+
+The Tips components provide styled callouts for different types of information.
+
+<TipGood>
+  <>This is a good practice tip that highlights recommended approaches.</>
+</TipGood>
+
+<TipBad>
+  <>This is a bad practice tip that highlights approaches to avoid.</>
+</TipBad>
+
+<TipInfo>
+  <>This is an informational tip that provides additional context or details.</>
+</TipInfo>
+
+<TipCompat>
+  <>This is a compatibility tip that provides information about browser support or compatibility issues.</>
+</TipCompat>
+
+
+## Example Resizable
+
+The `Resizable` prop on the `Example` component allows you to create resizable examples.
+
+<Figure desktopHint="Resize the example to see the expected behavior">
+
+<Example resizable>
+  {
+    <img
+      className="mx-auto aspect-3/2 w-full max-w-sm rounded-lg object-cover"
+      src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+    />
+  }
+</Example>
+
+```tsx
+<Example resizable>
+  {
+    <img
+      className="mx-auto aspect-3/2 w-full max-w-sm rounded-lg object-cover"
+      src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
+    />
+  }
+</Example>
+```
+
+</Figure>
+
+## CodeExample With and Without Filename
+
+### Code Example Without Filename
+
+The `CodeExample` component now correctly applies the `not-prose` class when used directly, ensuring consistent styling with code fences.
+
+<CodeExample example={html`
+<div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-gray-800">No Filename Example</h2>
+  <p class="mt-2 text-gray-600">This example has no filename and should have consistent styling</p>
+</div>
+`} />
+
+### Code Example With Filename
+
+For comparison, this example has a filename specified.
+
+<CodeExample
+  filename="example.html"
+  example={html`
+<div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-gray-800">With Filename Example</h2>
+  <p class="mt-2 text-gray-600">This example has a filename and should have space for the filename tab</p>
+</div>
+`} />
+
+### Code Fence Example (For Comparison)
+
+This is a code fence example for comparison:
+
+```html
+<div class="flex flex-col items-center p-6 bg-white rounded-lg shadow-md">
+  <h2 class="text-xl font-bold text-gray-800">Code Fence Example</h2>
+  <p class="mt-2 text-gray-600">This example uses a code fence and should have the same styling</p>
+</div>
+```

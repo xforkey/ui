@@ -1,6 +1,7 @@
 import { cookies } from "next/headers"
 
 import { AppSidebar } from "@/components/app-sidebar"
+import { getUIComponentsList } from "@/components/app-sidebar/ui-components-list"
 import { ModeSwitcher } from "@/components/mode-switcher"
 import { NavHeader } from "@/components/nav-header"
 import { Separator } from "@/ui/separator"
@@ -18,12 +19,17 @@ export default async function AppLayout({
 }: Readonly<{
     children: React.ReactNode
 }>) {
-    const cookieStore = await cookies()
+    // Fetch data on the server
+    const [cookieStore, uiComponents] = await Promise.all([
+        cookies(),
+        getUIComponentsList()
+    ])
+
     const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
     return (
         <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar />
+            <AppSidebar uiComponents={uiComponents} />
             <SidebarInset>
                 <header className="bg-background sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2">
                     <div className="flex h-14 w-full items-center gap-2 px-4">

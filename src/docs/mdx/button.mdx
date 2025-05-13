@@ -1,0 +1,143 @@
+export const title = "Button";
+export const description = "Displays a button or a component that looks like a button.";
+export const links = {
+  doc: "https://www.radix-ui.com/docs/primitives/components/button",
+  api: "https://www.radix-ui.com/docs/primitives/components/button#api-reference"
+}
+
+A button component that can be used to trigger actions.
+
+<ComponentPreview demoName="button-demo" hint="Click to interact" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add button
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-slot
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="button" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import { Button } from "@/components/ui/button"
+```
+
+```tsx
+<Button variant="outline">Button</Button>
+```
+
+</CodeExampleStack>
+
+## Link
+
+You can use the `buttonVariants` helper to create a link that looks like a button.
+
+<CodeExampleStack>
+
+```tsx
+import { buttonVariants } from "@/components/ui/button"
+```
+
+```tsx
+<Link className={buttonVariants({ variant: "outline" })}>Click here</Link>
+```
+
+</CodeExampleStack>
+
+Alternatively, you can set the `asChild` parameter and nest the link component.
+
+```tsx
+<Button asChild>
+  <Link href="/login">Login</Link>
+</Button>
+```
+
+## Examples
+
+### Primary
+
+<ComponentPreview demoName="button-demo" hint="A primary button" />
+
+### Secondary
+
+<ComponentPreview demoName="button-secondary" hint="A secondary button" />
+
+### Destructive
+
+<ComponentPreview demoName="button-destructive" hint="A destructive button" />
+
+### Outline
+
+<ComponentPreview demoName="button-outline" hint="A button using the outline variant" />
+
+### Ghost
+
+<ComponentPreview demoName="button-ghost" hint="A button using the ghost variant" />
+
+### Link
+
+<ComponentPreview demoName="button-link" hint="A button using the link variant" />
+
+### Icon
+
+<ComponentPreview demoName="button-icon" hint="An icon button" />
+
+### With Icon
+
+<ComponentPreview demoName="button-with-icon" hint="A button with an icon" />
+
+### Loading
+
+<ComponentPreview demoName="button-loading" hint="A button with a loading state" />
+
+### As Child
+
+<ComponentPreview demoName="button-as-child" hint="A button wrapping a custom Link component" />
+
+## Changelog
+
+### 2024-10-16 Classes for icons
+
+Added `gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0` to the button to automatically style icon inside the button.
+
+Add the following classes to the `cva` call in your `button.tsx` file.
+
+```js
+/* [!code filename:button.tsx] */
+const buttonVariants = cva(
+  "inline-flex ... gap-2 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0"
+)

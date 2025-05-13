@@ -1,5 +1,7 @@
 "use client"
 
+import { type UIComponentInfo } from "./ui-components-list"
+
 import * as React from "react"
 import {
   AudioWaveform,
@@ -37,7 +39,6 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/ui/sidebar"
-import { registry } from "@/demo/registry"
 
 // This is sample data.
 const data = {
@@ -152,7 +153,13 @@ const data = {
   ]
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+// Client component that renders the sidebar with UI components passed from the server
+export function AppSidebar({
+  uiComponents,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  uiComponents: UIComponentInfo[]
+}) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -198,10 +205,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarMenu>
-            {Object.values(registry).map((item) => (
+            {uiComponents.map((item) => (
               <SidebarMenuItem key={item.name}>
                 <SidebarMenuButton asChild>
-                  <a href={`/${item.name}`}>
+                  <a href={`/docs/${item.name}`}>
                     <span>{item.displayName}</span>
                   </a>
                 </SidebarMenuButton>

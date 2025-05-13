@@ -1,0 +1,143 @@
+export const title = "Typography";
+export const description = "Styles for headings, paragraphs, lists...etc";
+export const links = {
+  doc: "https://ui.shadcn.com/docs/components/typography",
+  api: "https://ui.shadcn.com/docs/components/typography#api-reference"
+}
+
+A collection of typographic elements with a default style.
+
+<ComponentPreview demoName="typography-demo" hint="A collection of typographic elements" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add typography
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following styles into your global CSS file.</Step>
+
+```css
+@layer base {
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl;
+  }
+
+  h2 {
+    @apply scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0;
+  }
+
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight;
+  }
+
+  h4 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight;
+  }
+
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6;
+  }
+
+  blockquote {
+    @apply mt-6 border-l-2 pl-6 italic;
+  }
+
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2;
+  }
+
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold;
+  }
+
+  .lead {
+    @apply text-xl text-muted-foreground;
+  }
+
+  .large {
+    @apply text-lg font-semibold;
+  }
+
+  small {
+    @apply text-sm font-medium leading-none;
+  }
+
+  .muted {
+    @apply text-sm text-muted-foreground;
+  }
+}
+```
+
+</Steps>
+</TabsContent>
+</Tabs>
+
+## Usage
+
+### Heading 1
+
+<ComponentPreview demoName="typography-h1" />
+
+### Heading 2
+
+<ComponentPreview demoName="typography-h2" />
+
+### Heading 3
+
+<ComponentPreview demoName="typography-h3" />
+
+### Heading 4
+
+<ComponentPreview demoName="typography-h4" />
+
+### Paragraph
+
+<ComponentPreview demoName="typography-p" />
+
+### Blockquote
+
+<ComponentPreview demoName="typography-blockquote" />
+
+### List
+
+<ComponentPreview demoName="typography-list" />
+
+### Inline Code
+
+<ComponentPreview demoName="typography-inline-code" />
+
+### Lead
+
+<ComponentPreview demoName="typography-lead" />
+
+### Large
+
+<ComponentPreview demoName="typography-large" />
+
+### Small
+
+<ComponentPreview demoName="typography-small" />
+
+### Muted
+
+<ComponentPreview demoName="typography-muted" />
+
+### Table
+
+<ComponentPreview demoName="typography-table" />

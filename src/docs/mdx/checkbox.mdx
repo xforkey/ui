@@ -1,0 +1,79 @@
+export const title = "Checkbox";
+export const description = "A control that allows the user to toggle between checked and not checked.";
+export const links = {
+  doc: "https://www.radix-ui.com/docs/primitives/components/checkbox",
+  api: "https://www.radix-ui.com/docs/primitives/components/checkbox#api-reference"
+}
+
+A checkbox component that allows users to select one or more items from a list.
+
+<ComponentPreview demoName="checkbox-demo" hint="A basic checkbox" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add checkbox
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-checkbox
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="checkbox" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import { Checkbox } from "@/components/ui/checkbox"
+```
+
+```tsx
+<Checkbox />
+```
+
+</CodeExampleStack>
+
+## Examples
+
+### With text
+
+<ComponentPreview demoName="checkbox-with-text" hint="A checkbox with label and description" />
+
+### Disabled
+
+<ComponentPreview demoName="checkbox-disabled" hint="A disabled checkbox" />
+
+### Form
+
+<ComponentPreview demoName="checkbox-form-single" hint="A checkbox in a form with single selection" />
+
+<ComponentPreview demoName="checkbox-form-multiple" hint="A checkbox in a form with multiple selections" />

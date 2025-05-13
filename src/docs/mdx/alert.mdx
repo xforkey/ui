@@ -1,0 +1,85 @@
+export const title = "Alert";
+export const description = "Displays a callout for user attention.";
+export const links = {
+  doc: "https://ui.shadcn.com/docs/components/alert",
+  api: "https://ui.shadcn.com/docs/components/alert#api-reference"
+}
+
+A component that displays a callout for user attention.
+
+<ComponentPreview demoName="alert-demo" hint="An alert with an icon, title and description" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<CodeExampleGroup
+  filenames={["HTML", "Generated CSS"]}
+>
+
+```bash
+npx shadcn@latest add alert
+```
+  <CssBlock code={`.group-\\[\\.is-published\\]\\:block {
+    &:is(:where(.group):is(.is-published) *) {
+      display: block;
+    }
+  }`} />
+
+</CodeExampleGroup>
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+
+<ComponentSource name="alert" />
+
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+```
+
+```tsx
+<Alert>
+  <Terminal className="h-4 w-4" />
+  <AlertTitle>Heads up!</AlertTitle>
+  <AlertDescription>
+    You can add components and dependencies to your app using the cli.
+  </AlertDescription>
+</Alert>
+```
+
+</CodeExampleStack>
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="alert-demo" hint="An alert with an icon, title and description" />
+
+### Destructive
+
+<ComponentPreview demoName="alert-destructive" hint="An alert with a destructive variant" />

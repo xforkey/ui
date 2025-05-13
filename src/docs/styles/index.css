@@ -1,0 +1,4 @@
+/* Barrel file for all MDX styles */
+@import "./search.css";
+@import "./mdx.css";
+@import "./typography.css" layer(components);

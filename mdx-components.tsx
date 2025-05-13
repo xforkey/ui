@@ -1,0 +1,277 @@
+import type { MDXComponents } from "mdx/types";
+import React, { ReactNode, useMemo } from "react";
+import {
+    CodeExample,
+    CodeExampleStack,
+    CodeExampleGroup,
+    CodeBlock,
+    HighlightedCode,
+    RawHighlightedCode,
+    tsx,
+    js,
+    ts,
+    jsx,
+    html,
+    svelte,
+    css,
+    bash
+} from "@/docs/components/code-example";
+import Link from "next/link";
+import { Example } from "@/docs/components/example";
+import { Figure } from "@/docs/components/figure";
+import { Iframe } from "@/docs/components/iframe";
+import { TipGood, TipBad, TipInfo } from "@/docs/components/tips";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/docs/components/installation-tabs";
+import getSourceCode from "@/docs/get-source-code";
+import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Create a CSS wrapper component that uses the css template literal function internally
+const CssBlock = ({ code }: { code: string }) => {
+    const example = css`${code}`;
+    return <CodeBlock example={example} />;
+};
+
+// Create a generic demo skeleton that works for various component types
+const GenericDemoSkeleton = () => (
+    <div className="w-full space-y-4">
+        {/* Header/title area */}
+        <div className="flex items-center justify-between">
+            <Skeleton className="h-6 w-1/3" />
+            <Skeleton className="h-6 w-16" />
+        </div>
+
+        {/* Main content area */}
+        <div className="space-y-2">
+            <Skeleton className="h-24 w-full" />
+            <Skeleton className="h-16 w-3/4" />
+            <Skeleton className="h-16 w-5/6" />
+        </div>
+
+        {/* Optional footer/controls area */}
+        <div className="flex items-center gap-2 pt-2">
+            <Skeleton className="h-8 w-20 rounded-md" />
+            <Skeleton className="h-8 w-20 rounded-md" />
+        </div>
+    </div>
+);
+
+function getTextContent(node: React.ReactNode): string {
+    if (typeof node === "string" || typeof node === "number") {
+        return String(node);
+    }
+
+    if (React.isValidElement(node)) {
+        if (node.type === "small") {
+            return "";
+        }
+
+        // @ts-ignore
+        return getTextContent(node.props.children);
+    }
+
+    if (Array.isArray(node)) {
+        return node.map(getTextContent).join("");
+    }
+
+    return ""; // If the node is neither text nor a React element
+}
+
+function slugify(str: React.ReactNode) {
+    return getTextContent(str)
+        .toLowerCase()
+        .trim() // Remove whitespace from both ends of a string
+        .replace(/\s+/g, "-") // Replace spaces with -
+        .replace(/&/g, "-and-") // Replace & with 'and'
+        .replace(/[^\w\-]+/g, "") // Remove all non-word characters except for -
+        .replace(/\-\-+/g, "-"); // Replace multiple - with single -
+}
+
+function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
+    return ({ children }: React.PropsWithChildren) => {
+        let slug = slugify(children);
+        return React.createElement(`h${level}`, { id: slug }, [
+            React.createElement(
+                "a",
+                {
+                    href: `#${slug}`,
+                    key: `link-${slug}`,
+                    className: "anchor",
+                },
+                children,
+            ),
+        ]);
+    };
+}
+
+// This file is required to use MDX in `app` directory.
+export function useMDXComponents(components: MDXComponents): MDXComponents {
+    return {
+        // Allows customizing built-in components, e.g. to add styling.
+        // h1: ({ children }) => <h1 style={{ fontSize: "100px" }}>{children}</h1>,
+        ...components,
+
+        h2: createHeading(2),
+        h3: createHeading(3),
+        h4: createHeading(4),
+        h5: createHeading(5),
+        h6: createHeading(6),
+
+        // Make language tag functions available to MDX files
+        tsx,
+        js,
+        ts,
+        jsx,
+        html,
+        svelte,
+        css,
+        bash,
+
+        a(props: any) {
+            return <Link {...props} />;
+        },
+
+        code({ children }: { children: string | ReactNode }) {
+            if (typeof children !== "string") {
+                return <code>{children}</code>;
+            }
+
+            if (children.startsWith("<")) {
+                return <code>{children}</code>;
+            }
+
+            return (
+                <code>
+                    {children
+                        .split(/(<[^>]+>)/g)
+                        .map((part, i) => (part.startsWith("<") && part.endsWith(">") ? <var key={i}>{part}</var> : part))}
+                </code>
+            );
+        },
+
+        pre(props) {
+            let child = React.Children.only(props.children) as React.ReactElement;
+            if (!child) return null;
+
+            // @ts-ignore
+            let { className, children: code } = child.props;
+            let lang = className ? className.replace("language-", "") : "";
+            let filename = undefined;
+
+            // Extract `[!code filename:…]` directives from the first line of code
+            let lines = code.split("\n");
+            let filenameRegex = /\[\!code filename\:(.+)\]/;
+            let match = lines[0].match(filenameRegex);
+            if (match) {
+                filename = match[1];
+                code = lines.splice(1).join("\n");
+            }
+
+            // Use the appropriate language function based on the language
+            let example;
+            switch (lang) {
+                case 'js':
+                    example = js`${code}`;
+                    break;
+                case 'ts':
+                    example = ts`${code}`;
+                    break;
+                case 'jsx':
+                    example = jsx`${code}`;
+                    break;
+                case 'tsx':
+                    example = tsx`${code}`;
+                    break;
+                case 'html':
+                    example = html`${code}`;
+                    break;
+                case 'svelte':
+                    example = svelte`${code}`;
+                    break;
+                case 'css':
+                    example = css`${code}`;
+                    break;
+                case 'bash':
+                    example = bash`${code}`;
+                    break;
+                default:
+                    // If no specific language function is available, use a generic object
+                    example = { lang, code };
+            }
+
+            return (
+                <div>
+                    <CodeExample example={example} className="not-prose" filename={filename} />
+                </div>
+            );
+        },
+        Steps: ({ ...props }) => (
+            <div
+                className="steps mb-12 mt-8 [counter-reset:step] md:ml-4 md:border-l md:pl-8"
+                {...props}
+            />
+        ),
+        Step: ({ className, ...props }: React.ComponentProps<"h3">) => (
+            <h3
+                className={cn(
+                    "step font-heading mb-4 scroll-m-20 tracking-tight",
+                    className
+                )}
+                {...props}
+            />
+        ),
+        ComponentPreview: ({ className, hint, demoName, resizable = false, ...props }: React.ComponentProps<"div"> & { hint: string, demoName: string, resizable: boolean }) => {
+            // Dynamically import the component based on demoName
+            const DynamicComponent = useMemo(() =>
+                dynamic(() => import(`@/docs/components/demos/${demoName}`), {
+                    loading: () => <GenericDemoSkeleton />,
+                }),
+                [demoName]);
+
+            return (
+                <Figure hint={hint}>
+                    <Example resizable={resizable} >
+                        <DynamicComponent {...props} />
+                    </Example>
+                    <CodeExample collapsible={true} example={tsx`${getSourceCode(demoName)}`} />
+                </Figure>
+            );
+        },
+        ComponentSource: ({ name, collapsible = true }: { name: string, collapsible?: boolean }) => {
+            return (
+                <CodeExample
+                    collapsible={collapsible}
+                    example={tsx`${getSourceCode(name)}`}
+                />
+            );
+        },
+        InstallBlock: ({ packageName }: { packageName: string }) => {
+            return (
+                <CodeExampleGroup filenames={["npm", "pnpm", "yarn", "bun"]}>
+                    <CodeBlock example={bash`npm install ${packageName}`} />
+                    <CodeBlock example={bash`pnpm add ${packageName}`} />
+                    <CodeBlock example={bash`yarn add ${packageName}`} />
+                    <CodeBlock example={bash`bun add ${packageName}`} />
+                </CodeExampleGroup>
+            );
+        },
+        Example,
+        Figure,
+        Iframe,
+        TipGood,
+        TipBad,
+        TipInfo,
+        Tabs,
+        TabsContent,
+        TabsList,
+        TabsTrigger,
+        CodeExample,
+        CodeExampleStack,
+        CodeExampleGroup,
+        CodeBlock,
+        HighlightedCode,
+        RawHighlightedCode,
+        CssBlock
+    };
+}

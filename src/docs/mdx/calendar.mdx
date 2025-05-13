@@ -1,0 +1,107 @@
+export const title = "Calendar";
+export const description = "A date field component that allows users to enter and edit date.";
+export const links = {
+  doc: "https://react-day-picker.js.org",
+  api: "https://react-day-picker.js.org/api"
+}
+
+A calendar component that allows users to select dates and navigate between months and years.
+
+<ComponentPreview demoName="calendar-demo" hint="A calendar showing the current date" />
+
+## About
+
+The `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add calendar
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install react-day-picker@8.10.1 date-fns
+```
+
+<Step>Add the `Button` component to your project.</Step>
+
+The `Calendar` component uses the `Button` component. Make sure you have it installed in your project.
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="calendar" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+```
+
+```tsx
+const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+return (
+  <Calendar
+    mode="single"
+    selected={date}
+    onSelect={setDate}
+    className="rounded-md border"
+  />
+)
+```
+
+</CodeExampleStack>
+
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.
+
+## Date Picker
+
+You can use the `<Calendar>` component to build a date picker. See the [Date Picker](/docs/components/date-picker) page for more information.
+
+## Examples
+
+### Form
+
+<ComponentPreview demoName="calendar-form" hint="Calendar in a form with React Hook Form" />
+
+### React Hook Form
+
+<ComponentPreview demoName="calendar-react-hook-form" hint="Calendar with React Hook Form integration" />
+
+## Changelog
+
+### 11-03-2024 day_outside color
+
+Changed the color of the `day_outside` class to the following to improve contrast:
+
+```js
+/* [!code filename:calendar.tsx] */
+"day_outside:
+      "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
