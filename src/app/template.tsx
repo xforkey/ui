@@ -1,4 +1,4 @@
-import { cookies } from "next/headers"
+import { cookies, headers } from "next/headers"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { getUIComponentsList } from "@/components/app-sidebar/ui-components-list"
@@ -11,7 +11,7 @@ import {
     SidebarProvider,
     SidebarTrigger,
 } from "@/ui/sidebar"
-import { BreadcrumbDemo } from "@/components/breadcrumb"
+import { Breadcrumbs } from "@/components/breadcrumb"
 import { CommandMenu } from "@/components/command-menu"
 
 export default async function AppLayout({
@@ -24,6 +24,9 @@ export default async function AppLayout({
         cookies(),
         getUIComponentsList()
     ])
+
+    const headerList = await headers(); // ✅ must be awaited
+    const pathname = headerList.get('x-pathname') ?? '/';
 
     const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
@@ -38,14 +41,14 @@ export default async function AppLayout({
                             orientation="vertical"
                             className="mr-2 data-[orientation=vertical]:h-4"
                         />
-                        <BreadcrumbDemo />
+                        <Breadcrumbs pathname={pathname} />
                         <div className="ml-auto flex items-center gap-2">
                             <CommandMenu />
                             <ModeSwitcher />
                         </div>
                     </div>
                 </header>
-                <ScrollArea className="m-2 p-4 h-[calc(100vh-72px)] max-h-[calc(100vh-72px)] bg-black/2 dark:bg-white/2 rounded-2xl lg:ring-1 lg:shadow-xs  lg:ring-black/5 dark:lg:ring-white/10">
+                <ScrollArea className="m-2 px-4 h-[calc(100vh-72px)] max-h-[calc(100vh-72px)] bg-black/2 dark:bg-white/2 rounded-2xl lg:ring-1 lg:shadow-xs  lg:ring-black/5 dark:lg:ring-white/10">
                     {children}
                 </ScrollArea>
             </SidebarInset>

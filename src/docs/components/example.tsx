@@ -33,7 +33,7 @@ export function Example({
             <div
                 className={clsx(
                     className,
-                    "not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-gray-950/50",
+                    "not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-background/50 classy-outline",
                     padding && "p-8",
                 )}
             >
@@ -52,7 +52,7 @@ export function Example({
                 style={{ marginRight: useTransform(x, (x) => -x) }}
                 className={clsx(
                     padding && "p-8",
-                    "@container relative overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-gray-950/50 dark:inset-ring dark:inset-ring-white/5",
+                    "@container relative overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-background/50 dark:inset-ring dark:inset-ring-white/5",
                     // Add layer on top of example while dragging to prevent issues with iframes
                     "group-data-dragging:before:absolute group-data-dragging:before:inset-0",
                 )}
@@ -64,8 +64,8 @@ export function Example({
                     title="Drag to resize"
                     className={clsx(
                         "pointer-events-auto absolute top-1/2 right-0 z-50 -mt-6 h-12 w-1.5 cursor-ew-resize rounded-full",
-                        "bg-slate-950/20 group-data-dragging:bg-slate-950/40 hover:bg-slate-950/40",
-                        "dark:bg-slate-500 dark:group-data-dragging:bg-slate-300 dark:hover:bg-slate-300",
+                        "bg-background/20 group-data-dragging:bg-background/40 hover:bg-background/40",
+                        "dark:bg-ring dark:group-data-dragging:bg-slate-300 dark:hover:bg-slate-300",
                     )}
                     drag="x"
                     dragElastic={0}

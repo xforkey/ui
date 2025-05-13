@@ -1,49 +1,63 @@
+"use client"
+
 import {
     Breadcrumb,
-    BreadcrumbEllipsis,
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import React from "react";
 
-export function BreadcrumbDemo() {
+/* Uses middleware and headers to get pathname
+---middleware.ts
+export function middleware(request: NextRequest) {
+    const res = NextResponse.next();
+    res.headers.set("x-pathname", request.nextUrl.pathname);
+    return res;
+}
+
+---page.tsx
+const headerList = await headers(); // ✅ must be awaited 
+const pathname = headerList.get('x-pathname') ?? '/';
+*/
+
+type Props = {
+    pathname: string;
+};
+
+export function Breadcrumbs({ pathname }: Props) {
+
+    const segments = pathname
+        .split("/")
+        .filter(Boolean); // remove empty segments
+
+    const paths = segments.map((segment, i) => ({
+        name: segment.replace(/-/g, " ").replace(/\b\w/g, c => c.toUpperCase()),
+        href: "/" + segments.slice(0, i + 1).join("/"),
+        isLast: i === segments.length - 1,
+    }));
+
     return (
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
                 </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger className="flex items-center gap-1">
-                            <BreadcrumbEllipsis className="h-4 w-4" />
-                            <span className="sr-only">Toggle menu</span>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                            <DropdownMenuItem>Documentation</DropdownMenuItem>
-                            <DropdownMenuItem>Themes</DropdownMenuItem>
-                            <DropdownMenuItem>GitHub</DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                    <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                    <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
-                </BreadcrumbItem>
+                {paths.map(({ name, href, isLast }) => (
+                    <React.Fragment key={href}>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            {isLast ? (
+                                <BreadcrumbPage>{name}</BreadcrumbPage>
+                            ) : (
+                                <BreadcrumbLink href={href}>{name}</BreadcrumbLink>
+                            )}
+                        </BreadcrumbItem>
+                    </React.Fragment>
+                ))}
             </BreadcrumbList>
         </Breadcrumb>
-    )
+    );
 }

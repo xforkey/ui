@@ -36,7 +36,7 @@ const colors = {
 
 // Define color variants based on the new styles
 const badgeColors = {
-  default: "bg-primary text-primary-foreground group-hover:bg-primary/25",
+  default: "bg-primary/15 text-primary-foreground group-hover:bg-primary/25",
   secondary: "bg-secondary text-secondary-foreground group-hover:bg-secondary/25",
   destructive: "bg-destructive/15 text-destructive-foreground group-hover:bg-destructive/25 dark:bg-destructive/10 dark:text-destructive-foreground dark:group-hover:bg-destructive/20",
   outline: "bg-background text-foreground border-border [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",

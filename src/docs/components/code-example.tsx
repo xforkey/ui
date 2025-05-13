@@ -75,10 +75,10 @@ export async function CodeExample({
 export function CodeExampleWrapper({ className, children, collapsible }: { className?: string; children: React.ReactNode, collapsible?: boolean }) {
     const Wrapper = collapsible ? CollapseWrapper : "div";
     return (
-        <div className="rounded-xl bg-gray-950 in-data-stack:mt-0 in-data-stack:rounded-none in-[figure]:-mx-1 in-[figure]:-mb-1 in-data-stack:[:first-child>&]:rounded-t-xl in-data-stack:[:first-child>&]:*:rounded-t-xl in-data-stack:[:last-child>&]:rounded-b-xl in-data-stack:[:last-child>&]:*:rounded-b-xl">
+        <div className="rounded-xl bg-card in-data-stack:mt-0 in-data-stack:rounded-none in-[figure]:-mx-1 in-[figure]:-mb-1 in-data-stack:[:first-child>&]:rounded-t-xl in-data-stack:[:first-child>&]:*:rounded-t-xl in-data-stack:[:last-child>&]:rounded-b-xl in-data-stack:[:last-child>&]:*:rounded-b-xl">
             <Wrapper
                 className={clsx(
-                    "rounded-xl p-1 text-sm scheme-dark in-data-stack:rounded-none dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10 in-data-stack:dark:inset-ring-0",
+                    "rounded-xl p-1 text-sm scheme-dark in-data-stack:rounded-none dark:bg-white/0 dark:inset-ring dark:inset-ring-white/10 in-data-stack:dark:inset-ring-0",
                     className,
                 )}
             >
@@ -110,7 +110,7 @@ export function CodeExampleGroup({
     return (
         <div>
             <Tabs className="not-prose" defaultValue={filenames[0]} >
-                <div className="rounded-xl bg-gray-950 in-[figure]:-mx-1 in-[figure]:-mb-1">
+                <div className="rounded-xl bg-background in-[figure]:-mx-1 in-[figure]:-mb-1">
                     <div
                         className={clsx(
                             "rounded-xl p-1 text-sm scheme-dark dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
@@ -196,7 +196,7 @@ export function RawHighlightedCode({
             theme: theme.name,
             transformers: [
                 transformerNotationHighlight({
-                    classActiveLine: "-mx-5 pl-[calc(var(--spacing)*5-2px)] border-l-2 pr-5 border-sky-400 bg-sky-300/15",
+                    classActiveLine: "-mx-5 pl-[calc(var(--spacing)*5-2px)] border-l-2 pr-5 border-primary bg-primary/10",
                 }),
                 transformerNotationDiff({
                     classLineAdd:

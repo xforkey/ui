@@ -48,11 +48,11 @@ export async function getDocPageSlugs() {
 
 export async function generateTableOfContents(slug: string) {
     // Check if the file exists
-    if (!(await fs.stat(path.join(process.cwd(), "./docs/mdx", `${slug}.mdx`)).catch(() => false))) {
+    if (!(await fs.stat(path.join(process.cwd(), "./src/docs/mdx", `${slug}.mdx`)).catch(() => false))) {
         return [];
     }
 
-    let markdown = await fs.readFile(path.join(process.cwd(), "./docs/mdx", `${slug}.mdx`), "utf8");
+    let markdown = await fs.readFile(path.join(process.cwd(), "./src/docs/mdx", `${slug}.mdx`), "utf8");
 
     return generateTableOfContentsFromMarkdown(markdown);
 }
