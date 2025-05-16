@@ -48,11 +48,11 @@ const data = [
 const chartConfig = {
   revenue: {
     label: "Revenue",
-    color: "hsl(var(--primary))",
+    color: "var(--chart-4)",
   },
   subscription: {
     label: "Subscriptions",
-    color: "hsl(var(--primary))",
+    color: "var(--chart-5)",
   },
 } satisfies ChartConfig
 

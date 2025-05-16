@@ -42,7 +42,7 @@ const buttonVariants = cva(
           // Hover state
           "hover:bg-primary/90",
           // Dark mode adjustments
-          "dark:bg-primary/10 dark:border-primary/20 dark:after:-inset-px dark:after:rounded-lg",
+          "dark:bg-primary/20 dark:border-primary/20 dark:after:-inset-px dark:after:rounded-lg",
           // Hover overlay
           "after:absolute after:inset-0 after:-z-10 after:rounded-[calc(var(--radius-lg)-1px)]",
           "after:shadow-[shadow:inset_0_1px_--theme(--color-white/15%)]",

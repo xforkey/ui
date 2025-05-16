@@ -60,7 +60,7 @@ const data = [
 const chartConfig = {
   goal: {
     label: "Goal",
-    color: "hsl(var(--primary))",
+    color: "var(--chart-3)",
   },
 } satisfies ChartConfig
 

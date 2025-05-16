@@ -12,6 +12,10 @@ import { RadioGroup } from '@/ui/radio-group'
 import { Checkbox } from '@/ui/checkbox'
 import { Switch } from '@/ui/switch'
 import { ContextDemo, DialogDemo, DropdownMenuDemo, PopoverDemo, SheetDemo, SonnerDemo } from './_components'
+import { Bongocat } from 'bongocat-avatar-generator'
+import { ShieldCloseIcon } from 'lucide-react'
+
+
 
 
 export default async function Page() {
@@ -177,7 +181,7 @@ export default async function Page() {
                             <TableCell>
                               <div className="flex items-center gap-2">
                                 <Avatar className='size-6'>
-                                  <AvatarImage src={order.event.thumbUrl} />
+                                  <Bongocat className='size-6' email={order.customer.email} />
                                 </Avatar>
                                 <span>{order.customer.name}</span>
                               </div>

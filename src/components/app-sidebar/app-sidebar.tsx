@@ -7,11 +7,11 @@ import {
   Bot,
   Command,
   Frame,
-  GalleryVerticalEnd,
   Map,
   PieChart,
   Settings2,
   SquareTerminal,
+  PenLine
 } from "lucide-react"
 
 import { NavMain } from "./nav-main"
@@ -35,9 +35,9 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      name: "XForkey",
+      logo: PenLine,
+      plan: "UI",
     },
     {
       name: "Acme Corp.",

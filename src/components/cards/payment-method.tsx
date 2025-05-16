@@ -1,6 +1,6 @@
 "use client"
 
-import { Icons } from "@/components/icons"
+import { Icons } from "../../components/icons"
 import { Button } from "@/ui/button"
 import {
   Card,
@@ -36,7 +36,7 @@ export function CardsPaymentMethod() {
             <RadioGroupItem
               value="card"
               id="card"
-              className="peer sr-only"
+              className="peer sr-only absolute opacity-0"
               aria-label="Card"
             />
             <Label
@@ -63,7 +63,7 @@ export function CardsPaymentMethod() {
             <RadioGroupItem
               value="paypal"
               id="paypal"
-              className="peer sr-only"
+              className="peer sr-only absolute opacity-0"
               aria-label="Paypal"
             />
             <Label
@@ -78,7 +78,7 @@ export function CardsPaymentMethod() {
             <RadioGroupItem
               value="apple"
               id="apple"
-              className="peer sr-only"
+              className="peer sr-only absolute opacity-0"
               aria-label="Apple"
             />
             <Label

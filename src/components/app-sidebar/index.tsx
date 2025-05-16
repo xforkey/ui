@@ -8,7 +8,7 @@ import {
   BookOpen,
   ChevronRightIcon,
   Command,
-  GalleryVerticalEnd,
+  PenLine,
   Layers,
 } from "lucide-react"
 import { NavUser } from "./nav-user"
@@ -47,9 +47,9 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
+      name: "X Forkey",
+      logo: PenLine,
+      plan: "UI",
     },
     {
       name: "Acme Corp.",
@@ -73,7 +73,7 @@ export function AppSidebar({
 }) {
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader >
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
@@ -113,15 +113,34 @@ export function AppSidebar({
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarMenu>
-            {uiComponents.map((item) => (
-              <SidebarMenuItem key={item.name}>
-                <SidebarMenuButton asChild>
-                  <a href={`/docs/${item.name}`}>
-                    <span>{item.displayName}</span>
-                  </a>
-                </SidebarMenuButton>
+            <Collapsible
+              asChild
+              defaultOpen={true}
+              className="group/collapsible"
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton tooltip="Components">
+                    <BookOpen />
+                    <span>Components</span>
+                    <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {uiComponents.map((item) => (
+                      <SidebarMenuSubItem key={item.name}>
+                        <SidebarMenuSubButton asChild>
+                          <a href={`/docs/${item.name}`}>
+                            <span>{item.displayName}</span>
+                          </a>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
               </SidebarMenuItem>
-            ))}
+            </Collapsible>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

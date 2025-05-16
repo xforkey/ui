@@ -102,7 +102,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          "bg-background overscroll-none font-sans antialiased",
+          "overscroll-none font-sans antialiased",
           fontSans.variable,
           fontMono.variable
         )}

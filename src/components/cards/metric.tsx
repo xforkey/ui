@@ -50,11 +50,11 @@ const data = [
 const chartConfig = {
   today: {
     label: "Today",
-    color: "hsl(var(--primary))",
+    color: "var(--chart-1)",
   },
   average: {
     label: "Average",
-    color: "hsl(var(--primary))",
+    color: "var(--chart-2)",
   },
 } satisfies ChartConfig
 
