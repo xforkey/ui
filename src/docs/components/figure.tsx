@@ -43,7 +43,7 @@ export function Figure({
 }) {
     return (
         <div>
-            <div className="not-prose isolate">
+            <div className="not-prose">
                 {(hint || desktopHint) && <Hint className={desktopHint && "max-sm:hidden"}>{hint || desktopHint}</Hint>}
                 <figure
                     className={clsx(

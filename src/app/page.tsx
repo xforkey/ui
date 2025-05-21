@@ -24,6 +24,7 @@ export default async function Page() {
     <>
 
       <div className='relative mx-auto lg:max-w-7xl'>
+        <div className='h-10' />
         <div className='pt-2 pb-40'>
           <div className="relative grid gap-[17px] sm:grid-cols-2 xl:grid-cols-[repeat(15,minmax(0,1fr))]">
             <div className="xl:col-span-5">

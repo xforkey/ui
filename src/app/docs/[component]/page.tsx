@@ -7,7 +7,6 @@ import Link from "next/link"
 import { badgeVariants } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
-import Layout from "@/docs/components/layout";
 
 
 type Props = {
@@ -66,56 +65,52 @@ export default async function DocPage(props: Props) {
     }
 
     return (
-        <Layout>
-            {/* Add a placeholder div so the Next.js router can find the scrollable element. */}
-            <div hidden />
-
-            <div className="mx-auto grid w-full max-w-2xl grid-cols-1 gap-10 xl:max-w-5xl xl:grid-cols-[minmax(0,1fr)_var(--container-2xs)]">
-                <div className="px-4 pt-10 pb-24 sm:px-6 xl:pr-0">
-                    <h1 data-title="true" className="mt-2 text-3xl font-medium tracking-tight text-gray-950 dark:text-white">
-                        {doc.title}
-                    </h1>
-                    <p data-description="true" className="mt-6 text-base/7 text-gray-700 dark:text-gray-400">
-                        {doc.description}
-                    </p>
-                    {doc.links ? (
-                        <div className="flex items-center space-x-2 pt-4">
-                            {doc.links?.doc && (
-                                <Link
-                                    href={doc.links.doc}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={cn(badgeVariants({ variant: "default" }), "gap-1")}
-                                >
-                                    Docs
-                                    <ExternalLink className="h-3 w-3" />
-                                </Link>
-                            )}
-                            {doc.links?.api && (
-                                <Link
-                                    href={doc.links.api}
-                                    target="_blank"
-                                    rel="noreferrer"
-                                    className={cn(badgeVariants({ variant: "default" }), "gap-1")}
-                                >
-                                    API Reference
-                                    <ExternalLink className="h-3 w-3" />
-                                </Link>
-                            )}
-                        </div>
-                    ) : null}
-
-                    <div className="prose mt-10" data-content="true">
-                        <doc.Component />
+        <div className="mx-auto grid w-full max-w-2xl grid-cols-1 gap-10 xl:max-w-5xl xl:grid-cols-[minmax(0,1fr)_var(--container-2xs)]">
+            <div className="px-4 pt-10 pb-24 sm:px-6 xl:pr-0">
+                <h1 data-title="true" className="mt-2 text-3xl font-medium tracking-tight text-gray-950 dark:text-white">
+                    {doc.title}
+                </h1>
+                <p data-description="true" className="mt-6 text-base/7 text-gray-700 dark:text-gray-400">
+                    {doc.description}
+                </p>
+                {doc.links ? (
+                    <div className="flex items-center space-x-2 pt-4">
+                        {doc.links?.doc && (
+                            <Link
+                                href={doc.links.doc}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={cn(badgeVariants({ variant: "default" }), "gap-1")}
+                            >
+                                Docs
+                                <ExternalLink className="h-3 w-3" />
+                            </Link>
+                        )}
+                        {doc.links?.api && (
+                            <Link
+                                href={doc.links.api}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={cn(badgeVariants({ variant: "default" }), "gap-1")}
+                            >
+                                API Reference
+                                <ExternalLink className="h-3 w-3" />
+                            </Link>
+                        )}
                     </div>
-                    <Pagination slug={params.component} />
+                ) : null}
+
+                <div className="prose mt-10" data-content="true">
+                    <doc.Component />
                 </div>
-                <div className="max-xl:hidden">
-                    <div className="sticky top-14 max-h-[calc(100svh-3.5rem)] overflow-x-hidden px-6 pt-10 pb-24">
-                        <TableOfContents tableOfContents={tableOfContents} />
-                    </div>
+                <Pagination slug={params.component} />
+            </div>
+            <div className="max-xl:hidden">
+                <div className="sticky top-14 max-h-[calc(100svh-3.5rem)] overflow-x-hidden px-6 pt-10 pb-24">
+                    <TableOfContents tableOfContents={tableOfContents} />
                 </div>
             </div>
-        </Layout>
+        </div>
+
     );
 }

@@ -1,0 +1,144 @@
+export const title = "Select";
+export const description = "Displays a list of options for the user to pick from—triggered by a button.";
+export const links = {
+  doc: "https://www.radix-ui.com/docs/primitives/components/select",
+  api: "https://www.radix-ui.com/docs/primitives/components/select#api-reference"
+}
+
+A select component that allows users to choose from a list of options.
+
+<ComponentPreview demoName="select-demo" hint="Click to open select" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add select
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-select
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="select" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+<CodeExampleStack>
+
+```tsx
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+```
+
+```tsx
+<Select>
+  <SelectTrigger className="w-[180px]">
+    <SelectValue placeholder="Select a fruit" />
+  </SelectTrigger>
+  <SelectContent>
+    <SelectGroup>
+      <SelectLabel>Fruits</SelectLabel>
+      <SelectItem value="apple">Apple</SelectItem>
+      <SelectItem value="banana">Banana</SelectItem>
+      <SelectItem value="orange">Orange</SelectItem>
+      <SelectItem value="grape">Grape</SelectItem>
+    </SelectGroup>
+  </SelectContent>
+</Select>
+```
+
+</CodeExampleStack>
+
+## Examples
+
+### With Form
+
+<ComponentPreview demoName="select-form" hint="Select with form validation" />
+
+### Disabled
+
+<ComponentPreview demoName="select-disabled" hint="Disabled select component" />
+
+### Scrollable
+
+<ComponentPreview demoName="select-scrollable" hint="Scrollable select component" />
+
+### Invalid
+
+<ComponentPreview demoName="select-invalid" hint="Invalid select component" />
+
+## Changelog
+
+### 2024-10-16 Classes for icons
+
+Added `[&_svg:not([class*='size-'])]:size-4 [&_svg]:shrink-0` to the `SelectTrigger` to automatically style icons inside the select trigger.
+
+Add the following classes to the `SelectTrigger` in your `select.tsx` file.
+
+```js
+/* [!code filename:select.tsx] */
+function SelectTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof SelectPrimitive.Trigger>) {
+  return (
+    <SelectPrimitive.Trigger
+      data-slot="select-trigger"
+      className={cn(
+        // Layout
+        "flex w-full items-center justify-between",
+        "*:data-[slot=select-value]:line-clamp-1 *:data-[slot=select-value]:flex *:data-[slot=select-value]:items-center *:data-[slot=select-value]:gap-2",
+        "[&_svg]:shrink-0",
+
+        // Base Styles
+        "h-9 rounded-md px-3 py-2 text-sm whitespace-nowrap shadow-xs transition-[color,box-shadow] outline-none",
+        "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        
+        // Rest of your classes...
+        
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <SelectPrimitive.Icon asChild>
+        <ChevronsUpDownIcon className="size-5 stroke-muted-foreground group-has-data-disabled:stroke-zinc-600 sm:size-4 dark:stroke-zinc-400 forced-colors:stroke-[CanvasText]" />
+      </SelectPrimitive.Icon>
+    </SelectPrimitive.Trigger>
+  )
+}

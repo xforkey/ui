@@ -222,16 +222,33 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
             />
         ),
         ComponentPreview: ({ className, hint, demoName, resizable = false, ...props }: React.ComponentProps<"div"> & { hint: string, demoName: string, resizable: boolean }) => {
-            // Dynamically import the component based on demoName
-            const DynamicComponent = useMemo(() =>
-                dynamic(() => import(`@/docs/components/demos/${demoName}`), {
+            // Determine if this is a chart component
+            const isChartComponent = demoName.startsWith('chart-');
+
+            // Convert demoName from kebab-case to PascalCase for named exports
+            const exportName = demoName.split('-')
+                .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+                .join('');
+
+            // Create the appropriate dynamic component based on the type
+            const DynamicComponent = isChartComponent
+                ? dynamic(() =>
+                    import(`@/docs/components/demos/charts/${demoName}`).then(mod => {
+                        // For chart components, extract the named export
+                        return mod[exportName];
+                    }).catch(() =>
+                        // Fallback to main demos directory if not found
+                        import(`@/docs/components/demos/${demoName}`)
+                    ), {
                     loading: () => <GenericDemoSkeleton />,
-                }),
-                [demoName]);
+                })
+                : dynamic(() => import(`@/docs/components/demos/${demoName}`), {
+                    loading: () => <GenericDemoSkeleton />,
+                });
 
             return (
                 <Figure hint={hint}>
-                    <Example resizable={resizable} >
+                    <Example resizable={resizable}>
                         <DynamicComponent {...props} />
                     </Example>
                     <CodeExample collapsible={true} example={tsx`${getSourceCode(demoName)}`} />

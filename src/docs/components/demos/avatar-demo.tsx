@@ -4,6 +4,7 @@ import {
   AvatarImage,
 } from "@/components/ui/avatar"
 
+
 export default function AvatarDemo() {
   return (
     <Avatar>

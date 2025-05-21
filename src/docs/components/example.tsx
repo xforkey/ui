@@ -33,7 +33,7 @@ export function Example({
             <div
                 className={clsx(
                     className,
-                    "not-prose overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-background/50 classy-outline",
+                    "not-prose overflow-visible rounded-lg bg-white outline outline-white/5 dark:bg-background/70 classy-outline flex justify-center",
                     padding && "p-8",
                 )}
             >
@@ -52,7 +52,7 @@ export function Example({
                 style={{ marginRight: useTransform(x, (x) => -x) }}
                 className={clsx(
                     padding && "p-8",
-                    "@container relative overflow-auto rounded-lg bg-white outline outline-white/5 dark:bg-background/50 dark:inset-ring dark:inset-ring-white/5",
+                    "@container relative overflow-visible rounded-lg bg-white outline outline-white/5 dark:bg-background/50 dark:inset-ring dark:inset-ring-white/5",
                     // Add layer on top of example while dragging to prevent issues with iframes
                     "group-data-dragging:before:absolute group-data-dragging:before:inset-0",
                 )}
