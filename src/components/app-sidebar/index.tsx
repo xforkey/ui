@@ -3,6 +3,11 @@
 import { type UIComponentInfo } from "./ui-components-list"
 
 import * as React from "react"
+import Link from "next/link"
+import { usePathname } from 'next/navigation'
+import { AnimatePresence, motion } from "framer-motion"
+import { ActivePageMarker } from "./active-page-marker"
+import { remToPx } from "@/lib/utils"
 import {
   AudioWaveform,
   BookOpen,
@@ -41,7 +46,7 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
+    name: "xFork",
     email: "m@example.com",
     avatar: "/avatars/shadcn.jpg",
   },
@@ -71,6 +76,8 @@ export function AppSidebar({
 }: React.ComponentProps<typeof Sidebar> & {
   uiComponents: UIComponentInfo[]
 }) {
+  const pathname = usePathname()
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader >
@@ -80,6 +87,7 @@ export function AppSidebar({
         <SidebarGroup>
           <SidebarGroupLabel>Examples</SidebarGroupLabel>
           <SidebarMenu>
+            {/* Check if any example is active */}
             <Collapsible
               asChild
               defaultOpen={true}
@@ -95,15 +103,38 @@ export function AppSidebar({
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
-                    {examples.map((example: { name: string; href: string; code: string; hidden: boolean }) => (
-                      <SidebarMenuSubItem key={example.href}>
-                        <SidebarMenuSubButton asChild>
-                          <a href={example.href}>
-                            <span>{example.name}</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
+                    {/* Find the active example index */}
+                    {(() => {
+                      const activeExampleIndex = examples.findIndex(example => pathname === example.href);
+
+                      return (
+                        <>
+                          <motion.div
+                            layout
+                            className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
+                          />
+                          <AnimatePresence initial={false}>
+                            {activeExampleIndex !== -1 && (
+                              <ActivePageMarker
+                                activeIndex={activeExampleIndex}
+                                itemHeight={remToPx(2)}
+                                offset={remToPx(0.25)}
+                              />
+                            )}
+                          </AnimatePresence>
+
+                          {examples.map((example: { name: string; href: string; code: string; hidden: boolean }) => (
+                            <SidebarMenuSubItem key={example.href}>
+                              <SidebarMenuSubButton asChild>
+                                <Link href={example.href} className="w-full">
+                                  <span>{example.name}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          ))}
+                        </>
+                      );
+                    })()}
                   </SidebarMenuSub>
                 </CollapsibleContent>
               </SidebarMenuItem>
@@ -113,6 +144,7 @@ export function AppSidebar({
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarMenu>
+            {/* Check if any component is active */}
             <Collapsible
               asChild
               defaultOpen={true}
@@ -128,15 +160,41 @@ export function AppSidebar({
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <SidebarMenuSub>
-                    {uiComponents.map((item) => (
-                      <SidebarMenuSubItem key={item.name}>
-                        <SidebarMenuSubButton asChild>
-                          <a href={`/docs/${item.name}`}>
-                            <span>{item.displayName}</span>
-                          </a>
-                        </SidebarMenuSubButton>
-                      </SidebarMenuSubItem>
-                    ))}
+                    {/* Find the active component index */}
+                    {(() => {
+
+                      const activeComponentIndex = uiComponents.findIndex(item => pathname === item.href);
+
+                      return (
+                        <>
+                          <motion.div
+                            layout
+                            className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
+                          />
+                          <AnimatePresence initial={false}>
+                            {activeComponentIndex !== -1 && (
+                              <ActivePageMarker
+                                activeIndex={activeComponentIndex}
+                                itemHeight={remToPx(2)}
+                                offset={remToPx(0.25)}
+                              />
+                            )}
+                          </AnimatePresence>
+
+                          {uiComponents.map((item) => {
+                            return (
+                              <SidebarMenuSubItem key={item.name}>
+                                <SidebarMenuSubButton asChild>
+                                  <Link href={item.href} className="w-full">
+                                    <span>{item.displayName}</span>
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            );
+                          })}
+                        </>
+                      );
+                    })()}
                   </SidebarMenuSub>
                 </CollapsibleContent>
               </SidebarMenuItem>

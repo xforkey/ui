@@ -1,0 +1,122 @@
+export const title = "Slider";
+export const description = "An input that allows users to select a value from a range.";
+
+<ComponentPreview demoName="slider-demo" hint="A slider component with a default value of 50" />
+
+A slider component built on top of [Radix UI Slider](https://www.radix-ui.com/primitives/docs/components/slider).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add slider
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-slider
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="slider" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/ui/slider"
+```
+
+```tsx
+<Slider defaultValue={[33]} max={100} step={1} />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="slider-demo" hint="A slider component with a default value of 50" />
+
+```tsx
+import { cn } from "@/lib/utils"
+import { Slider } from "@/components/ui/slider"
+
+type SliderProps = React.ComponentProps<typeof Slider>
+
+export default function SliderDemo({ className, ...props }: SliderProps) {
+  return (
+    <Slider
+      defaultValue={[50]}
+      max={100}
+      step={1}
+      className={cn("w-[60%]", className)}
+      {...props}
+    />
+  )
+}
+```
+
+### Range
+
+You can use the slider as a range slider by providing an array with two values.
+
+```tsx
+<Slider defaultValue={[25, 75]} max={100} step={1} />
+```
+
+### Disabled
+
+Use the `disabled` prop to disable the slider.
+
+```tsx
+<Slider defaultValue={[50]} max={100} step={1} disabled />
+```
+
+### Orientation
+
+Use the `orientation` prop to change the orientation of the slider.
+
+```tsx
+<Slider defaultValue={[50]} max={100} step={1} orientation="vertical" />
+```
+
+## Props
+
+### Slider
+
+Extends `React.ComponentProps<typeof SliderPrimitive.Root>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `defaultValue` | `number[]` | `[0]` | The default value of the slider. |
+| `value` | `number[]` | `undefined` | The controlled value of the slider. |
+| `min` | `number` | `0` | The minimum value of the slider. |
+| `max` | `number` | `100` | The maximum value of the slider. |
+| `step` | `number` | `1` | The step value of the slider. |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the slider. |
+| `disabled` | `boolean` | `false` | Whether the slider is disabled. |
+| `onValueChange` | `(value: number[]) => void` | `undefined` | A callback function called when the value changes. |
+| `onValueCommit` | `(value: number[]) => void` | `undefined` | A callback function called when the value changes and the user stops dragging. |

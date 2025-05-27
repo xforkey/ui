@@ -1,0 +1,136 @@
+export const title = "Skeleton";
+export const description = "Use to show a placeholder while content is loading.";
+
+<ComponentPreview demoName="skeleton-demo" hint="A skeleton loading state for user information" />
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add skeleton
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="skeleton" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+```
+
+```tsx
+<Skeleton className="h-4 w-[250px]" />
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="skeleton-demo" hint="A skeleton loading state for user information" />
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+
+export default function SkeletonDemo() {
+  return (
+    <div className="flex items-center space-x-4">
+      <Skeleton className="h-12 w-12 rounded-full" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  )
+}
+```
+
+### Card
+
+<ComponentPreview demoName="skeleton-card" hint="A skeleton loading state for a card" />
+
+```tsx
+import { Skeleton } from "@/components/ui/skeleton"
+
+export default function SkeletonCard() {
+  return (
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-[125px] w-[250px] rounded-xl" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[250px]" />
+        <Skeleton className="h-4 w-[200px]" />
+      </div>
+    </div>
+  )
+}
+```
+
+## Props
+
+### Skeleton
+
+Extends `React.ComponentProps<"div">`
+
+The Skeleton component doesn't have any specific props. It accepts all the props that a regular `div` element accepts, including `className` for styling.
+
+## Examples
+
+### Custom Styling
+
+You can customize the appearance of the skeleton by modifying the `className` prop:
+
+```tsx
+<Skeleton className="h-4 w-[250px] bg-gray-200 dark:bg-gray-700" />
+```
+
+### Disabling Animation
+
+To disable the pulse animation, you can override the `animate-pulse` class:
+
+```tsx
+<Skeleton className="h-4 w-[250px] animate-none" />
+```
+
+### Complex Layouts
+
+You can create complex loading states by combining multiple skeleton components:
+
+```tsx
+<div className="space-y-4">
+  <div className="flex items-center space-x-4">
+    <Skeleton className="h-12 w-12 rounded-full" />
+    <div className="space-y-2">
+      <Skeleton className="h-4 w-[250px]" />
+      <Skeleton className="h-4 w-[200px]" />
+    </div>
+  </div>
+  <Skeleton className="h-[200px] w-full rounded-xl" />
+  <div className="grid grid-cols-3 gap-4">
+    <Skeleton className="h-20 rounded-lg" />
+    <Skeleton className="h-20 rounded-lg" />
+    <Skeleton className="h-20 rounded-lg" />
+  </div>
+</div>

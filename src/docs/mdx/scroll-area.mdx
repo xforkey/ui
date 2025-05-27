@@ -1,0 +1,179 @@
+export const title = "Scroll Area";
+export const description = "Augments native scroll functionality for custom, cross-browser styling.";
+
+<ComponentPreview demoName="scroll-area-demo" hint="A scrollable area with custom scrollbars" />
+
+A scroll area component built on top of [Radix UI Scroll Area](https://www.radix-ui.com/primitives/docs/components/scroll-area).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add scroll-area
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-scroll-area
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="scroll-area" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { ScrollArea } from "@/components/ui/scroll-area"
+```
+
+```tsx
+<ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+  Jokester began sneaking into the castle in the middle of the night and leaving
+  jokes all over the place: under the king's pillow, in his soup, even in the
+  royal toilet. The king was furious, but he couldn't seem to catch the
+  prankster. Finally, he decided to set up a trap. He announced that he was
+  going on a journey and would be gone for a week. But instead of leaving, he
+  hid in the castle. That night, as the jokester was leaving a whoopee cushion
+  on the throne, the king jumped out and caught him. "Aha!" he cried. "So you're
+  the one who's been making a fool of me all this time!" The jokester replied,
+  "I'm not the one who sat on a whoopee cushion!"
+</ScrollArea>
+```
+
+## Examples
+
+### Vertical
+
+<ComponentPreview demoName="scroll-area-demo" hint="A vertical scrollable area with custom scrollbars" />
+
+```tsx
+import * as React from "react"
+
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+
+const tags = Array.from({ length: 50 }).map(
+  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+)
+
+export default function ScrollAreaDemo() {
+  return (
+    <ScrollArea className="h-72 w-48 rounded-md border">
+      <div className="p-4">
+        <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+        {tags.map((tag) => (
+          <>
+            <div key={tag} className="text-sm">
+              {tag}
+            </div>
+            <Separator className="my-2" />
+          </>
+        ))}
+      </div>
+    </ScrollArea>
+  )
+}
+```
+
+### Horizontal
+
+<ComponentPreview demoName="scroll-area-horizontal-demo" hint="A horizontal scrollable area with custom scrollbars" />
+
+```tsx
+import * as React from "react"
+import Image from "next/image"
+
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+
+export interface Artwork {
+  artist: string
+  art: string
+}
+
+export const works: Artwork[] = [
+  {
+    artist: "Ornella Binni",
+    art: "https://images.unsplash.com/photo-1465869185982-5a1a7522cbcb?auto=format&fit=crop&w=300&q=80",
+  },
+  {
+    artist: "Tom Byrom",
+    art: "https://images.unsplash.com/photo-1548516173-3cabfa4607e9?auto=format&fit=crop&w=300&q=80",
+  },
+  {
+    artist: "Vladimir Malyavko",
+    art: "https://images.unsplash.com/photo-1494337480532-3725c85fd2ab?auto=format&fit=crop&w=300&q=80",
+  },
+]
+
+export default function ScrollAreaHorizontalDemo() {
+  return (
+    <ScrollArea className="w-96 whitespace-nowrap rounded-md border">
+      <div className="flex w-max space-x-4 p-4">
+        {works.map((artwork) => (
+          <figure key={artwork.artist} className="shrink-0">
+            <div className="overflow-hidden rounded-md">
+              <Image
+                src={artwork.art}
+                alt={`Photo by ${artwork.artist}`}
+                className="aspect-[3/4] h-fit w-fit object-cover"
+                width={300}
+                height={400}
+              />
+            </div>
+            <figcaption className="pt-2 text-xs text-muted-foreground">
+              Photo by{" "}
+              <span className="font-semibold text-foreground">
+                {artwork.artist}
+              </span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
+  )
+}
+```
+
+## Props
+
+### ScrollArea
+
+Extends `React.ComponentProps<typeof ScrollAreaPrimitive.Root>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `type` | `"auto" \| "always" \| "scroll" \| "hover"` | `"hover"` | Determines when scrollbars are shown. |
+| `scrollHideDelay` | `number` | `600` | Duration in ms after which scrollbars are hidden when `type` is `"scroll"` or `"hover"`. |
+
+### ScrollBar
+
+Extends `React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `orientation` | `"vertical" \| "horizontal"` | `"vertical"` | The orientation of the scrollbar. |

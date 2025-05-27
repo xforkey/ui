@@ -1,0 +1,175 @@
+export const title = "Toggle";
+export const description = "A two-state button that can be either on or off.";
+
+<ComponentPreview demoName="toggle-demo" hint="A toggle button with a bold icon" />
+
+A toggle component built on top of [Radix UI Toggle](https://www.radix-ui.com/primitives/docs/components/toggle).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add toggle
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-toggle
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="toggle" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import { Toggle } from "@/components/ui/toggle"
+```
+
+```tsx
+<Toggle>Bold</Toggle>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="toggle-demo" hint="A toggle button with a bold icon" />
+
+```tsx
+import { Bold } from "lucide-react"
+
+import { Toggle } from "@/components/ui/toggle"
+
+export default function ToggleDemo() {
+  return (
+    <Toggle aria-label="Toggle bold">
+      <Bold className="h-4 w-4" />
+    </Toggle>
+  )
+}
+```
+
+### Outline
+
+<ComponentPreview demoName="toggle-outline" hint="A toggle button with an outline variant" />
+
+```tsx
+import { Italic } from "lucide-react"
+
+import { Toggle } from "@/components/ui/toggle"
+
+export default function ToggleOutline() {
+  return (
+    <Toggle variant="outline" aria-label="Toggle italic">
+      <Italic className="h-4 w-4" />
+    </Toggle>
+  )
+}
+```
+
+### With Text
+
+<ComponentPreview demoName="toggle-with-text" hint="A toggle button with text and an icon" />
+
+```tsx
+import { Italic } from "lucide-react"
+
+import { Toggle } from "@/components/ui/toggle"
+
+export default function ToggleWithText() {
+  return (
+    <Toggle aria-label="Toggle italic">
+      <Italic />
+      Italic
+    </Toggle>
+  )
+}
+```
+
+### Disabled
+
+<ComponentPreview demoName="toggle-disabled" hint="A disabled toggle button" />
+
+```tsx
+import { Underline } from "lucide-react"
+
+import { Toggle } from "@/components/ui/toggle"
+
+export default function ToggleDisabled() {
+  return (
+    <Toggle aria-label="Toggle underline" disabled>
+      <Underline className="h-4 w-4" />
+    </Toggle>
+  )
+}
+```
+
+### Size
+
+<div className="flex items-center space-x-2">
+  <ComponentPreview demoName="toggle-sm" hint="A small toggle button" />
+  <ComponentPreview demoName="toggle-demo" hint="A default size toggle button" />
+  <ComponentPreview demoName="toggle-lg" hint="A large toggle button" />
+</div>
+
+```tsx
+import { Italic } from "lucide-react"
+
+import { Toggle } from "@/components/ui/toggle"
+
+export default function ToggleSizes() {
+  return (
+    <div className="flex items-center space-x-2">
+      <Toggle size="sm" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </Toggle>
+      <Toggle aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </Toggle>
+      <Toggle size="lg" aria-label="Toggle italic">
+        <Italic className="h-4 w-4" />
+      </Toggle>
+    </div>
+  )
+}
+```
+
+## Props
+
+### Toggle
+
+Extends `React.ComponentProps<typeof TogglePrimitive.Root>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `variant` | `"default" \| "outline"` | `"default"` | The variant of the toggle. |
+| `size` | `"default" \| "sm" \| "lg"` | `"default"` | The size of the toggle. |
+| `pressed` | `boolean` | `false` | The controlled state of the toggle. |
+| `defaultPressed` | `boolean` | `false` | The default state of the toggle when initially rendered. |
+| `onPressedChange` | `(pressed: boolean) => void` | `undefined` | Event handler called when the pressed state of the toggle changes. |
+| `disabled` | `boolean` | `false` | When `true`, prevents the user from interacting with the toggle. |

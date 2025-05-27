@@ -4,6 +4,7 @@ import path from "path"
 export interface UIComponentInfo {
     name: string
     displayName: string
+    href: string
 }
 
 /**
@@ -22,7 +23,7 @@ function formatComponentName(name: string): string {
  * Fetches the list of UI components from the file system
  * This is a server component function that runs at build/request time
  */
-export async function getUIComponentsList(): Promise<UIComponentInfo[]> {
+export async function getUIComponentsList() {
     // Define the UI components directory path
     const uiComponentsDir = path.join(process.cwd(), "src", "components", "ui")
 

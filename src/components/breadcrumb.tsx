@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -8,26 +9,11 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
+import { usePathname } from 'next/navigation'
 import React from "react";
 
-/* Uses middleware and headers to get pathname
----middleware.ts
-export function middleware(request: NextRequest) {
-    const res = NextResponse.next();
-    res.headers.set("x-pathname", request.nextUrl.pathname);
-    return res;
-}
-
----page.tsx
-const headerList = await headers(); // ✅ must be awaited 
-const pathname = headerList.get('x-pathname') ?? '/';
-*/
-
-type Props = {
-    pathname: string;
-};
-
-export function Breadcrumbs({ pathname }: Props) {
+export function Breadcrumbs() {
+    const pathname = usePathname();
 
     const segments = pathname
         .split("/")
@@ -43,7 +29,9 @@ export function Breadcrumbs({ pathname }: Props) {
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    <BreadcrumbLink asChild>
+                        <Link href="/">Home</Link>
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
                 {paths.map(({ name, href, isLast }) => (
                     <React.Fragment key={href}>
@@ -52,7 +40,9 @@ export function Breadcrumbs({ pathname }: Props) {
                             {isLast ? (
                                 <BreadcrumbPage>{name}</BreadcrumbPage>
                             ) : (
-                                <BreadcrumbLink href={href}>{name}</BreadcrumbLink>
+                                <BreadcrumbLink asChild>
+                                    <Link href={href}>{name}</Link>
+                                </BreadcrumbLink>
                             )}
                         </BreadcrumbItem>
                     </React.Fragment>

@@ -6,7 +6,7 @@ import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/ui/sonner"
 import { siteConfig } from "@/config/site"
-import { cookies, headers } from "next/headers"
+import { cookies } from "next/headers"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { getUIComponentsList } from "@/components/app-sidebar/ui-components-list"
@@ -105,8 +105,10 @@ export default async function RootLayout({
     getUIComponentsList()
   ])
 
-  const headerList = await headers(); // ✅ must be awaited
-  const pathname = headerList.get('x-pathname') ?? '/';
+  const normalizedUiComponents = uiComponents.map(comp => ({
+    ...comp,
+    href: `/docs/${comp.name}`,
+  }));
 
   const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
 
@@ -139,7 +141,7 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar uiComponents={uiComponents} />
+            <AppSidebar uiComponents={normalizedUiComponents} />
             <SidebarInset>
               <header className="sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2">
                 <div className="flex h-14 w-full items-center gap-2 px-4">
@@ -148,7 +150,7 @@ export default async function RootLayout({
                     orientation="vertical"
                     className="mr-2 data-[orientation=vertical]:h-4"
                   />
-                  <Breadcrumbs pathname={pathname} />
+                  <Breadcrumbs />
                   <div className="ml-auto flex items-center gap-2">
                     <CommandMenu />
                     <ModeSwitcher />

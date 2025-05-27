@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { UIComponentInfo } from "./ui-components-list"
 import {
   AudioWaveform,
   BookOpen,
@@ -156,20 +157,24 @@ const data = {
   ],
 }
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
+  pathname?: string;
+  uiComponents?: UIComponentInfo[];
+}
+
+export function AppSidebar({ pathname, uiComponents, ...props }: AppSidebarProps) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} pathname={pathname} />
         <NavProjects projects={data.projects} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
-      <SidebarRail />
     </Sidebar>
   )
 }

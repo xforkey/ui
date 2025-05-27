@@ -1,0 +1,134 @@
+export const title = "Tooltip";
+export const description = "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.";
+
+<ComponentPreview demoName="tooltip-demo" hint="A tooltip that appears on hover" />
+
+A tooltip component built on top of [Radix UI Tooltip](https://www.radix-ui.com/primitives/docs/components/tooltip).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add tooltip
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-tooltip
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="tooltip" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+```
+
+```tsx
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Hover</TooltipTrigger>
+    <TooltipContent>
+      <p>Add to library</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
+```
+
+## Examples
+
+### Default
+
+<ComponentPreview demoName="tooltip-demo" hint="A tooltip that appears on hover" />
+
+```tsx
+import { Button } from "@/components/ui/button"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
+
+export default function TooltipDemo() {
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Button variant="outline">Hover</Button>
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Add to library</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
+  )
+}
+```
+
+## Props
+
+### Tooltip
+
+Extends `React.ComponentProps<typeof TooltipPrimitive.Root>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `defaultOpen` | `boolean` | `false` | The open state of the tooltip when it is initially rendered. |
+| `open` | `boolean` | `undefined` | The controlled open state of the tooltip. |
+| `onOpenChange` | `(open: boolean) => void` | `undefined` | Event handler called when the open state of the tooltip changes. |
+
+### TooltipTrigger
+
+Extends `React.ComponentProps<typeof TooltipPrimitive.Trigger>`
+
+### TooltipContent
+
+Extends `React.ComponentProps<typeof TooltipPrimitive.Content>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `sideOffset` | `number` | `0` | The distance in pixels from the trigger. |
+| `align` | `"start" \| "center" \| "end"` | `"center"` | The preferred alignment against the trigger. |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"top"` | The preferred side of the trigger to render against. |
+
+### TooltipProvider
+
+Extends `React.ComponentProps<typeof TooltipPrimitive.Provider>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `delayDuration` | `number` | `0` | The duration from when the mouse enters a tooltip trigger until the tooltip opens. |
+| `skipDelayDuration` | `number` | `300` | How much time a user has to enter another trigger without incurring a delay again. |
+| `disableHoverableContent` | `boolean` | `false` | Prevents the content from remaining open when hovering. |

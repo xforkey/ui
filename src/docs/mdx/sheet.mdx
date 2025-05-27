@@ -1,0 +1,148 @@
+export const title = "Sheet";
+export const description = "Displays a dialog that slides in from the edge of the screen.";
+
+<ComponentPreview demoName="sheet-demo" hint="A sheet dialog that slides in from the right" />
+
+A sheet component built on top of [Radix UI Dialog](https://www.radix-ui.com/primitives/docs/components/dialog).
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add sheet
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Install the following dependencies:</Step>
+
+```bash
+npm install @radix-ui/react-dialog
+```
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<ComponentSource name="sheet" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
+```
+
+```tsx
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle>Are you sure absolutely sure?</SheetTitle>
+      <SheetDescription>
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
+      </SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
+```
+
+## Examples
+
+### Side
+
+Use the `side` property to specify the side from which the sheet appears.
+
+<ComponentPreview demoName="sheet-side" hint="Sheets that slide in from different sides" />
+
+```tsx
+<Sheet>
+  <SheetTrigger>Open</SheetTrigger>
+  <SheetContent side="right">
+    <SheetHeader>
+      <SheetTitle>Edit profile</SheetTitle>
+      <SheetDescription>
+        Make changes to your profile here. Click save when you're done.
+      </SheetDescription>
+    </SheetHeader>
+    <div className="grid gap-4 py-4">
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="name" className="text-right">
+          Name
+        </Label>
+        <Input id="name" className="col-span-3" />
+      </div>
+      <div className="grid grid-cols-4 items-center gap-4">
+        <Label htmlFor="username" className="text-right">
+          Username
+        </Label>
+        <Input id="username" className="col-span-3" />
+      </div>
+    </div>
+    <SheetFooter>
+      <SheetClose asChild>
+        <Button type="submit">Save changes</Button>
+      </SheetClose>
+    </SheetFooter>
+  </SheetContent>
+</Sheet>
+```
+
+## Props
+
+### Sheet
+
+Extends `React.ComponentProps<typeof Dialog>`
+
+### SheetTrigger
+
+Extends `React.ComponentProps<typeof DialogTrigger>`
+
+### SheetContent
+
+Extends `React.ComponentProps<typeof DialogContent>`
+
+| Prop | Type | Default | Description |
+| :-- | :-- | :-- | :-- |
+| `side` | `"top" \| "right" \| "bottom" \| "left"` | `"right"` | The side from which the sheet appears. |
+
+### SheetHeader
+
+Extends `React.ComponentProps<"div">`
+
+### SheetFooter
+
+Extends `React.ComponentProps<"div">`
+
+### SheetTitle
+
+Extends `React.ComponentProps<typeof DialogTitle>`
+
+### SheetDescription
+
+Extends `React.ComponentProps<typeof DialogDescription>`

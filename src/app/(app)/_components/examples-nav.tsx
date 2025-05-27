@@ -8,6 +8,12 @@ import { ScrollArea, ScrollBar } from "@/ui/scroll-area"
 
 export const examples = [
   {
+    name: "Portal Components",
+    href: "/examples/portal-components",
+    code: "",
+    hidden: false,
+  },
+  {
     name: "Mail",
     href: "/examples/mail",
     code: "https://github.com/shadcn/ui/tree/main/apps/www/app/(app)/examples/mail",
