@@ -22,6 +22,7 @@ import { Breadcrumbs } from "@/components/breadcrumb"
 import { CommandMenu } from "@/components/command-menu"
 
 import "./globals.css"
+import NoiseOverlay from "@/docs/components/noise-overlay"
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -129,11 +130,12 @@ export default async function RootLayout({
       </head>
       <body
         className={cn(
-          "overscroll-none font-sans antialiased grainy",
+          "overscroll-none font-sans antialiased",
           fontSans.variable,
           fontMono.variable
         )}
       >
+        <NoiseOverlay />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -157,7 +159,7 @@ export default async function RootLayout({
                   </div>
                 </div>
               </header>
-              <ScrollArea className="relative m-2 px-4 h-[calc(100vh-72px)] max-h-[calc(100vh-72px)] bg-black/2 dark:bg-background rounded-2xl lg:ring-1 lg:shadow-xs lg:ring-black/5 dark:lg:ring-white/10  ">
+              <ScrollArea className="relative m-2 px-4 h-[calc(100vh-72px)] max-h-[calc(100vh-72px)] bg-white dark:bg-background rounded-2xl lg:ring-1 lg:shadow-xs lg:ring-black/5 dark:lg:ring-white/10  ">
 
                 {children}
               </ScrollArea>

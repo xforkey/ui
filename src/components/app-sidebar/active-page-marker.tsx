@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { remToPx } from "@/lib/utils"
+import { motion, useIsPresent } from "framer-motion"
 
 interface ActivePageMarkerProps {
     activeIndex: number
@@ -29,6 +30,30 @@ export function ActivePageMarker({
                 top,
                 zIndex: 10 // Ensure it's above other elements
             }}
+        />
+    )
+}
+
+export function VisibleSectionHighlight({
+    activeIndex
+}: {
+    activeIndex: number
+}) {
+
+    let isPresent = useIsPresent()
+    let firstVisibleSectionIndex = activeIndex
+    let itemHeight = remToPx(2)
+    let height = itemHeight
+    let top = firstVisibleSectionIndex * itemHeight
+
+    return (
+        <motion.div
+            layout
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { delay: 0.2 } }}
+            exit={{ opacity: 0 }}
+            className="absolute -inset-x-3 top-0 bg-zinc-800/2.5 will-change-transform dark:bg-white/5"
+            style={{ borderRadius: 8, height, top }}
         />
     )
 }

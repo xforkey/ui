@@ -40,7 +40,7 @@ export function CollapseWrapper({
         </CollapsibleContent>
         <div
           className={cn(
-            "absolute flex items-center justify-center bg-gradient-to-b from-background/0 to-background/80 p-2",
+            "absolute flex items-center justify-center dark:bg-gradient-to-b dark:from-background/0 dark:to-background/80 bg-gradient-to-b from-foreground/0 to-foreground/80 p-2",
             isOpened ? "inset-x-0 bottom-0 h-24" : "inset-0"
           )}
         >

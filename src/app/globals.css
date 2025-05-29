@@ -71,40 +71,56 @@
 }
 
 :root {
-  --background: oklch(1 0 0);
+  --background: var(--color-zinc-50);
   --foreground: var(--color-zinc-950);
-  --card: var(--background);
+
+  --card: var(--color-zinc-100);
   --card-foreground: var(--foreground);
-  --popover: var(--background);
+
+  --popover: color-mix(in oklab, var(--color-zinc-50) 80%, white);
   --popover-foreground: var(--foreground);
-  --primary: var(--color-zinc-800);
-  --primary-foreground: var(--color-zinc-50);
+
+  --primary: var(--color-emerald-700);
+  --primary-foreground: var(--color-emerald-50);
+
   --secondary: var(--color-zinc-100);
   --secondary-foreground: var(--foreground);
-  --muted: var(--secondary);
+
+  --muted: var(--color-zinc-100);
   --muted-foreground: var(--color-zinc-500);
-  --accent: var(--secondary);
-  --accent-foreground: var(--foreground);
+
+  --accent: color-mix(in oklab, var(--primary) 10%, var(--foreground));
+  --accent-foreground: color-mix(in oklab, var(--color-emerald-800) 90%, transparent);
+
   --destructive: var(--color-red-600);
-  --destructive-foreground: var(--color-red-700);
-  --border:  color-mix(in oklab, var(--foreground) 10%, transparent);
-  --input: transparent;
+  --destructive-foreground: var(--color-red-50);
+
+  --border: color-mix(in oklab, var(--foreground) 7%, transparent);
+  --input: color-mix(in oklab, var(--color-zinc-950) 3%, transparent);
+
   --ring: var(--color-zinc-300);
+
   --chart-1: var(--color-orange-600);
   --chart-2: var(--color-teal-600);
   --chart-3: var(--color-cyan-900);
   --chart-4: var(--color-amber-400);
   --chart-5: var(--color-amber-500);
+
   --radius: 0.625rem;
+
   --sidebar: var(--background);
   --sidebar-foreground: var(--foreground);
+
   --sidebar-primary: var(--foreground);
   --sidebar-primary-foreground: var(--primary-foreground);
-  --sidebar-accent: var(--secondary);
+
+  --sidebar-accent: var(--color-zinc-200);
   --sidebar-accent-foreground: var(--primary);
+
   --sidebar-border: var(--color-zinc-200);
   --sidebar-ring: var(--ring);
 }
+
 
 .dark {
   --background: var(--color-zinc-950); 

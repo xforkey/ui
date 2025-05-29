@@ -6,7 +6,7 @@ import * as React from "react"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from "framer-motion"
-import { ActivePageMarker } from "./active-page-marker"
+import { ActivePageMarker, VisibleSectionHighlight } from "./active-page-marker"
 import { remToPx } from "@/lib/utils"
 import {
   AudioWaveform,
@@ -88,117 +88,88 @@ export function AppSidebar({
           <SidebarGroupLabel>Examples</SidebarGroupLabel>
           <SidebarMenu>
             {/* Check if any example is active */}
-            <Collapsible
-              asChild
-              defaultOpen={true}
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip="Examples">
-                    <Layers />
-                    <span>Examples</span>
-                    <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {/* Find the active example index */}
-                    {(() => {
-                      const activeExampleIndex = examples.findIndex(example => pathname === example.href);
+            <SidebarMenuSub>
+              {/* Find the active example index */}
+              {(() => {
+                const activeExampleIndex = examples.findIndex(example => pathname === example.href);
 
-                      return (
-                        <>
-                          <motion.div
-                            layout
-                            className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
-                          />
-                          <AnimatePresence initial={false}>
-                            {activeExampleIndex !== -1 && (
-                              <ActivePageMarker
-                                activeIndex={activeExampleIndex}
-                                itemHeight={remToPx(2)}
-                                offset={remToPx(0.25)}
-                              />
-                            )}
-                          </AnimatePresence>
+                return (
+                  <>
+                    <motion.div
+                      layout
+                      className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
+                    />
+                    <AnimatePresence initial={false}>
+                      {activeExampleIndex !== -1 && (
+                        <ActivePageMarker
+                          activeIndex={activeExampleIndex}
+                          itemHeight={remToPx(2)}
+                          offset={remToPx(0.25)}
+                        />
+                      )}
+                    </AnimatePresence>
 
-                          {examples.map((example: { name: string; href: string; code: string; hidden: boolean }) => (
-                            <SidebarMenuSubItem key={example.href}>
-                              <SidebarMenuSubButton asChild>
-                                <Link href={example.href} className="w-full">
-                                  <span>{example.name}</span>
-                                </Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </>
-                      );
-                    })()}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
+                    {examples.map((example: { name: string; href: string; code: string; hidden: boolean }) => (
+                      <SidebarMenuSubItem key={example.href}>
+                        <SidebarMenuSubButton asChild>
+                          <Link href={example.href} className="w-full">
+                            <span>{example.name}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </>
+                );
+              })()}
+            </SidebarMenuSub>
           </SidebarMenu>
         </SidebarGroup>
         <SidebarGroup className="group-data-[collapsible=icon]:hidden">
           <SidebarGroupLabel>Components</SidebarGroupLabel>
           <SidebarMenu>
             {/* Check if any component is active */}
-            <Collapsible
-              asChild
-              defaultOpen={true}
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton tooltip="Components">
-                    <BookOpen />
-                    <span>Components</span>
-                    <ChevronRightIcon className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {/* Find the active component index */}
-                    {(() => {
+            <SidebarMenuSub>
+              {/* Find the active component index */}
+              {(() => {
 
-                      const activeComponentIndex = uiComponents.findIndex(item => pathname === item.href);
+                const activeComponentIndex = uiComponents.findIndex(item => pathname === item.href);
 
+                return (
+                  <>
+                    <AnimatePresence initial={true}>
+                      {activeComponentIndex !== -1 && (
+                        <VisibleSectionHighlight activeIndex={activeComponentIndex} />
+                      )}
+                    </AnimatePresence>
+                    <motion.div
+                      layout
+                      className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
+                    />
+                    <AnimatePresence initial={false}>
+                      {activeComponentIndex !== -1 && (
+                        <ActivePageMarker
+                          activeIndex={activeComponentIndex}
+                          itemHeight={remToPx(2)}
+                          offset={remToPx(0.25)}
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    {uiComponents.map((item) => {
                       return (
-                        <>
-                          <motion.div
-                            layout
-                            className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
-                          />
-                          <AnimatePresence initial={false}>
-                            {activeComponentIndex !== -1 && (
-                              <ActivePageMarker
-                                activeIndex={activeComponentIndex}
-                                itemHeight={remToPx(2)}
-                                offset={remToPx(0.25)}
-                              />
-                            )}
-                          </AnimatePresence>
-
-                          {uiComponents.map((item) => {
-                            return (
-                              <SidebarMenuSubItem key={item.name}>
-                                <SidebarMenuSubButton asChild>
-                                  <Link href={item.href} className="w-full">
-                                    <span>{item.displayName}</span>
-                                  </Link>
-                                </SidebarMenuSubButton>
-                              </SidebarMenuSubItem>
-                            );
-                          })}
-                        </>
+                        <SidebarMenuSubItem key={item.name}>
+                          <SidebarMenuSubButton asChild data-active={pathname === item.href}>
+                            <Link href={item.href} className="w-full">
+                              <span>{item.displayName}</span>
+                            </Link>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
                       );
-                    })()}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
+                    })}
+                  </>
+                );
+              })()}
+            </SidebarMenuSub>
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>

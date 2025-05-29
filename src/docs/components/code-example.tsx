@@ -113,7 +113,7 @@ export function CodeExampleGroup({
                 <div className="rounded-xl bg-background in-[figure]:-mx-1 in-[figure]:-mb-1">
                     <div
                         className={clsx(
-                            "rounded-xl p-1 text-sm scheme-dark dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
+                            "rounded-xl p-1 text-sm scheme-dark bg-foreground/5 inset-ring inset-ring-foreground/10 dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
                             className,
                         )}
                     >
@@ -123,7 +123,7 @@ export function CodeExampleGroup({
                                 <TabsTrigger
                                     value={filename}
                                     key={filename}
-                                    className="data-[state=active]:text-white data-[state=inactive]:text-muted-foreground data-[state=active]:bg-background dark:data-[state=active]:text-white focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:outline-ring dark:data-[state=active]:border-input dark:data-[state=active]:bg-transparent text-foreground dark:text-muted-foreground border-0"
+                                    className="data-[state=active]:bg-transparent ring-white"
                                 >
                                     <CodeExampleFilename filename={filename} />
                                 </TabsTrigger>
@@ -168,9 +168,9 @@ export function HighlightedCode({
             <RawHighlightedCode
                 example={example}
                 className={clsx(
-                    "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-white/10! *:p-5 dark:*:bg-white/5!",
+                    "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-foreground/90! *:p-5 dark:*:bg-white/5!",
                     "**:[.line]:isolate **:[.line]:not-last:min-h-[1lh]",
-                    "*:inset-ring *:inset-ring-white/10 dark:*:inset-ring-white/5",
+                    "*:inset-ring *:inset-ring-foreground dark:*:inset-ring-white/5",
                     className,
                 )}
             />
