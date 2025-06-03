@@ -1,8 +1,11 @@
 "use client";
 
 import { useEffect } from "react";
+import { useTheme } from "next-themes";
 
 export default function NoiseOverlay() {
+    const { resolvedTheme } = useTheme();
+    const opacity = resolvedTheme === "dark" ? 0.4 : 0.2; // Adjust opacity based on theme
     useEffect(() => {
         const canvas = document.createElement("canvas");
         canvas.width = canvas.height = 256;
@@ -32,15 +35,32 @@ export default function NoiseOverlay() {
             backgroundImage: `url(${dataUrl})`,
             backgroundSize: "256px 256px",
             backgroundRepeat: "repeat",
-            opacity: "0.6",
+            opacity,
             mixBlendMode: "normal", // Blend mode for a subtle effect
         });
 
         document.body.appendChild(div);
 
+        const shine = document.createElement("div");
+        shine.id = "shine-overlay";
+        Object.assign(shine.style, {
+            position: "fixed",
+            top: "0",
+            left: "0",
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            zIndex: "-9",
+            background: "radial-gradient(circle at 33% 33%, rgba(255,255,255,0.14), transparent 35%)",
+            mixBlendMode: "screen",
+        });
+        document.body.appendChild(shine);
+
         return () => {
             const existing = document.getElementById("noise-overlay");
             if (existing) document.body.removeChild(existing);
+            const shine = document.getElementById("shine-overlay");
+            if (shine) document.body.removeChild(shine);
         };
     }, []);
 

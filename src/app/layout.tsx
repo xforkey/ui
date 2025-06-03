@@ -135,13 +135,14 @@ export default async function RootLayout({
           fontMono.variable
         )}
       >
-        <NoiseOverlay />
+
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          <NoiseOverlay />
           <SidebarProvider defaultOpen={defaultOpen}>
             <AppSidebar uiComponents={normalizedUiComponents} />
             <SidebarInset>

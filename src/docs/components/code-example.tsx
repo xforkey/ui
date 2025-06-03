@@ -110,7 +110,7 @@ export function CodeExampleGroup({
     return (
         <div>
             <Tabs className="not-prose" defaultValue={filenames[0]} >
-                <div className="rounded-xl bg-background in-[figure]:-mx-1 in-[figure]:-mb-1">
+                <div className="rounded-xl in-[figure]:-mx-1 in-[figure]:-mb-1">
                     <div
                         className={clsx(
                             "rounded-xl p-1 text-sm scheme-dark bg-foreground/5 inset-ring inset-ring-foreground/10 dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",

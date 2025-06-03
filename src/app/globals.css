@@ -80,8 +80,10 @@
   --popover: color-mix(in oklab, var(--color-zinc-50) 80%, white);
   --popover-foreground: var(--foreground);
 
-  --primary: var(--color-emerald-700);
-  --primary-foreground: var(--color-emerald-50);
+  --primary: var(--color-emerald-600);
+  --primary-foreground: var(--color-white);
+     --accent: var(--color-emerald-500);
+  --accent-foreground: var(--emerald-700);
 
   --secondary: var(--color-zinc-100);
   --secondary-foreground: var(--foreground);
@@ -89,8 +91,7 @@
   --muted: var(--color-zinc-100);
   --muted-foreground: var(--color-zinc-500);
 
-  --accent: color-mix(in oklab, var(--primary) 10%, var(--foreground));
-  --accent-foreground: color-mix(in oklab, var(--color-emerald-800) 90%, transparent);
+
 
   --destructive: var(--color-red-600);
   --destructive-foreground: var(--color-red-50);

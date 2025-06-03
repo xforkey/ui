@@ -34,7 +34,7 @@ export function TabsTrigger({
     <UiTabs.TabsTrigger
       className={cn(
         'flex items-center gap-2 pb-2 rounded-none bg-transparent border-0',
-        'data-[state=active]:text-white',
+        'data-[state=active]:text-foreground',
         'dark:data-[state=active]:text-white',
         'data-[state=inactive]:text-muted-foreground',
         'data-[state=active]:bg-background',

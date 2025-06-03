@@ -33,7 +33,7 @@ export function Example({
             <div
                 className={clsx(
                     className,
-                    "not-prose overflow-visible rounded-lg bg-foreground/15 outline outline-white/5 dark:bg-background/70 classy-outline flex justify-center",
+                    "not-prose overflow-visible rounded-lg bg-background outline outline-white/5 dark:bg-background/70 flex justify-center",
                     padding && "p-8",
                 )}
             >

@@ -1,313 +1,309 @@
 import React from 'react'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/ui/card'
+import {
+  Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
+} from '@/ui/card'
 import { Button } from '@/ui/button'
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from '@/ui/table'
-/* import { Table, TableHeader, TableBody, TableRow, TableCell, TableHead } from '@/components/ui-old/table' */
-import { EllipsisVerticalIcon } from 'lucide-react'
-import { Badge } from '@/ui/badge'
+import {
+  Table, TableHeader, TableBody, TableRow, TableCell, TableHead,
+} from '@/ui/table'
+import { EllipsisVerticalIcon, ShieldCloseIcon } from 'lucide-react'
+import { Badge, badgeVariants } from '@/ui/badge'
 import { Input } from '@/ui/input'
 import { Avatar, AvatarImage } from '@/ui/avatar'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/ui/select'
+import {
+  Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue,
+} from '@/ui/select'
 import { RadioGroup } from '@/ui/radio-group'
 import { Checkbox } from '@/ui/checkbox'
 import { Switch } from '@/ui/switch'
-import { ContextDemo, DialogDemo, DropdownMenuDemo, PopoverDemo, SheetDemo, SonnerDemo } from './_components'
+import {
+  ContextDemo, DialogDemo, DropdownMenuDemo, PopoverDemo, SheetDemo, SonnerDemo,
+} from './_components'
 import { Bongocat } from 'bongocat-avatar-generator'
-import { ShieldCloseIcon } from 'lucide-react'
+import { Label } from '@/components/ui/label'
 
-
-
+const badgeColors = ["default", "secondary", "destructive", "outline", "info", "success", "warning"]
 
 export default async function Page() {
-  let orders = getOrders()
+  const orders = getOrders()
+
   return (
-    <>
+    <div className='relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-10'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-11 xl:grid-cols-[repeat(15,minmax(0,1fr))] gap-4'>
+        <Card className='md:col-span-6'>
+          <CardContent>
+            <div className='grid grid-cols-2 sm:grid-cols-4 gap-2'>
+              <Button>default 1
+              </Button>
+              <Button variant='secondary'>Secondary 2
+              </Button>
+              <Button variant='ghost'>Ghost 3
+              </Button>
+              <Button variant='outline'>Outline 4
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className='md:col-span-5'>
+          <CardContent className='flex justify-center gap-2'>
+            <DialogDemo />
+            <SheetDemo />
+          </CardContent>
+        </Card>
+        <Card className='sm:col-span-2 md:col-span-4'>
+          <CardContent className='flex justify-center'>
+            <Select>
+              <SelectTrigger className='w-[180px]'>
+                <SelectValue placeholder='Select a country' />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectGroup>
+                  <SelectLabel>Country Selection
+                  </SelectLabel>
+                  <SelectItem value='us'>United States
+                  </SelectItem>
+                  <SelectItem value='ca'>Canada
+                  </SelectItem>
+                  <SelectItem value='mx'>Mexico
+                  </SelectItem>
+                  <SelectItem value='jp' disabled>Japan
+                  </SelectItem>
+                  <SelectItem value='de'>Germany
+                  </SelectItem>
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </CardContent>
+        </Card>
+        <Card className='sm:col-span-2 md:col-span-7'>
+          <CardHeader>
+            <CardTitle>Sonner
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <SonnerDemo />
+          </CardContent>
+        </Card>
+        <Card className='sm:col-span-2 md:col-span-5 xl:col-span-8'>
+          <CardHeader>
+            <CardTitle>Badge
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className='flex flex-wrap gap-2'>
+              {badgeColors.map((variant) => (
+                <Label key={variant} className='flex items-center gap-2'>
+                  {/* @ts-ignore */}
+                  <Badge variant={variant}>
+                    {variant.charAt(0).toUpperCase() + variant.slice(1)}
+                  </Badge>
+                </Label>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
 
-      <div className='relative mx-auto lg:max-w-7xl'>
-        <div className='h-10' />
-        <div className='pt-2 pb-40'>
-          <div className="relative grid gap-[17px] sm:grid-cols-2 xl:grid-cols-[repeat(15,minmax(0,1fr))]">
-            <div className="xl:col-span-5">
-              <Card>
-                <CardContent>
-                  <div className='flex justify-center gap-x-2'>
-                    <Button>default 1</Button>
-                    <Button variant={'secondary'}>Secondary 2</Button>
-                    <Button variant={'ghost'}>Ghost 3</Button>
-                    <Button variant={'outline'}>Outline 4</Button>
+        <div className="sm:col-span-1 md:col-span-6 xl:col-span-6 grid gap-4 grid-cols-1">
+          {/* Top Row: 2 cards in columns */}
+          <div className="grid grid-cols-2 gap-4">
+            <Card>
+              <CardHeader><CardTitle>Dropdown</CardTitle></CardHeader>
+              <CardContent><DropdownMenuDemo /></CardContent>
+            </Card>
+            <Card>
+              <CardHeader><CardTitle>Popover</CardTitle></CardHeader>
+              <CardContent><PopoverDemo /></CardContent>
+            </Card>
+          </div>
+
+          {/* Bottom Row: full-width */}
+          <Card>
+            <CardHeader><CardTitle>Context</CardTitle></CardHeader>
+            <CardContent className="flex justify-center gap-2">
+              <ContextDemo />
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card className='sm:col-span-2 md:col-span-11 xl:col-span-9'>
+          <CardHeader>
+            <CardTitle>Sign In
+            </CardTitle>
+          </CardHeader>
+          <CardContent className='space-y-6'>
+            <Input type='text' placeholder='Username' />
+            <Input type='password' placeholder='Password' />
+            <div className='flex flex-wrap justify-between gap-2'>
+              <div className='flex items-center gap-2'>
+                <Switch />
+                <p>Remember me
+                </p>
+              </div>
+              <Button variant='ghost'>Forgot password?
+              </Button>
+            </div>
+            <Button className='w-full'>Get started
+            </Button>
+          </CardContent>
+          <CardFooter className='mt-auto flex justify-between'>
+            <p className='text-muted-foreground'>Don't have an account?
+            </p>
+            <Button variant='ghost'>Sign up
+            </Button>
+          </CardFooter>
+        </Card>
+
+        <Card className='sm:col-span-2 md:col-span-11 xl:col-span-9'>
+          <CardHeader>
+            <CardTitle>Recent Orders
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Table className='mt-4'>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Purchase date
+                  </TableHead>
+                  <TableHead>Customer
+                  </TableHead>
+                  <TableHead className='text-right'>Amount
+                  </TableHead>
+                  <TableHead>
+                    <span className='sr-only'>Status
+                    </span>
+                  </TableHead>
+                  <TableHead>
+                    <span className='sr-only'>Actions
+                    </span>
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>{orders.slice(0, 5).map((order) => (
+                <TableRow key={order.id}>
+                  <TableCell className='text-zinc-500'>{order.date}
+                  </TableCell>
+                  <TableCell>
+                    <div className='flex items-center gap-2'>
+                      <Avatar className='size-6'>
+                        <Bongocat className='size-6' email={order.customer.email} />
+                      </Avatar>
+                      <span>{order.customer.name}
+                      </span>
+                    </div>
+                  </TableCell>
+                  <TableCell className='text-right'>US{order.amount.usd}
+                  </TableCell>
+                  <TableCell>
+                    <Badge color='green'>{order.event.status}
+                    </Badge>
+                  </TableCell>
+                  <TableCell>
+                    <EllipsisVerticalIcon className='w-5 h-5 text-zinc-500' />
+                  </TableCell>
+                </TableRow>))}
+              </TableBody>
+            </Table>
+          </CardContent>
+        </Card>
+
+        <Card className='sm:col-span-2 md:col-span-11 xl:col-span-9'>
+          <CardHeader>
+            <CardTitle>Team Members
+            </CardTitle>
+            <CardDescription>Share this link with your team to give them access to your organization.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className='w-full'>
+              <div className='flex items-center gap-3'>
+                <Input readOnly defaultValue='https://example.com/teams/invite/eHGJEj12FHDKSi' aria-label='Invite link' />
+                <Button variant='outline'>Copy link
+                </Button>
+              </div>
+              <Button className='mt-3'>Reset your invite link
+              </Button>
+              <div className='mt-8 divide-y divide-zinc-100 dark:divide-white/5'>
+                <div className='flex items-center justify-between gap-4 py-4'>
+                  <div className='flex min-w-0 items-center gap-2'>
+                    <Avatar>
+                      <AvatarImage src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
+                    </Avatar>
+                    <div className='grid flex-1 text-left text-sm leading-tight'>
+                      <span className='truncate font-medium'>XForkey
+                      </span>
+                      <span className='truncate text-xs text-muted-foreground'>XForkey@gmail.com
+                      </span>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="xl:col-span-5">
-              <Card>
-                <CardContent className='flex justify-center space-x-2'>
-                  <DialogDemo />
-                  <SheetDemo />
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="sm:col-span-2 md:col-span-1 xl:col-span-5">
-              <Card>
-                <CardContent className='flex justify-center'>
                   <Select>
-                    <SelectTrigger className="w-[180px]">
-                      <SelectValue placeholder="Select a country" />
+                    <SelectTrigger className='w-[180px]'>
+                      <SelectValue placeholder='Select Role' />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        <SelectLabel>Country Selection</SelectLabel>
-                        <SelectItem value="apple">United States</SelectItem>
-                        <SelectItem value="banana">Canada</SelectItem>
-                        <SelectItem value="blueberry">Mexico</SelectItem>
-                        <SelectItem value="grapes" disabled>
-                          Japan
+                        <SelectItem value='admin'>Admin
                         </SelectItem>
-                        <SelectItem value="pineapple">Germany</SelectItem>
+                        <SelectItem value='owner'>Owner
+                        </SelectItem>
+                        <SelectItem value='member'>Member
+                        </SelectItem>
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                </CardContent>
-              </Card>
+                </div>
+              </div>
             </div>
+          </CardContent>
+        </Card>
 
-            <div className="col-span-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Dropdown</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <DropdownMenuDemo />
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="col-span-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Popover</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <PopoverDemo />
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="col-span-3">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Context</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className='flex justify-center gap-x-2'>
-                    <ContextDemo />
+        <Card className='sm:col-span-2 md:col-span-11 xl:col-span-6'>
+          <CardHeader>
+            <CardTitle>Attendance
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <RadioGroup name='attendance' defaultValue='public' className='space-y-6'>
+              <div className='space-y-2 text-sm font-semibold'>
+                <p>Public
+                </p>
+                <p className='text-muted-foreground'>Tickets will be available to the general public.
+                </p>
+              </div>
+              <div className='pl-8 space-y-3'>
+                <div className='items-top flex space-x-2'>
+                  <Checkbox id='terms1' />
+                  <div className='grid gap-1.5 leading-none'>
+                    <label htmlFor='terms' className='text-sm font-medium'>In-person
+                    </label>
+                    <p className='text-sm text-muted-foreground'>Attendees will be at the event in person.
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="col-span-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Sonner</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <SonnerDemo />
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="sm:col-span-2 md:col-span-1 xl:col-span-6">
-              <Card className='h-full'>
-                <CardHeader>
-                  <CardTitle>Sign In</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-6">
-                  <div className="w-full space-y-8">
-                    <Input
-                      type="text"
-                      placeholder="Username"
-                    />
-                    <Input
-                      type="password"
-                      placeholder="Password"
-                    />
-                    <div className="flex flex-wrap justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <Switch color="dark/zinc" />
-                        <p>Remember me</p>
-                      </div>
-                      <Button variant={'ghost'}>Forgot password?</Button>
-                    </div>
-                    <Button className="w-full">Get started</Button>
-
+                </div>
+                <div className='items-top flex space-x-2'>
+                  <Checkbox id='terms2' />
+                  <div className='grid gap-1.5 leading-none'>
+                    <label htmlFor='terms2' className='text-sm font-medium'>Online
+                    </label>
+                    <p className='text-sm text-muted-foreground'>Attendees will only be able to view the event online.
+                    </p>
                   </div>
-                </CardContent>
-                <CardFooter className='mt-auto flex justify-between'>
-                  <p className='text-muted-foreground'>
-                    Don&apos;t have an account?
-                  </p>
-                  <Button variant={'ghost'}>Sign up</Button>
-                </CardFooter>
-              </Card>
-            </div>
-
-            <div className="sm:col-span-2 xl:col-span-9">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Recent Orders</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="w-full">
-                    <Table className="mt-4 [--gutter:--spacing(6)] lg:[--gutter:--spacing(10)]">
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead>Purchase date</TableHead>
-                          <TableHead>Customer</TableHead>
-                          <TableHead className="text-right">Amount</TableHead>
-                          <TableHead >
-                            <span className='sr-only'>Status</span>
-                          </TableHead>
-                          <TableHead >
-                            <span className='sr-only'>Actions</span>
-                          </TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {orders.slice(0, 5).map((order) => (
-                          <TableRow key={order.id} title={`Order #${order.id}`}>
-                            <TableCell className="text-zinc-500">{order.date}</TableCell>
-                            <TableCell>
-                              <div className="flex items-center gap-2">
-                                <Avatar className='size-6'>
-                                  <Bongocat className='size-6' email={order.customer.email} />
-                                </Avatar>
-                                <span>{order.customer.name}</span>
-                              </div>
-                            </TableCell>
-                            <TableCell className="text-right">US{order.amount.usd}</TableCell>
-                            <TableCell>
-                              <Badge color='green'>{order.event.status}</Badge>
-                            </TableCell>
-                            <TableCell>
-                              <EllipsisVerticalIcon className="w-5 h-5 text-zinc-500" />
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="sm:col-span-2 xl:col-span-9">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Team Members</CardTitle>
-                  <CardDescription>
-                    Share this link with your team to give them access to your organization.
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="w-full min-w-0">
-                    <div className="flex items-center gap-3">
-                      <Input
-                        readOnly
-                        defaultValue="https://example.com/teams/invite/eHGJEj12FHDKSi"
-                        aria-label="Invite link"
-                      />
-                      <Button variant={'outline'}>Copy link</Button>
-                    </div>
-
-                    <Button className="mt-3">Reset your invite link</Button>
-
-                    <div className="mt-8 divide-y divide-zinc-100 dark:divide-white/5">
-                      <div className="flex items-center justify-between gap-4 py-4">
-                        <div className="flex min-w-0 items-center gap-2">
-                          <Avatar >
-                            <AvatarImage src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" />
-                          </Avatar>
-                          <div className="grid flex-1 text-left text-sm leading-tight">
-                            <span className="truncate font-medium">XForkey</span>
-                            <span className="truncate text-xs text-muted-foreground">XForkey@gmail.com</span>
-                          </div>
-                        </div>
-                        <Select >
-                          <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Select Role" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectGroup>
-                              <SelectItem value="apple">Admin</SelectItem>
-                              <SelectItem value="banana">Owner</SelectItem>
-                              <SelectItem value="blueberry">Member</SelectItem>
-                            </SelectGroup>
-                          </SelectContent>
-                        </Select>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="sm:col-span-2 md:col-span-1 xl:col-span-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Attendance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <RadioGroup name="attendance" defaultValue="public" className="space-y-6">
-                    <div className="space-y-2 text-sm font-semibold">
-                      <p>Public</p>
-                      <p className="text-muted-foreground">Tickets will be available to the general public.</p>
-                    </div>
-
-                    <div className="pl-8 space-y-3">
-                      <div className="items-top flex space-x-2">
-                        <Checkbox id="terms1" />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            In-person
-                          </label>
-                          <p className="text-sm text-muted-foreground">Attendees will be at the event in person.</p>
-                        </div>
-                      </div>
-                      <div className="items-top flex space-x-2">
-                        <Checkbox id="terms1" />
-                        <div className="grid gap-1.5 leading-none">
-                          <label
-                            htmlFor="terms"
-                            className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                          >
-                            Online
-                          </label>
-                          <p className="text-sm text-muted-foreground">Attendees will only be able to view the event online.</p>
-                        </div>
-                      </div>
-
-                    </div>
-
-                    <div className="space-y-2 text-sm font-semibold">
-                      <p>Private</p>
-                      <p className="text-muted-foreground">Tickets are not available to the general public.</p>
-                    </div>
-                  </RadioGroup>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </div>
+                </div>
+              </div>
+              <div className='space-y-2 text-sm font-semibold'>
+                <p>Private
+                </p>
+                <p className='text-muted-foreground'>Tickets are not available to the general public.
+                </p>
+              </div>
+            </RadioGroup>
+          </CardContent>
+        </Card>
       </div>
-    </>
+    </div>
   )
 }
+
+
 
 
 export function getEvents() {

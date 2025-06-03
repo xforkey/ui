@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+import { info } from "console"
 
 const colors = {
   red: 'bg-red-500/15 text-red-700 group-hover:bg-red-500/25 dark:bg-red-500/10 dark:text-red-400 dark:group-hover:bg-red-500/20',
@@ -40,6 +41,9 @@ const badgeColors = {
   secondary: "bg-secondary text-secondary-foreground group-hover:bg-secondary/25",
   destructive: "bg-destructive/15 text-destructive-foreground group-hover:bg-destructive/25 dark:bg-destructive/10 dark:text-destructive-foreground dark:group-hover:bg-destructive/20",
   outline: "bg-background text-foreground border-border [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+  info: colors.blue,
+  success: colors.green,
+  warning: colors.yellow,
 }
 
 const badgeVariants = cva(
@@ -51,6 +55,9 @@ const badgeVariants = cva(
         secondary: cn(badgeColors.secondary),
         destructive: cn(badgeColors.destructive),
         outline: cn(badgeColors.outline, "border"),
+        info: cn(badgeColors.info),
+        success: cn(badgeColors.success),
+        warning: cn(badgeColors.warning),
         ...colors
       },
     },

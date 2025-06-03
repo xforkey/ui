@@ -21,7 +21,7 @@ import { Example } from "@/docs/components/example";
 import { Figure } from "@/docs/components/figure";
 import { Iframe } from "@/docs/components/iframe";
 import { TipGood, TipBad, TipInfo } from "@/docs/components/tips";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/docs/components/installation-tabs";
+import { Tabs as UiTabs, TabsContent as UiTabsContent, TabsList as UiTabsList, TabsTrigger as UiTabsTrigger } from "@/components/ui/tabs";
 import getSourceCode from "@/docs/get-source-code";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
@@ -104,6 +104,40 @@ function createHeading(level: 1 | 2 | 3 | 4 | 5 | 6) {
         ]);
     };
 }
+
+// Custom styled tabs components for MDX that match installation tabs layout
+const Tabs = ({ className, ...props }: React.ComponentProps<typeof UiTabs>) => (
+    <UiTabs className={cn('relative mt-6 w-full', className)} {...props} />
+);
+
+const TabsList = ({ className, ...props }: React.ComponentProps<typeof UiTabsList>) => (
+    <UiTabsList
+        className={cn(
+            'grid grid-cols-4 justify-start w-full max-w-2xl bg-transparent border-b border-border not-prose',
+            className
+        )}
+        {...props}
+    />
+);
+
+const TabsTrigger = ({ className, ...props }: React.ComponentProps<typeof UiTabsTrigger>) => (
+    <UiTabsTrigger
+        className={cn(
+            'flex items-center gap-2 pb-2 rounded-none bg-transparent border-0 shadow-none',
+            'data-[state=active]:border-b-2',
+            'dark:data-[state=active]:border-primary',
+            className
+        )}
+        {...props}
+    />
+);
+
+const TabsContent = ({ className, ...props }: React.ComponentProps<typeof UiTabsContent>) => (
+    <UiTabsContent
+        className={cn('mt-2', className)}
+        {...props}
+    />
+);
 
 // This file is required to use MDX in `app` directory.
 export function useMDXComponents(components: MDXComponents): MDXComponents {
