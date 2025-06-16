@@ -1,5 +1,3 @@
-import Link from "next/link"
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,14 +12,14 @@ export default function BreadcrumbWithCustomSeparator() {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href="/">Home</Link>
+          <BreadcrumbLink href="/">
+            Home
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink>
-            <Link href="/components">Components</Link>
+          <BreadcrumbLink href="/components">
+            Components
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

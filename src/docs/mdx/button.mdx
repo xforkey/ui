@@ -5,9 +5,7 @@ export const links = {
   api: "https://www.radix-ui.com/docs/primitives/components/button#api-reference"
 }
 
-A button component that can be used to trigger actions.
-
-<ComponentPreview demoName="button-demo" hint="Click to interact" />
+<ComponentPreview demoName="button-demo"  />
 
 ## Installation
 
@@ -32,9 +30,7 @@ npx shadcn@latest add button
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install @radix-ui/react-slot
-```
+<InstallBlock packageName="@radix-ui/react-slot" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -50,7 +46,6 @@ npm install @radix-ui/react-slot
 
 ## Usage
 
-<CodeExampleStack>
 
 ```tsx
 import { Button } from "@/components/ui/button"
@@ -60,13 +55,11 @@ import { Button } from "@/components/ui/button"
 <Button variant="outline">Button</Button>
 ```
 
-</CodeExampleStack>
 
 ## Link
 
 You can use the `buttonVariants` helper to create a link that looks like a button.
 
-<CodeExampleStack>
 
 ```tsx
 import { buttonVariants } from "@/components/ui/button"
@@ -76,7 +69,6 @@ import { buttonVariants } from "@/components/ui/button"
 <Link className={buttonVariants({ variant: "outline" })}>Click here</Link>
 ```
 
-</CodeExampleStack>
 
 Alternatively, you can set the `asChild` parameter and nest the link component.
 
@@ -90,43 +82,43 @@ Alternatively, you can set the `asChild` parameter and nest the link component.
 
 ### Primary
 
-<ComponentPreview demoName="button-demo" hint="A primary button" />
+<ComponentPreview demoName="button-demo"  />
 
 ### Secondary
 
-<ComponentPreview demoName="button-secondary" hint="A secondary button" />
+<ComponentPreview demoName="button-secondary"  />
 
 ### Destructive
 
-<ComponentPreview demoName="button-destructive" hint="A destructive button" />
+<ComponentPreview demoName="button-destructive"  />
 
 ### Outline
 
-<ComponentPreview demoName="button-outline" hint="A button using the outline variant" />
+<ComponentPreview demoName="button-outline"  />
 
 ### Ghost
 
-<ComponentPreview demoName="button-ghost" hint="A button using the ghost variant" />
+<ComponentPreview demoName="button-ghost"  />
 
 ### Link
 
-<ComponentPreview demoName="button-link" hint="A button using the link variant" />
+<ComponentPreview demoName="button-link"  />
 
 ### Icon
 
-<ComponentPreview demoName="button-icon" hint="An icon button" />
+<ComponentPreview demoName="button-icon"  />
 
 ### With Icon
 
-<ComponentPreview demoName="button-with-icon" hint="A button with an icon" />
+<ComponentPreview demoName="button-with-icon"  />
 
 ### Loading
 
-<ComponentPreview demoName="button-loading" hint="A button with a loading state" />
+<ComponentPreview demoName="button-loading"  />
 
 ### As Child
 
-<ComponentPreview demoName="button-as-child" hint="A button wrapping a custom Link component" />
+<ComponentPreview demoName="button-as-child"  />
 
 ## Changelog
 

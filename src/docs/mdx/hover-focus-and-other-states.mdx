@@ -1,6 +1,6 @@
 import dedent from "dedent";
-import { CodeExample, CodeExampleGroup, CodeBlock, HighlightedCode,RawHighlightedCode, svelte, html, css, tsx } from "@/docs/components/code-example.tsx";
-import { Example } from "@/docs/components/example.tsx";
+import {svelte, html, css, tsx } from "@/docs/components/code-example.tsx";
+import { Preview } from "@/docs/components/preview.tsx";
 import { Figure } from "@/docs/components/figure.tsx";
 import { Iframe } from "@/docs/components/iframe.tsx";
 import { TipGood, TipBad, TipInfo } from "@/docs/components/tips";
@@ -14,17 +14,17 @@ Every utility class in Tailwind can be applied _conditionally_ by adding a varia
 
 For example, to apply the `bg-sky-700` class on hover, use the `hover:bg-sky-700` class:
 
-<Figure hint="Hover over this button to see the background color change">
+<Figure >
 
-<Example>
+<Preview>
   {
     <AccordionDemo/>
   }
-</Example>
+</Preview>
 
-<CodeExample collapsible={true} example={tsx`
+```tsx
 ${getSourceCode('accordion-demo')}
-`} />
+```
 </Figure>
 
 
@@ -88,9 +88,9 @@ In this guide you'll learn about every variant available in the framework, how t
 
 Style elements on hover, focus, and active using the `hover`, `focus`, and `active` variants:
 
-<Figure hint="Try interacting with this button to see the hover, focus, and active states">
+<Figure >
 
-<Example>
+<Preview>
   {
     <div className="grid place-items-center">
       <button
@@ -101,7 +101,7 @@ Style elements on hover, focus, and active using the `hover`, `focus`, and `acti
       </button>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:hover:bg-violet-600,focus:outline-2,focus:outline-offset-2,focus:outline-violet-500,active:bg-violet-700] -->
@@ -123,7 +123,7 @@ Style an element when it is the first-child or last-child using the `first` and 
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-4">
       <div className="mx-auto max-w-md border-x border-x-gray-200 dark:border-x-gray-800 dark:bg-gray-950/10">
@@ -176,7 +176,7 @@ Style an element when it is the first-child or last-child using the `first` and 
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```svelte
 <!-- [!code classes:first:pt-0,last:pb-0] -->
@@ -200,7 +200,7 @@ You can also style an element when it's an odd or even child using the `odd` and
 
 <Figure>
 
-<Example padding={false} className="py-8">
+<Preview padding={false} className="py-8">
   {
     <div className="">
       <div className="border-y border-y-gray-200 bg-white dark:border-y-gray-800 dark:bg-gray-950">
@@ -285,7 +285,7 @@ You can also style an element when it's an odd or even child using the `odd` and
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```svelte
 <!-- [!code classes:odd:bg-white,even:bg-gray-50,dark:odd:bg-gray-900/50,dark:even:bg-gray-950] -->
@@ -334,9 +334,9 @@ See the [pseudo-class reference](#pseudo-class-reference) for a complete list of
 
 Style form elements in different states using variants like `required`, `invalid`, and `disabled`:
 
-<Figure hint="Try making the email address valid to see the styles change">
+<Figure >
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-md border-x border-x-gray-200 px-6 py-5 dark:border-x-gray-800 dark:bg-gray-950/10">
       <form>
@@ -393,7 +393,7 @@ Style form elements in different states using variants like `required`, `invalid
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:invalid:border-pink-500,invalid:text-pink-600,focus:border-sky-500,focus:outline,focus:outline-sky-500,focus:invalid:border-pink-500,focus:invalid:outline-pink-500,disabled:border-gray-200,disabled:bg-gray-50,disabled:text-gray-500,disabled:shadow-none,dark:disabled:border-gray-700,dark:disabled:bg-gray-800/20] -->
@@ -419,7 +419,7 @@ Use the `has-*` variant to style an element based on the state or content of its
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-md border-x border-x-gray-200 px-4 py-6 text-gray-700 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-gray-200">
       <fieldset>
@@ -482,7 +482,7 @@ Use the `has-*` variant to style an element based on the state or content of its
       </fieldset>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:has-checked:bg-indigo-50,has-checked:text-indigo-900,has-checked:ring-indigo-200,dark:has-checked:bg-indigo-950,dark:has-checked:text-indigo-200,dark:has-checked:ring-indigo-900]-->
@@ -507,7 +507,7 @@ If you need to style an element based on the descendants of a parent element, yo
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto grid max-w-md divide-y divide-gray-100 border-x border-x-gray-200 text-gray-700 dark:divide-gray-800 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-gray-300">
       <div className="group grid grid-cols-[32px_1fr_auto] items-center gap-x-4 px-4 py-4 pt-6">
@@ -599,7 +599,7 @@ If you need to style an element based on the descendants of a parent element, yo
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:group-has-[a]:block,group] -->
@@ -619,7 +619,7 @@ If you need to style an element based on the descendants of a sibling element, y
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-md border-x border-x-gray-200 px-4 py-6 dark:border-x-gray-800 dark:bg-gray-950/10">
       <fieldset className="space-y-3">
@@ -676,7 +676,7 @@ If you need to style an element based on the descendants of a sibling element, y
       </fieldset>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:peer-has-checked:hidden,peer] -->
@@ -697,9 +697,9 @@ Use the `not-` variant to style an element when a condition is not true.
 
 It's particularly powerful when combined with other pseudo-class variants, for example combining `not-focus:` with `hover:` to only apply hover styles when an element is not focused:
 
-<Figure hint="Try focusing on the button and then hovering over it">
+<Figure >
 
-<Example>
+<Preview>
   {
     <div className="grid place-items-center">
       <button
@@ -711,7 +711,7 @@ It's particularly powerful when combined with other pseudo-class variants, for e
       </button>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:hover:not-focus:bg-indigo-700] -->
@@ -735,9 +735,9 @@ You can also combine the `not-` variant with media query variants like `forced-c
 
 When you need to style an element based on the state of some _parent_ element, mark the parent with the `group` class, and use `group-*` variants like `group-hover` to style the target element:
 
-<Figure hint="Hover over the card to see both text elements change color">
+<Figure >
 
-<Example>
+<Preview>
   {
     <a
       href="#"
@@ -766,7 +766,7 @@ When you need to style an element based on the state of some _parent_ element, m
       </p>
     </a>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:group-hover:stroke-white] -->
@@ -794,7 +794,7 @@ When nesting groups, you can style something based on the state of a _specific_ 
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-4">
       <ul
@@ -906,7 +906,7 @@ When nesting groups, you can style something based on the state of a _specific_ 
       </ul>
     </div>
   }
-</Example>
+</Preview>
 
 ```svelte
 <!-- [!code classes:group-hover/item:visible] -->
@@ -936,55 +936,53 @@ Groups can be named however you like and don’t need to be configured in any wa
 
 You can create one-off `group-*` variants on the fly by providing your own selector as an [arbitrary value](/docs/adding-custom-styles#using-arbitrary-values) between square brackets:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:group-[.is-published]:block] -->
+
+```html
+<!-- [!code classes:group-[.is-published]:block] -->
+<div class="group is-published">
+  <div class="hidden group-[.is-published]:block">
+    Published
+  </div>
+</div>
+```
+
+```css
+.group-\[\.is-published\]\:block {
+  &:is(:where(.group):is(.is-published) *) {
+    display: block;
+  }
+}
+```
+
+<Figure>
+  ```html
+<!-- [!code classes:group-[.is-published]:block] -->
       <div class="group is-published">
         <div class="hidden group-[.is-published]:block">
           Published
         </div>
       </div>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .group-\[\.is-published\]\:block {
-        &:is(:where(.group):is(.is-published) *) {
-          display: block;
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```
+</Figure>
 
 For more control, you can use the `&` character to mark where `.group` should end up in the final selector relative to the selector you are passing in:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:_&] -->
-      <div class="group">
-        <div class="group-[:nth-of-type(3)_&]:block">
-          <!-- ... -->
-        </div>
-      </div>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .group-\[\:nth-of-type\(3\)_\&\]\:block {
-        &:is(:nth-of-type(3) :where(.group) *) {
-          display: block;
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```html
+<!-- [!code classes:_&] -->
+<div class="group">
+  <div class="group-[:nth-of-type(3)_&]:block">
+    <!-- ... -->
+  </div>
+</div>
+```
+
+```css
+.group-\[\:nth-of-type\(3\)_\&\]\:block {
+  &:is(:nth-of-type(3) :where(.group) *) {
+    display: block;
+  }
+}
+```
 
 #### Implicit groups
 
@@ -1010,9 +1008,9 @@ The `in-*` variant responds to state changes in any parent, so if you want more 
 
 When you need to style an element based on the state of a _sibling_ element, mark the sibling with the `peer` class, and use `peer-*` variants like `peer-invalid` to style the target element:
 
-<Figure hint="Try making the email address valid to see the warning disappear">
+<Figure >
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-md border-x border-x-gray-200 px-6 pt-6 pb-5 dark:border-x-gray-800 dark:bg-gray-950/10">
       <form>
@@ -1037,7 +1035,7 @@ When you need to style an element based on the state of a _sibling_ element, mar
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:peer-invalid:visible] -->
@@ -1076,7 +1074,7 @@ When using multiple peers, you can style something on the state of a _specific_ 
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-4">
       <fieldset className="mx-auto max-w-md border-x border-x-gray-200 p-8 text-sm text-gray-700 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-gray-100">
@@ -1111,7 +1109,7 @@ When using multiple peers, you can style something on the state of a _specific_ 
       </fieldset>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:peer-checked/draft:block] -->
@@ -1141,61 +1139,45 @@ Peers can be named however you like and don’t need to be configured in any way
 
 You can create one-off `peer-*` variants on the fly by providing your own selector as an [arbitrary value](/docs/adding-custom-styles#using-arbitrary-values) between square brackets:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:peer-[.is-dirty]] -->
-      <form>
-        <label for="email">Email:</label>
-        <input id="email" name="email" type="email" class="is-dirty peer" required />
-        <div class="peer-[.is-dirty]:peer-required:block hidden">This field is required.</div>
-        <!-- ... -->
-      </form>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .peer-\[\.is-dirty\]\:peer-required\:block {
-        &:is(:where(.peer):is(.is-dirty) ~ *) {
-          &:is(:where(.peer):required ~ *) {
-            display: block;
-          }
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```html
+<!-- [!code classes:peer-[.is-dirty]] -->
+<form>
+  <label for="email">Email:</label>
+  <input id="email" name="email" type="email" class="is-dirty peer" required />
+  <div class="peer-[.is-dirty]:peer-required:block hidden">This field is required.</div>
+  <!-- ... -->
+</form>
+```
+
+```css
+.peer-\[\.is-dirty\]\:peer-required\:block {
+  &:is(:where(.peer):is(.is-dirty) ~ *) {
+    &:is(:where(.peer):required ~ *) {
+      display: block;
+    }
+  }
+}
+```
 
 For more control, you can use the `&` character to mark where `.peer` should end up in the final selector relative to the selector you are passing in:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    filename="HTML"
-    example={html`
-      <!-- [!code classes:peer-[:nth-of-type(3)_&]:block] -->
-      <div>
-        <input type="text" class="peer" />
-        <div class="hidden peer-[:nth-of-type(3)_&]:block">
-          <!-- ... -->
-        </div>
-      </div>
-    `}
-  />
-  <CodeBlock
-    filename="Generated CSS"
-    example={css`
-      .peer-\[\:nth-of-type\(3\)_\&\]\:block {
-        &:is(:nth-of-type(3) :where(.peer) ~ *) {
-          display: block;
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```html
+<!-- [!code classes:peer-[:nth-of-type(3)_&]:block] -->
+<div>
+  <input type="text" class="peer" />
+  <div class="hidden peer-[:nth-of-type(3)_&]:block">
+    <!-- ... -->
+  </div>
+</div>
+```
+
+```css
+.peer-\[\:nth-of-type\(3\)_\&\]\:block {
+  &:is(:nth-of-type(3) :where(.peer) ~ *) {
+    display: block;
+  }
+}
+```
 
 ## Pseudo-elements
 
@@ -1205,7 +1187,7 @@ Style the `::before` and `::after` pseudo-elements using the `before` and `after
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-sm border-x border-x-gray-200 px-6 pt-6 pb-5 dark:border-x-gray-800 dark:bg-gray-950/10">
       <form>
@@ -1224,7 +1206,7 @@ Style the `::before` and `::after` pseudo-elements using the `before` and `after
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:after:content-['*']] -->
@@ -1242,7 +1224,7 @@ When using these variants, Tailwind will automatically add `content: ''` by defa
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-6">
       <div className="mx-auto max-w-lg border-x border-x-gray-200 px-6 py-8 dark:border-x-gray-800 dark:bg-gray-950/10">
@@ -1256,7 +1238,7 @@ When using these variants, Tailwind will automatically add `content: ''` by defa
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:before:block] -->
@@ -1299,7 +1281,7 @@ Style the placeholder text of any input or textarea using the `placeholder` vari
 
 <Figure>
 
-<Example>
+<Preview>
   {
     <div className="mx-auto max-w-sm">
       <form>
@@ -1324,7 +1306,7 @@ Style the placeholder text of any input or textarea using the `placeholder` vari
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:placeholder:italic,placeholder:text-gray-500] -->
@@ -1344,7 +1326,7 @@ Style the button in file inputs using the `file` variant:
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-6">
       <div className="mx-auto max-w-sm border-x border-x-gray-200 px-6 py-8 dark:border-x-gray-800 dark:bg-gray-950/10">
@@ -1367,7 +1349,7 @@ Style the button in file inputs using the `file` variant:
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:file:mr-4,file:rounded-full,file:border-0,file:bg-violet-50,file:px-4,file:py-2,file:text-sm,file:font-semibold,file:text-violet-700,hover:file:bg-violet-100,dark:file:bg-violet-600,dark:file:text-violet-100,dark:hover:file:bg-violet-500] -->
@@ -1385,7 +1367,7 @@ Style the counters or bullets in lists using the `marker` variant:
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-6">
       <div className="mx-auto max-w-sm border-x border-x-gray-200 px-8 py-8 dark:border-x-gray-800 dark:bg-gray-950/10">
@@ -1398,7 +1380,7 @@ Style the counters or bullets in lists using the `marker` variant:
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:marker:text-sky-400] -->
@@ -1417,9 +1399,9 @@ We've designed the `marker` variant to be inheritable, so although you can use i
 
 Style the active text selection using the `selection` variant:
 
-<Figure hint="Try selecting some of this text with your mouse">
+<Figure >
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-6">
       <div className="mx-auto max-w-lg border-x border-x-gray-200 px-6 py-8 text-gray-700 selection:bg-fuchsia-300 selection:text-fuchsia-900 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-gray-300">
@@ -1431,7 +1413,7 @@ Style the active text selection using the `selection` variant:
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:selection:bg-fuchsia-300] -->
@@ -1469,7 +1451,7 @@ Style the first line in a block of content using the `first-line` variant, and t
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="px-6">
       <div className="mx-auto max-w-lg border-x border-x-gray-200 px-6 py-8 font-serif text-gray-700 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-gray-200">
@@ -1484,7 +1466,7 @@ Style the first line in a block of content using the `first-line` variant, and t
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:first-line:uppercase] -->
@@ -1564,7 +1546,7 @@ Use utilities with no variant to target light mode, and use the `dark` variant t
 
 <Figure>
 
-<Example padding={false} className="py-0">
+<Preview padding={false} className="py-0">
   {
     <div className="grid grid-cols-1 sm:grid-cols-2">
       <div className="p-8 pt-7">
@@ -1627,7 +1609,7 @@ Use utilities with no variant to target light mode, and use the `dark` variant t
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:dark:bg-gray-900] -->
@@ -1652,9 +1634,9 @@ The `prefers-reduced-motion` media query tells you if the user has requested tha
 
 Use the `motion-reduce` variant to conditionally add styles when the user has requested reduced motion:
 
-<Figure hint="Try emulating &#96;prefers-reduced-motion: reduce&#96; in your developer tools to hide the spinner">
+<Figure >
 
-<Example>
+<Preview>
   {
     <div className="flex items-center justify-center">
       <button
@@ -1678,7 +1660,7 @@ Use the `motion-reduce` variant to conditionally add styles when the user has re
       </button>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:motion-reduce:hidden] -->
@@ -1712,9 +1694,9 @@ The `prefers-contrast` media query tells you if the user has requested more or l
 
 Use the `contrast-more` variant to conditionally add styles when the user has requested more contrast:
 
-<Figure hint="Try emulating &#96;prefers-contrast: more&#96; in your developer tools to see the changes">
+<Figure >
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-sm border-x border-x-gray-200 px-6 pt-6 pb-4 dark:border-x-gray-800 dark:bg-gray-950/10">
       <form>
@@ -1738,7 +1720,7 @@ Use the `contrast-more` variant to conditionally add styles when the user has re
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:contrast-more:border-gray-400,contrast-more:placeholder-gray-500,contrast-more:opacity-100] -->
@@ -1761,9 +1743,9 @@ The `forced-colors` media query indicates if the user is using a forced colors m
 
 Use the `forced-colors` variant to conditionally add styles when the user has enabled a forced color mode:
 
-<Figure hint="Try emulating &#96;forced-colors: active&#96; in your developer tools to see the changes">
+<Figure >
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-sm border-x border-x-gray-200 px-6 pt-6 pb-4 text-gray-900 dark:border-x-gray-800 dark:bg-gray-950/10 dark:text-white">
       <form>
@@ -1826,7 +1808,7 @@ Use the `forced-colors` variant to conditionally add styles when the user has en
       </form>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:forced-colors:appearance-auto] -->
@@ -1871,9 +1853,9 @@ The `pointer` media query tells you whether the user has a primary pointing devi
 
 Use the `pointer-fine` variant to target an accurate pointing device, like a mouse or trackpad, or the `pointer-coarse` variant to target a less accurate pointing device, like a touchscreen, which can be useful for providing larger click targets on touch devices:
 
-<Figure hint="Try emulating a touch device in your developer tools to see the changes">
+<Figure >
 
-<Example>
+<Preview>
   {
     <fieldset aria-label="Choose a memory option" className="mx-auto max-w-md">
       <div className="flex items-center justify-between">
@@ -1910,7 +1892,7 @@ Use the `pointer-fine` variant to target an accurate pointing device, like a mou
       </div>
     </fieldset>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:pointer-coarse:mt-6,pointer-coarse:grid-cols-3,pointer-coarse:gap-4,pointer-coarse:p-4] -->
@@ -2035,7 +2017,7 @@ Use the `starting` variant to set the appearance of an element when it is first 
 
 <Figure>
 
-<Example className="flex py-0">
+<Preview className="flex py-0">
   {
     <Iframe className="h-[340px] w-full">
       <div className="grid h-full items-center justify-center">
@@ -2091,7 +2073,7 @@ Use the `starting` variant to set the appearance of an element when it is first 
       </div>
     </Iframe>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:starting:open:opacity-0] -->
@@ -2238,7 +2220,7 @@ If you need to use a one-off `aria` variant that doesn’t make sense to include
 
 <Figure>
 
-<Example padding={false} className="py-0">
+<Preview padding={false} className="py-0">
   {
     <div className="py-8">
       <table className="w-full border-collapse border-y border-gray-400 bg-white text-sm dark:border-white/10 dark:bg-transparent">
@@ -2308,87 +2290,70 @@ If you need to use a one-off `aria` variant that doesn’t make sense to include
       </table>
     </div>
   }
-</Example>
+</Preview>
 
-  <CodeExampleGroup
-    filenames={["HTML", "Generated CSS"]}
-  >
-    <CodeBlock
-      example={html`
-        <!-- [!code classes:aria-[sort=ascending]:bg-[url('/img/down-arrow.svg')],aria-[sort=descending]:bg-[url('/img/up-arrow.svg')]] -->
-        <table>
-          <thead>
-            <tr>
-              <th
-                aria-sort="ascending"
-                class="aria-[sort=ascending]:bg-[url('/img/down-arrow.svg')] aria-[sort=descending]:bg-[url('/img/up-arrow.svg')]"
-              >
-                Invoice #
-              </th>
-              <!-- ... -->
-            </tr>
-          </thead>
-          <!-- ... -->
-        </table>
-      `}
-    />
-    <CodeBlock
-      example={css`
-        .aria-\[sort\=ascending\]\:bg-\[url\(\'\/img\/down-arrow\.svg\'\)\] {
-          &[aria-sort="ascending"] {
-            background-image: url('/img/down-arrow.svg');
-          }
-        }
-        .aria-\[sort\=descending\]\:bg-\[url\(\'\/img\/up-arrow\.svg\'\)\] {
-          &[aria-sort="descending"] {
-            background-image: url('/img/up-arrow.svg');
-          }
-        }
-      `}
-    />
+```html
+<!-- [!code classes:aria-[sort=ascending]:bg-[url('/img/down-arrow.svg')],aria-[sort=descending]:bg-[url('/img/up-arrow.svg')]] -->
+<table>
+  <thead>
+    <tr>
+      <th
+        aria-sort="ascending"
+        class="aria-[sort=ascending]:bg-[url('/img/down-arrow.svg')] aria-[sort=descending]:bg-[url('/img/up-arrow.svg')]"
+      >
+        Invoice #
+      </th>
+      <!-- ... -->
+    </tr>
+  </thead>
+  <!-- ... -->
+</table>
+```
 
-  </CodeExampleGroup>
+```css
+.aria-\[sort\=ascending\]\:bg-\[url\(\'\/img\/down-arrow\.svg\'\)\] {
+  &[aria-sort="ascending"] {
+    background-image: url('/img/down-arrow.svg');
+  }
+}
+.aria-\[sort\=descending\]\:bg-\[url\(\'\/img\/up-arrow\.svg\'\)\] {
+  &[aria-sort="descending"] {
+    background-image: url('/img/up-arrow.svg');
+  }
+}
+```
 </Figure>
 
 ARIA state variants can also target parent and sibling elements using the `group-aria-*` and `peer-aria-*` variants:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:group-aria-[sort=ascending]:rotate-0,group-aria-[sort=descending]:rotate-180] -->
-      <table>
-        <thead>
-          <tr>
-          <th aria-sort="ascending" class="group">
-            Invoice #
-            <svg class="group-aria-[sort=ascending]:rotate-0 group-aria-[sort=descending]:rotate-180"><!-- ... --></svg>
-          </th>
-          <!-- ... -->
-          </tr>
-        </thead>
-        <!-- ... -->
-      </table>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .group-aria-\[sort\=ascending\]\:rotate-0 {
-        &:is(:where(.group)[aria-sort="ascending"] *) {
-          rotate: 0deg;
-        }
-      }
-      .group-aria-\[sort\=descending\]\:rotate-180 {
-        &:is(:where(.group)[aria-sort="descending"] *) {
-          rotate: 180deg;
-        }
-      }
-    `}
+```html
+<!-- [!code classes:group-aria-[sort=ascending]:rotate-0,group-aria-[sort=descending]:rotate-180] -->
+<table>
+  <thead>
+    <tr>
+    <th aria-sort="ascending" class="group">
+      Invoice #
+      <svg class="group-aria-[sort=ascending]:rotate-0 group-aria-[sort=descending]:rotate-180"><!-- ... --></svg>
+    </th>
+    <!-- ... -->
+    </tr>
+  </thead>
+  <!-- ... -->
+</table>
+```
 
-/>
-
-</CodeExampleGroup>
+```css
+.group-aria-\[sort\=ascending\]\:rotate-0 {
+  &:is(:where(.group)[aria-sort="ascending"] *) {
+    rotate: 0deg;
+  }
+}
+.group-aria-\[sort\=descending\]\:rotate-180 {
+  &:is(:where(.group)[aria-sort="descending"] *) {
+    rotate: 180deg;
+  }
+}
+```
 
 ### Data attributes
 
@@ -2448,7 +2413,7 @@ Use the `rtl` and `ltr` variants to conditionally add styles in right-to-left an
 
 <Figure>
 
-<Example>
+<Preview>
   {
     <div className="mx-auto grid max-w-lg grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2">
       <div dir="ltr">
@@ -2489,7 +2454,7 @@ Use the `rtl` and `ltr` variants to conditionally add styles in right-to-left an
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:ltr:ml-3,rtl:mr-3] -->
@@ -2510,9 +2475,9 @@ Remember, these variants are only useful if you are building a site that needs t
 
 Use the `open` variant to conditionally add styles when a `<details>` or `<dialog>` element is in an open state:
 
-<Figure hint="Try toggling the disclosure to see the styles change">
+<Figure >
 
-<Example>
+<Preview>
   {
     <div className="mx-auto max-w-lg">
       <details
@@ -2528,7 +2493,7 @@ Use the `open` variant to conditionally add styles when a `<details>` or `<dialo
       </details>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:open:border-black/10,open:bg-gray-100] -->
@@ -2560,7 +2525,7 @@ The `inert` variant lets you style elements marked with the `inert` attribute:
 
 <Figure>
 
-<Example padding={false}>
+<Preview padding={false}>
   {
     <form className="mx-auto max-w-md space-y-6 border-x border-x-gray-200 p-8 dark:border-x-gray-800">
       <legend>Notification preferences</legend>
@@ -2679,7 +2644,7 @@ The `inert` variant lets you style elements marked with the `inert` attribute:
       </fieldset>
     </form>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:inert:opacity-50] -->
@@ -2709,7 +2674,7 @@ While it's generally preferable to put utility classes directly on child element
 
 <Figure>
 
-<Example className="py-0">
+<Preview className="py-0">
   {
     <div className="mx-auto max-w-md border-x border-x-gray-200 p-6 dark:border-x-gray-800 dark:bg-gray-950/10">
       <h2 className="text-base font-semibold text-gray-900 dark:text-gray-200">Categories</h2>
@@ -2727,7 +2692,7 @@ While it's generally preferable to put utility classes directly on child element
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:*:rounded-full] -->
@@ -2773,7 +2738,7 @@ Like `*`, the `**` variant can be used to style children of an element. The main
 
 <Figure>
 
-<Example padding={false}>
+<Preview padding={false}>
   {
     <div className="px-4">
       <ul
@@ -2834,7 +2799,7 @@ Like `*`, the `**` variant can be used to style children of an element. The main
       </ul>
     </div>
   }
-</Example>
+</Preview>
 
 ```svelte
 <!-- [!code classes:**:data-avatar:rounded-full,**:data-avatar:size-12] -->
@@ -2858,113 +2823,83 @@ Just like [arbitrary values](/docs/adding-custom-styles#using-arbitrary-values) 
 
 Arbitrary variants are just format strings that represent the selector, wrapped in square brackets. For example, this arbitrary variant changes the cursor to `grabbing` when the element has the `is-dragging` class:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={svelte`
-      <!-- [!code classes:[&.is-dragging]:cursor-grabbing] -->
-      <ul role="list">
-        {#each items as item}
-          <li class="[&.is-dragging]:cursor-grabbing">{item}</li>
-        {/each}
-      </ul>
-    `}
+```svelte
+<!-- [!code classes:[&.is-dragging]:cursor-grabbing] -->
+<ul role="list">
+  {#each items as item}
+    <li class="[&.is-dragging]:cursor-grabbing">{item}</li>
+  {/each}
+</ul>
+```
 
-/>
-
-  <CodeBlock
-    example={css`
-      .\[\&\.is-dragging\]\:cursor-grabbing {
-        &.is-dragging {
-          cursor: grabbing;
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```css
+.\[\&\.is-dragging\]\:cursor-grabbing {
+  &.is-dragging {
+    cursor: grabbing;
+  }
+}
+```
 
 Arbitrary variants can be stacked with built-in variants or with each other, just like the rest of the variants in Tailwind:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={svelte`
-      <!-- [!code classes:[&.is-dragging]:active:cursor-grabbing] -->
-      <ul role="list">
-        {#each items as item}
-          <li class="[&.is-dragging]:active:cursor-grabbing">{item}</li>
-        {/each}
-      </ul>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .\[\&\.is-dragging\]\:active\:cursor-grabbing {
-        &.is-dragging {
-          &:active {
-            cursor: grabbing;
-          }
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```svelte
+<!-- [!code classes:[&.is-dragging]:active:cursor-grabbing] -->
+<ul role="list">
+  {#each items as item}
+    <li class="[&.is-dragging]:active:cursor-grabbing">{item}</li>
+  {/each}
+</ul>
+```
+
+```css
+.\[\&\.is-dragging\]\:active\:cursor-grabbing {
+  &.is-dragging {
+    &:active {
+      cursor: grabbing;
+    }
+  }
+}
+```
 
 If you need spaces in your selector, you can use an underscore. For example, this arbitrary variant selects all `p` elements within the element where you've added the class:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:[&_p]:mt-4] -->
-      <div class="[&_p]:mt-4">
-        <p>Lorem ipsum...</p>
-        <ul>
-          <li>
-            <p>Lorem ipsum...</p>
-          </li>
-          <!-- ... -->
-        </ul>
-      </div>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .\[\&_p\]\:mt-4 {
-        & p {
-          margin-top: calc(var(--spacing) * 4);
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```html
+<!-- [!code classes:[&_p]:mt-4] -->
+<div class="[&_p]:mt-4">
+  <p>Lorem ipsum...</p>
+  <ul>
+    <li>
+      <p>Lorem ipsum...</p>
+    </li>
+    <!-- ... -->
+  </ul>
+</div>
+```
+
+```css
+.\[\&_p\]\:mt-4 {
+  & p {
+    margin-top: calc(var(--spacing) * 4);
+  }
+}
+```
 
 You can also use at-rules like `@media` or `@supports` in arbitrary variants:
 
-<CodeExampleGroup
-  filenames={["HTML", "Generated CSS"]}
->
-  <CodeBlock
-    example={html`
-      <!-- [!code classes:[@supports(display:grid)]:grid] -->
-      <div class="flex [@supports(display:grid)]:grid">
-        <!-- ... -->
-      </div>
-    `}
-  />
-  <CodeBlock
-    example={css`
-      .\[\@supports\(display\:grid\)\]\:grid {
-        @supports (display:grid) {
-          display: grid;
-        }
-      }
-    `}
-  />
-</CodeExampleGroup>
+```html
+<!-- [!code classes:[@supports(display:grid)]:grid] -->
+<div class="flex [@supports(display:grid)]:grid">
+  <!-- ... -->
+</div>
+```
+
+```css
+.\[\@supports\(display\:grid\)\]\:grid {
+  @supports (display:grid) {
+    display: grid;
+  }
+}
+```
 
 With at-rule custom variants the `&` placeholder isn't necessary, just like when nesting with a preprocessor.
 

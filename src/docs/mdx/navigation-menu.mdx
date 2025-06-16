@@ -5,9 +5,7 @@ export const links = {
   api: "https://www.radix-ui.com/docs/primitives/components/navigation-menu#api-reference"
 }
 
-A responsive navigation menu component for website navigation.
-
-<ComponentPreview demoName="navigation-menu-demo" hint="Hover over menu items" />
+<ComponentPreview demoName="navigation-menu-demo"  />
 
 ## Installation
 
@@ -32,9 +30,7 @@ npx shadcn@latest add navigation-menu
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install @radix-ui/react-navigation-menu
-```
+<InstallBlock packageName="@radix-ui/react-navigation-menu" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -50,7 +46,7 @@ npm install @radix-ui/react-navigation-menu
 
 ## Usage
 
-<CodeExampleStack>
+
 
 ```tsx
 import {
@@ -78,7 +74,7 @@ import {
 </NavigationMenu>
 ```
 
-</CodeExampleStack>
+
 
 ## Examples
 
@@ -86,7 +82,7 @@ import {
 
 When using the Next.js `<Link />` component, you can use `navigationMenuTriggerStyle()` to apply the correct styles to the trigger.
 
-<CodeExampleStack>
+
 
 ```tsx
 import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
@@ -102,6 +98,6 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
 </NavigationMenuItem>
 ```
 
-</CodeExampleStack>
+
 
 See also the [Radix UI documentation](https://www.radix-ui.com/docs/primitives/components/navigation-menu#with-client-side-routing) for handling client side routing.

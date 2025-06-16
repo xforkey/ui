@@ -4,9 +4,7 @@ export const links = {
   doc: "https://input-otp.rodz.dev"
 }
 
-A one-time password input component with copy-paste functionality.
-
-<ComponentPreview demoName="input-otp-demo" hint="Type or paste a code" />
+<ComponentPreview demoName="input-otp-demo"  />
 
 ## About
 
@@ -65,9 +63,7 @@ module.exports = {
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install input-otp
-```
+<InstallBlock packageName="input-otp" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -107,7 +103,7 @@ module.exports = {
 
 ## Usage
 
-<CodeExampleStack>
+
 
 ```tsx
 import {
@@ -134,7 +130,7 @@ import {
 </InputOTP>
 ```
 
-</CodeExampleStack>
+
 
 ## Examples
 
@@ -142,7 +138,7 @@ import {
 
 Use the `pattern` prop to define a custom pattern for the OTP input.
 
-<ComponentPreview demoName="input-otp-pattern" hint="Try typing letters and numbers" />
+<ComponentPreview demoName="input-otp-pattern"  />
 
 ```tsx
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
@@ -164,7 +160,7 @@ import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp"
 
 You can use the `<InputOTPSeparator />` component to add a separator between the input groups.
 
-<ComponentPreview demoName="input-otp-separator" hint="Notice the separator between groups" />
+<ComponentPreview demoName="input-otp-separator"  />
 
 ```tsx
 import {
@@ -193,11 +189,11 @@ import {
 
 You can use the `value` and `onChange` props to control the input value.
 
-<ComponentPreview demoName="input-otp-controlled" hint="Type to see controlled behavior" />
+<ComponentPreview demoName="input-otp-controlled"  />
 
 ### Form
 
-<ComponentPreview demoName="input-otp-form" hint="Try submitting the form" />
+<ComponentPreview demoName="input-otp-form"  />
 
 ## Changelog
 
@@ -214,9 +210,7 @@ We've made some updates and replaced the render props pattern with composition. 
 
 <Step>Update to the latest version of `input-otp`.</Step>
 
-```bash
-npm install input-otp@latest
-```
+<InstallBlock packageName="input-otp@latest" />
 
 <Step>Update `input-otp.tsx`</Step>
 

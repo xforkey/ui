@@ -18,6 +18,7 @@ import React from "react";
 import { CopyButton } from "@/components/copy-button"
 import { CollapseWrapper } from "./collapse-wrapper";
 
+
 export function js(strings: TemplateStringsArray, ...args: any[]) {
     return { lang: "js", code: dedent(strings, ...args) };
 }
@@ -66,8 +67,20 @@ export async function CodeExample({
 
     return (
         <CodeExampleWrapper className={clsx(combinedClassName)} collapsible={collapsible}>
-            {filename ? <CodeExampleFilename filename={filename} /> : null}
-            <HighlightedCode example={example} />
+            {filename ? <div className="px-3 pt-0.5 pb-1.5 text-xs/5">{filename}</div> : null}
+            <div className="relative">
+                <div className="absolute top-2 right-2 z-10">
+                    <CopyButton value={example.code} />
+                </div>
+                <HighlightedCode
+                    example={example}
+                    className={clsx(
+                        "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-foreground/90! *:p-5 dark:*:bg-white/5!",
+                        "**:[.line]:isolate **:[.line]:not-last:min-h-[1lh]",
+                        "*:inset-ring *:inset-ring-foreground dark:*:inset-ring-white/5",
+                    )}
+                />
+            </div>
         </CodeExampleWrapper>
     );
 }
@@ -88,97 +101,7 @@ export function CodeExampleWrapper({ className, children, collapsible }: { class
     );
 }
 
-export function CodeExampleStack({ children }: { children: React.ReactNode }) {
-    return (
-        <div data-stack>
-            <div className="not-prose rounded-xl in-[figure]:mt-1 in-[figure]:rounded-b-lg in-[figure]:px-0.5 in-[figure]:pb-0.5 dark:outline dark:-outline-offset-1 dark:outline-white/10 dark:in-[figure]:outline-1 dark:in-[figure]:outline-offset-1">
-                {children}
-            </div>
-        </div>
-    );
-}
-
-export function CodeExampleGroup({
-    filenames,
-    children,
-    className = "",
-}: {
-    filenames: string[];
-    children: React.ReactNode;
-    className?: string;
-}) {
-    return (
-        <div>
-            <Tabs className="not-prose" defaultValue={filenames[0]} >
-                <div className="rounded-xl in-[figure]:-mx-1 in-[figure]:-mb-1">
-                    <div
-                        className={clsx(
-                            "rounded-xl p-1 text-sm scheme-dark bg-foreground/5 inset-ring inset-ring-foreground/10 dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
-                            className,
-                        )}
-                    >
-
-                        <TabsList className="bg-transparent justify-start h-auto text-xs p-0">
-                            {filenames.map((filename) => (
-                                <TabsTrigger
-                                    value={filename}
-                                    key={filename}
-                                    className="data-[state=active]:bg-transparent ring-white"
-                                >
-                                    <CodeExampleFilename filename={filename} />
-                                </TabsTrigger>
-                            ))}
-                        </TabsList>
-                        {filenames.map((filename, i) => {
-                            const child = React.Children.toArray(children)[i];
-                            // Clone the child element and add the filename prop
-                            return React.isValidElement(child)
-                                ? React.cloneElement(child, { filename } as any)
-                                : child;
-                        })}
-                    </div>
-                </div>
-            </Tabs>
-        </div>
-    );
-}
-
-export function CodeBlock({ example, filename }: { example: { lang: string; code: string }; filename?: string }) {
-    return (
-        <TabsContent value={filename || example.lang}>
-
-            <HighlightedCode example={example} />
-
-        </TabsContent>
-    );
-}
-
 export function HighlightedCode({
-    example,
-    className,
-}: {
-    example: { lang: string; code: string };
-    className?: string;
-}) {
-    return (
-        <div className="relative">
-            <div className="absolute top-2 right-2 z-10">
-                <CopyButton value={example.code} />
-            </div>
-            <RawHighlightedCode
-                example={example}
-                className={clsx(
-                    "*:flex *:*:max-w-none *:*:shrink-0 *:*:grow *:overflow-auto *:rounded-lg *:bg-foreground/90! *:p-5 dark:*:bg-white/5!",
-                    "**:[.line]:isolate **:[.line]:not-last:min-h-[1lh]",
-                    "*:inset-ring *:inset-ring-foreground dark:*:inset-ring-white/5",
-                    className,
-                )}
-            />
-        </div>
-    );
-}
-
-export function RawHighlightedCode({
     example,
     className,
 }: {
@@ -219,10 +142,6 @@ export function RawHighlightedCode({
         .replaceAll("\n", "");
 
     return <div className={className} dangerouslySetInnerHTML={{ __html: code }} />;
-}
-
-function CodeExampleFilename({ filename }: { filename: string }) {
-    return <div className="px-3 pt-0.5 pb-1.5 text-xs/5">{filename}</div>;
 }
 
 const highlighter = await createHighlighter({

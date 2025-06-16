@@ -1,16 +1,11 @@
-export const title = "Hover, focus, and other states";
-export const description = "Using utilities to style elements on hover, focus, and more.";
+export const title = "Accordion";
+export const description = "A vertically stacked set of interactive headings that each reveal a section of content.";
 export const links = {
   doc: "https://www.radix-ui.com/docs/primitives/components/accordion",
   api: "https://www.radix-ui.com/docs/primitives/components/accordion#api-reference"
 }
 
-
-Every utility class in Tailwind can be applied _conditionally_ by adding a variant to the beginning of the class name that describes the condition you want to target.
-
-For example, to apply the `bg-sky-700` class on hover, use the `hover:bg-sky-700` class:
-
-<ComponentPreview demoName={'accordion-demo'} hint={'Click to expand/collapse'} />
+<ComponentPreview demoName={'accordion-demo'} hint={'Click to expand/collapse sections'} />
 
 ## Installation
 
@@ -35,9 +30,7 @@ npx shadcn@latest add accordion
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install @radix-ui/react-accordion
-```
+<InstallBlock packageName="@radix-ui/react-accordion" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -81,7 +74,7 @@ module.exports = {
 
 ## Usage
 
-<CodeExampleStack>
+
 
 ```tsx
 import {
@@ -101,4 +94,3 @@ import {
   </AccordionItem>
 </Accordion>
 ```
-</CodeExampleStack>

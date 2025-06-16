@@ -1,12 +1,7 @@
 import type { MDXComponents } from "mdx/types";
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode } from "react";
 import {
     CodeExample,
-    CodeExampleStack,
-    CodeExampleGroup,
-    CodeBlock,
-    HighlightedCode,
-    RawHighlightedCode,
     tsx,
     js,
     ts,
@@ -17,7 +12,7 @@ import {
     bash
 } from "@/docs/components/code-example";
 import Link from "next/link";
-import { Example } from "@/docs/components/example";
+import { Preview } from "@/docs/components/preview";
 import { Figure } from "@/docs/components/figure";
 import { Iframe } from "@/docs/components/iframe";
 import { TipGood, TipBad, TipInfo } from "@/docs/components/tips";
@@ -26,12 +21,7 @@ import getSourceCode from "@/docs/get-source-code";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
-
-// Create a CSS wrapper component that uses the css template literal function internally
-const CssBlock = ({ code }: { code: string }) => {
-    const example = css`${code}`;
-    return <CodeBlock example={example} />;
-};
+import { parseCodeBlock } from "@/docs/utils";
 
 // Create a generic demo skeleton that works for various component types
 const GenericDemoSkeleton = () => (
@@ -185,59 +175,21 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         },
 
         pre(props) {
-            let child = React.Children.only(props.children) as React.ReactElement;
-            if (!child) return null;
+            const child = React.Children.only(props.children);
 
-            // @ts-ignore
-            let { className, children: code } = child.props;
-            let lang = className ? className.replace("language-", "") : "";
-            let filename = undefined;
+            if (!React.isValidElement(child)) return null;
 
-            // Extract `[!code filename:…]` directives from the first line of code
-            let lines = code.split("\n");
-            let filenameRegex = /\[\!code filename\:(.+)\]/;
-            let match = lines[0].match(filenameRegex);
-            if (match) {
-                filename = match[1];
-                code = lines.splice(1).join("\n");
-            }
+            const codeProps = child.props as { className?: string; children?: string };
 
-            // Use the appropriate language function based on the language
-            let example;
-            switch (lang) {
-                case 'js':
-                    example = js`${code}`;
-                    break;
-                case 'ts':
-                    example = ts`${code}`;
-                    break;
-                case 'jsx':
-                    example = jsx`${code}`;
-                    break;
-                case 'tsx':
-                    example = tsx`${code}`;
-                    break;
-                case 'html':
-                    example = html`${code}`;
-                    break;
-                case 'svelte':
-                    example = svelte`${code}`;
-                    break;
-                case 'css':
-                    example = css`${code}`;
-                    break;
-                case 'bash':
-                    example = bash`${code}`;
-                    break;
-                default:
-                    // If no specific language function is available, use a generic object
-                    example = { lang, code };
-            }
+            if (typeof codeProps.children !== "string") return null;
+
+            const { example, filename } = parseCodeBlock({
+                className: codeProps.className || "",
+                rawCode: codeProps.children,
+            });
 
             return (
-                <div>
-                    <CodeExample example={example} className="not-prose" filename={filename} />
-                </div>
+                <CodeExample example={example} className="not-prose" filename={filename} />
             );
         },
         Steps: ({ ...props }) => (
@@ -281,12 +233,13 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 });
 
             return (
-                <Figure hint={hint}>
-                    <Example resizable={resizable}>
+                <Figure filenames={["preview", "code"]} hint={hint}>
+                    <Preview resizable={resizable}>
                         <DynamicComponent {...props} />
-                    </Example>
-                    <CodeExample collapsible={true} example={tsx`${getSourceCode(demoName)}`} />
+                    </Preview>
+                    <CodeExample example={tsx`${getSourceCode(demoName)}`} />
                 </Figure>
+
             );
         },
         ComponentSource: ({ name, collapsible = true }: { name: string, collapsible?: boolean }) => {
@@ -299,15 +252,15 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         },
         InstallBlock: ({ packageName }: { packageName: string }) => {
             return (
-                <CodeExampleGroup filenames={["npm", "pnpm", "yarn", "bun"]}>
-                    <CodeBlock example={bash`npm install ${packageName}`} />
-                    <CodeBlock example={bash`pnpm add ${packageName}`} />
-                    <CodeBlock example={bash`yarn add ${packageName}`} />
-                    <CodeBlock example={bash`bun add ${packageName}`} />
-                </CodeExampleGroup>
+                <Figure filenames={["npm", "pnpm", "yarn", "bun"]}>
+                    <CodeExample example={bash`npm install ${packageName}`} />
+                    <CodeExample example={bash`pnpm add ${packageName}`} />
+                    <CodeExample example={bash`yarn add ${packageName}`} />
+                    <CodeExample example={bash`bun add ${packageName}`} />
+                </Figure>
             );
         },
-        Example,
+        Preview,
         Figure,
         Iframe,
         TipGood,
@@ -316,13 +269,6 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         Tabs,
         TabsContent,
         TabsList,
-        TabsTrigger,
-        CodeExample,
-        CodeExampleStack,
-        CodeExampleGroup,
-        CodeBlock,
-        HighlightedCode,
-        RawHighlightedCode,
-        CssBlock
+        TabsTrigger
     };
 }

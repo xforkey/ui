@@ -1,5 +1,5 @@
 import { ApiTable } from "@/docs/components/api-table.tsx";
-import { Example } from "@/docs/components/example.tsx";
+import { Preview } from "@/docs/components/preview.tsx";
 import { Figure } from "@/docs/components/figure.tsx";
 import { Stripes } from "@/docs/components/stripes.tsx";
 
@@ -9,7 +9,7 @@ export const description = "Utilities for controlling how the browser should cal
 
 <Figure>
 
-<Example padding={false}>
+<Preview padding={false}>
   {
     <div className="relative grid w-full grid-cols-[1fr_8rem_1fr] grid-rows-[1fr_3fr_1fr] gap-px bg-gray-700/10 font-mono text-sm leading-6 font-bold dark:bg-gray-700">
       <div className="col-start-1 row-start-1 bg-white dark:bg-gray-900"></div>
@@ -66,7 +66,7 @@ export const description = "Utilities for controlling how the browser should cal
       <div className="col-start-3 row-start-3 bg-white dark:bg-gray-900"></div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:box-border] -->
@@ -87,7 +87,7 @@ This means a 100px &times; 100px element with a 2px border and 4px of padding on
 
 <Figure>
 
-<Example padding={false}>
+<Preview padding={false}>
   {
     <div className="relative grid grid-cols-[1fr_8rem_1fr] grid-rows-[1fr_2fr_1fr] gap-px bg-gray-700/10 font-mono text-sm leading-6 font-bold dark:bg-gray-700">
       <div className="col-start-1 row-start-1 bg-white dark:bg-gray-900"></div>
@@ -144,7 +144,7 @@ This means a 100px &times; 100px element with a 2px border and 4px of padding on
       <div className="col-start-3 row-start-3 bg-white dark:bg-gray-900"></div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:box-content] -->

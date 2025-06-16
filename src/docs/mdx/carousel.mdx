@@ -5,9 +5,7 @@ export const links = {
   api: "https://www.embla-carousel.com/api"
 }
 
-A carousel component with motion and swipe capabilities built using Embla Carousel.
-
-<ComponentPreview demoName="carousel-demo" hint="A carousel with 5 items and navigation buttons" />
+<ComponentPreview demoName="carousel-demo"  />
 
 ## About
 
@@ -36,9 +34,7 @@ npx shadcn@latest add carousel
 
 <Step>Install the following dependencies:</Step>
 
-```bash
-npm install embla-carousel-react
-```
+<InstallBlock packageName="embla-carousel-react" />
 
 <Step>Copy and paste the following code into your project.</Step>
 
@@ -54,7 +50,7 @@ npm install embla-carousel-react
 
 ## Usage
 
-<CodeExampleStack>
+
 
 ```tsx
 import {
@@ -78,7 +74,7 @@ import {
 </Carousel>
 ```
 
-</CodeExampleStack>
+
 
 ## Examples
 
@@ -86,7 +82,7 @@ import {
 
 To set the size of the items, you can use the `basis` utility class on the `<CarouselItem />`.
 
-<ComponentPreview demoName="carousel-size" hint="A carousel with 3 active items of equal size" />
+<ComponentPreview demoName="carousel-size"  />
 
 ```tsx
 // 33% of the carousel width.
@@ -120,7 +116,7 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
   You can always adjust this in your own project if you need to.
 </TipInfo>
 
-<ComponentPreview demoName="carousel-spacing" hint="A carousel with 3 items with a spacing of 1rem" />
+<ComponentPreview demoName="carousel-spacing"  />
 
 ```tsx
 <Carousel>
@@ -146,7 +142,7 @@ To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<Car
 
 Use the `orientation` prop to set the orientation of the carousel.
 
-<ComponentPreview demoName="carousel-orientation" hint="A vertical carousel" />
+<ComponentPreview demoName="carousel-orientation"  />
 
 ```tsx
 <Carousel orientation="vertical | horizontal">
@@ -181,7 +177,7 @@ You can pass options to the carousel using the `opts` prop. See the [Embla Carou
 
 Use a state and the `setApi` props to get an instance of the carousel API.
 
-<ComponentPreview demoName="carousel-api" hint="A carousel with a slide counter" />
+<ComponentPreview demoName="carousel-api"  />
 
 ```tsx
 import { type CarouselApi } from "@/components/ui/carousel"
@@ -272,6 +268,6 @@ export function Example() {
 }
 ```
 
-<ComponentPreview demoName="carousel-plugin" hint="A carousel with the autoplay plugin" />
+<ComponentPreview demoName="carousel-plugin"  />
 
 See the [Embla Carousel docs](https://www.embla-carousel.com/api/plugins/) for more information on using plugins.

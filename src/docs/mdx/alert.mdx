@@ -5,9 +5,7 @@ export const links = {
   api: "https://ui.shadcn.com/docs/components/alert#api-reference"
 }
 
-A component that displays a callout for user attention.
-
-<ComponentPreview demoName="alert-demo" hint="An alert with an icon, title and description" />
+<ComponentPreview demoName="alert-demo"  />
 
 ## Installation
 
@@ -20,20 +18,22 @@ A component that displays a callout for user attention.
 
 <TabsContent value="cli">
 
-<CodeExampleGroup
+<Figure
   filenames={["HTML", "Generated CSS"]}
 >
 
 ```bash
 npx shadcn@latest add alert
 ```
-  <CssBlock code={`.group-\\[\\.is-published\\]\\:block {
+  ```css
+  .group-\\[\\.is-published\\]\\:block {
     &:is(:where(.group):is(.is-published) *) {
       display: block;
     }
-  }`} />
+  }
+  ```
 
-</CodeExampleGroup>
+</Figure>
 </TabsContent>
 
 <TabsContent value="manual">
@@ -56,7 +56,6 @@ npx shadcn@latest add alert
 
 ## Usage
 
-<CodeExampleStack>
 
 ```tsx
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
@@ -72,14 +71,13 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 </Alert>
 ```
 
-</CodeExampleStack>
 
 ## Examples
 
 ### Default
 
-<ComponentPreview demoName="alert-demo" hint="An alert with an icon, title and description" />
+<ComponentPreview demoName="alert-demo"  />
 
 ### Destructive
 
-<ComponentPreview demoName="alert-destructive" hint="An alert with a destructive variant" />
+<ComponentPreview demoName="alert-destructive"  />

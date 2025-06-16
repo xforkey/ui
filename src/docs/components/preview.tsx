@@ -4,7 +4,7 @@ import { clsx } from "clsx";
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export function Example({
+export function Preview({
     children,
     resizable = false,
     padding = true,

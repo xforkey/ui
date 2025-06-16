@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Example } from "./example";
+import { Example } from "./preview";
 
 interface ResizableProps {
   children: React.ReactNode;
@@ -10,8 +10,8 @@ interface ResizableProps {
 
 export function Resizable({ children, className }: ResizableProps) {
   return (
-    <Example resizable={true} className={className}>
+    <Preview resizable={true} className={className}>
       {children}
-    </Example>
+    </Preview>
   );
 }

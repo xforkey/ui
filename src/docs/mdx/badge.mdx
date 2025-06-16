@@ -5,9 +5,7 @@ export const links = {
   api: "https://ui.shadcn.com/docs/components/badge#api-reference"
 }
 
-A small visual indicator for highlighting status, counts, or labels.
-
-<ComponentPreview demoName="badge-demo" hint="A default badge" />
+<ComponentPreview demoName="badge-demo"  />
 
 ## Installation
 
@@ -44,7 +42,7 @@ npx shadcn@latest add badge
 
 ## Usage
 
-<CodeExampleStack>
+
 
 ```tsx
 import { Badge } from "@/components/ui/badge"
@@ -54,13 +52,13 @@ import { Badge } from "@/components/ui/badge"
 <Badge variant="outline">Badge</Badge>
 ```
 
-</CodeExampleStack>
+
 
 ### Link
 
 You can use the `badgeVariants` helper to create a link that looks like a badge.
 
-<CodeExampleStack>
+
 
 ```tsx
 import { badgeVariants } from "@/components/ui/badge"
@@ -70,22 +68,22 @@ import { badgeVariants } from "@/components/ui/badge"
 <Link className={badgeVariants({ variant: "outline" })}>Badge</Link>
 ```
 
-</CodeExampleStack>
+
 
 ## Examples
 
 ### Default
 
-<ComponentPreview demoName="badge-demo" hint="A default badge" />
+<ComponentPreview demoName="badge-demo"  />
 
 ### Secondary
 
-<ComponentPreview demoName="badge-secondary" hint="A badge using secondary as variant" />
+<ComponentPreview demoName="badge-secondary"  />
 
 ### Outline
 
-<ComponentPreview demoName="badge-outline" hint="A badge using outline as variant" />
+<ComponentPreview demoName="badge-outline"  />
 
 ### Destructive
 
-<ComponentPreview demoName="badge-destructive" hint="A destructive badge" />
+<ComponentPreview demoName="badge-destructive"  />

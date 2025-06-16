@@ -3,6 +3,16 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import React from "react";
+import {
+    tsx,
+    js,
+    ts,
+    jsx,
+    html,
+    svelte,
+    css,
+    bash
+} from "@/docs/components/code-example";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -162,4 +172,60 @@ export async function generateNavigationIndex(): Promise<NavIndex> {
     }
 
     return navIndex;
+}
+
+type Example = {
+    lang: string;
+    code: string;
+};
+
+export function parseCodeBlock({
+    className,
+    rawCode,
+}: {
+    className: string;
+    rawCode: string;
+}): { example: Example; filename?: string } {
+    const lang = className?.replace('language-', '') || '';
+    let code = rawCode;
+    let filename: string | undefined;
+
+    const lines = code.split('\n');
+    const match = lines[0].match(/\[\!code filename\:(.+)\]/);
+    if (match) {
+        filename = match[1];
+        code = lines.slice(1).join('\n');
+    }
+
+    let example: Example;
+    switch (lang) {
+        case 'js':
+            example = js`${code}`;
+            break;
+        case 'ts':
+            example = ts`${code}`;
+            break;
+        case 'jsx':
+            example = jsx`${code}`;
+            break;
+        case 'tsx':
+            example = tsx`${code}`;
+            break;
+        case 'html':
+            example = html`${code}`;
+            break;
+        case 'svelte':
+            example = svelte`${code}`;
+            break;
+        case 'css':
+            example = css`${code}`;
+            break;
+        case 'bash':
+            example = bash`${code}`;
+            break;
+        default:
+            example = { lang, code };
+    }
+
+    return { example, filename };
 }

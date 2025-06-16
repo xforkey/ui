@@ -1,4 +1,26 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { clsx } from "clsx";
+import React from "react";
+import { parseCodeBlock } from "@/docs/utils";
+
+export function extractExampleFromPre(
+    child: React.ReactNode
+): { example: { lang: string; code: string }; filename?: string } | null {
+    if (!React.isValidElement(child)) return null;
+
+    const preElement = child as React.ReactElement & { props: { children: React.ReactNode } };
+    const codeChild = React.Children.only(preElement.props.children);
+
+    if (!React.isValidElement(codeChild)) return null;
+
+    const codeProps = codeChild.props as { className?: string; children?: string };
+    if (typeof codeProps.children !== 'string') return null;
+
+    return parseCodeBlock({
+        className: codeProps.className ?? '',
+        rawCode: codeProps.children,
+    });
+}
 
 function Hint({ children, className }: { children: React.ReactNode; className?: string }) {
     return (
@@ -30,7 +52,7 @@ function Hint({ children, className }: { children: React.ReactNode; className?: 
     );
 }
 
-export function Figure({
+/* export function Figure({
     children,
     hint,
     desktopHint,
@@ -54,6 +76,68 @@ export function Figure({
                     {children}
                 </figure>
             </div>
+        </div>
+    );
+} */
+
+export function Figure({
+    filenames,
+    children,
+    className = "",
+    hint
+}: {
+    filenames?: string[];
+    children: React.ReactNode;
+    className?: string;
+    hint?: string;
+}) {
+    const childrenArray = React.Children.toArray(children) as Array<React.ReactElement<{ example: { lang: string; code: string } }>>
+
+    const tabLabels = childrenArray.map((child, i) => {
+        const fallback = (() => {
+            if (
+                React.isValidElement(child) &&
+                "example" in (child.props || {})
+            ) {
+                return child.props.example?.lang ?? `tab-${i}`;
+            }
+
+            const extracted = extractExampleFromPre(child);
+            return extracted?.filename || extracted?.example.lang || `tab-${i}`;
+        })();
+
+        return filenames?.[i] || fallback;
+    });
+
+    return (
+        <div className="not-prose">
+            {hint && <Hint>{hint}</Hint>}
+            <Tabs defaultValue={tabLabels[0]}>
+                <figure
+                    className={clsx(
+                        "rounded-xl p-1 text-sm scheme-dark bg-foreground/5 inset-ring inset-ring-foreground/10 dark:bg-white/5 dark:inset-ring dark:inset-ring-white/10",
+                        className,
+                    )}
+                >
+                    <TabsList className="bg-transparent justify-start h-auto text-xs p-0">
+                        {tabLabels.map((label) => (
+                            <TabsTrigger
+                                value={label}
+                                key={label}
+                                className="data-[state=active]:bg-transparent ring-white"
+                            >
+                                <div className="px-3 pt-0.5 pb-1.5 text-xs/5"> {label} </div>
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+
+                    {tabLabels.map((label, i) => (
+                        <TabsContent value={label} key={label}>
+                            {childrenArray[i]}
+                        </TabsContent>
+                    ))}
+                </figure>
+            </Tabs>
         </div>
     );
 }

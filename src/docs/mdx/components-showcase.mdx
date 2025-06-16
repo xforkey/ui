@@ -1,6 +1,6 @@
 import { ApiTable } from "@/docs/components/api-table.tsx";
-import { CodeExample,CodeExampleStack, CodeExampleGroup, CodeBlock, HighlightedCode, svelte, html, css, tsx } from "@/docs/components/code-example.tsx";
-import { Example } from "@/docs/components/example.tsx";
+import { CodeExample, CodeBlock, HighlightedCode, svelte, html, css, tsx } from "@/docs/components/code-example.tsx";
+import { Preview } from "@/docs/components/preview.tsx";
 import { Figure } from "@/docs/components/figure.tsx";
 import { Iframe } from "@/docs/components/iframe.tsx";
 import { TipGood, TipBad, TipInfo, TipCompat } from "@/docs/components/tips";
@@ -114,76 +114,13 @@ export default ComplexComponent;
 `} />
 
 
-### Code Example Group
-
-The `CodeExampleGroup` component allows you to display multiple code examples with tabs.
-<CodeExampleGroup filenames={["App.jsx", "styles.css"]}>
-  <CodeBlock example={tsx`
-<CodeExampleGroup filenames={["App.jsx", "styles.css"]}>
-  <CodeBlock example={tsx\`
-import React from 'react';
-import './styles.css';
-
-function App() {
-  return (
-    <div className="container">
-      <h1 className="title">Hello World</h1>
-      <p className="description">Welcome to my app</p>
-    </div>
-  );
-}
-
-export default App;
-\`} />
-  <CodeBlock example={css\`
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.title {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1rem;
-  color: #666;
-}
-\`} />
-</CodeExampleGroup>
-`} />
-  <CodeBlock example={css`
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.title {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.description {
-  font-size: 1rem;
-  color: #666;
-}
-`} />
-</CodeExampleGroup>
-
-
-
 ## Example Component
 
 The `Example` component displays interactive examples with optional resizing functionality.
 
 <Figure hint="Resize the container to see the alignment behavior">
 
-<Example resizable>
+<Preview resizable>
   {
     <div className="grid grid-cols-1 gap-8">
       <div>
@@ -224,9 +161,9 @@ The `Example` component displays interactive examples with optional resizing fun
       </div>
     </div>
   }
-</Example>
+</Preview>
 
-<CodeExampleStack>
+
 
 ```html
 <!-- [!code filename:justify-items-end] -->
@@ -248,7 +185,6 @@ The `Example` component displays interactive examples with optional resizing fun
 </div>
 ```
 
-</ CodeExampleStack>
 
 </Figure>
 
@@ -258,7 +194,7 @@ The `Figure` component wraps examples and provides an optional hint.
 
 <Figure>
 
-<Example>
+<Preview>
   {
     <div className="flex flex-col gap-8">
       <div>
@@ -281,7 +217,7 @@ The `Figure` component wraps examples and provides an optional hint.
       </div>
     </div>
   }
-</Example>
+</Preview>
 
 ```html
 <!-- [!code classes:font-sans,font-serif,font-mono] -->
@@ -319,24 +255,24 @@ The `Resizable` prop on the `Example` component allows you to create resizable e
 
 <Figure desktopHint="Resize the example to see the expected behavior">
 
-<Example resizable>
+<Preview resizable>
   {
     <img
       className="mx-auto aspect-3/2 w-full max-w-sm rounded-lg object-cover"
       src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
     />
   }
-</Example>
+</Preview>
 
 ```tsx
-<Example resizable>
+<Preview resizable>
   {
     <img
       className="mx-auto aspect-3/2 w-full max-w-sm rounded-lg object-cover"
       src="https://images.unsplash.com/photo-1590523277543-a94d2e4eb00b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1200&q=80"
     />
   }
-</Example>
+</Preview>
 ```
 
 </Figure>
