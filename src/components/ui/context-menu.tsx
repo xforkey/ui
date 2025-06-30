@@ -73,8 +73,7 @@ function ContextMenuSubTrigger({
         "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
 
         // States
-        "focus:bg-accent focus:text-accent-foreground",
-        "focus:inset-ring-1 focus:ring-accent-foreground",
+        "focus:bg-accent focus:text-accent-foreground dark:focus:inset-ring-1 dark:focus:ring-accent-foreground",
         "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
         className
       )}

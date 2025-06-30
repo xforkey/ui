@@ -71,7 +71,7 @@
 }
 
 :root {
-  --background: var(--color-zinc-50);
+  --background: var(--color-white);
   --foreground: var(--color-zinc-950);
 
   --card: var(--color-zinc-100);
@@ -82,8 +82,8 @@
 
   --primary: var(--color-emerald-600);
   --primary-foreground: var(--color-white);
-     --accent: var(--color-emerald-500);
-  --accent-foreground: var(--emerald-700);
+     --accent: var(--color-zinc-100);
+  --accent-foreground: var(--foreground);
 
   --secondary: var(--color-zinc-100);
   --secondary-foreground: var(--foreground);
@@ -99,7 +99,7 @@
   --border: color-mix(in oklab, var(--foreground) 7%, transparent);
   --input: color-mix(in oklab, var(--color-zinc-950) 3%, transparent);
 
-  --ring: var(--color-zinc-300);
+  --ring: var(--color-red-100);
 
   --chart-1: var(--color-orange-600);
   --chart-2: var(--color-teal-600);
@@ -199,10 +199,13 @@
     @apply
       bg-popover backdrop-blur-lg text-popover-foreground;
   }
-  .active-accent {
-    @apply
-      bg-accent text-accent-foreground inset-ring-1 ring-accent-foreground;
-  }
+  .portal-item {
+  @apply
+    focus:bg-accent 
+    focus:text-accent-foreground 
+    dark:focus:inset-ring-1 
+    dark:focus:ring-accent-foreground;
+}
   .better-outline {
     @apply relative block w-full;
 

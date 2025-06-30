@@ -36,74 +36,86 @@ export function NavMain({
   pathname?: string
 }) {
   return (
-    <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
-      <SidebarMenu>
-        {items.map((item) => {
-          // Check if this main item matches the current path
-          const isMainItemActive = pathname && (
-            pathname === item.url ||
-            pathname.startsWith(item.url + '/')
-          );
+    <Collapsible
+      defaultOpen={true}
+      className="group/section-collapsible"
+    >
+      <SidebarGroup>
+        <CollapsibleTrigger asChild>
+          <SidebarGroupLabel className="group/label text-sm text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground cursor-pointer flex items-center justify-between w-full">
+            <span>Platform</span>
+            <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/section-collapsible:rotate-90" />
+          </SidebarGroupLabel>
+        </CollapsibleTrigger>
+        <CollapsibleContent>
+          <SidebarMenu>
+            {items.map((item) => {
+              // Check if this main item matches the current path
+              const isMainItemActive = pathname && (
+                pathname === item.url ||
+                pathname.startsWith(item.url + '/')
+              );
 
-          // Check if any sub-item matches the current path
-          const hasActiveChild = item.items?.some(subItem =>
-            pathname && (
-              pathname === subItem.url ||
-              pathname.startsWith(subItem.url + '/')
-            )
-          );
+              // Check if any sub-item matches the current path
+              const hasActiveChild = item.items?.some(subItem =>
+                pathname && (
+                  pathname === subItem.url ||
+                  pathname.startsWith(subItem.url + '/')
+                )
+              );
 
-          // Item should be open if it's active or has an active child
-          const shouldBeOpen = item.isActive || isMainItemActive || hasActiveChild;
+              // Item should be open if it's active or has an active child
+              const shouldBeOpen = item.isActive || isMainItemActive || hasActiveChild;
 
-          return (
-            <Collapsible
-              key={item.title}
-              asChild
-              defaultOpen={shouldBeOpen}
-              className="group/collapsible"
-            >
-              <SidebarMenuItem>
-                <CollapsibleTrigger asChild>
-                  <SidebarMenuButton
-                    tooltip={item.title}
-                    className={isMainItemActive ? "bg-accent text-accent-foreground" : ""}
-                  >
-                    {item.icon && <item.icon />}
-                    <span>{item.title}</span>
-                    <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-                  </SidebarMenuButton>
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <SidebarMenuSub>
-                    {item.items?.map((subItem) => {
-                      // Check if this subItem matches the current path
-                      const isActive = pathname && (
-                        pathname === subItem.url ||
-                        pathname.startsWith(subItem.url + '/')
-                      );
+              return (
+                <Collapsible
+                  key={item.title}
+                  asChild
+                  defaultOpen={shouldBeOpen}
+                  className="group/collapsible"
+                >
+                  <SidebarMenuItem>
+                    <CollapsibleTrigger asChild>
+                      <SidebarMenuButton
+                        tooltip={item.title}
+                        className={isMainItemActive ? "bg-accent text-accent-foreground" : ""}
+                      >
+                        {item.icon && <item.icon />}
+                        <span>{item.title}</span>
+                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                      </SidebarMenuButton>
+                    </CollapsibleTrigger>
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {item.items?.map((subItem) => {
+                          // Check if this subItem matches the current path
+                          const isActive = pathname && (
+                            pathname === subItem.url ||
+                            pathname.startsWith(subItem.url + '/')
+                          );
 
-                      return (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton
-                            asChild
-                            className={isActive ? "bg-accent text-accent-foreground" : ""}
-                          >
-                            <Link href={subItem.url} className="w-full">
-                              <span>{subItem.title}</span>
-                            </Link>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      );
-                    })}
-                  </SidebarMenuSub>
-                </CollapsibleContent>
-              </SidebarMenuItem>
-            </Collapsible>
-          );
-        })}
-      </SidebarMenu>
-    </SidebarGroup>
+                          return (
+                            <SidebarMenuSubItem key={subItem.title}>
+                              <SidebarMenuSubButton
+                                asChild
+                                className={isActive ? "bg-accent text-accent-foreground" : ""}
+                              >
+                                <Link href={subItem.url} className="w-full">
+                                  <span>{subItem.title}</span>
+                                </Link>
+                              </SidebarMenuSubButton>
+                            </SidebarMenuSubItem>
+                          );
+                        })}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </SidebarMenuItem>
+                </Collapsible>
+              );
+            })}
+          </SidebarMenu>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
   )
 }

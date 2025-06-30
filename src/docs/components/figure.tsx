@@ -2,6 +2,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { clsx } from "clsx";
 import React from "react";
 import { parseCodeBlock } from "@/docs/utils";
+import { cn } from "@/lib/utils";
 
 export function extractExampleFromPre(
     child: React.ReactNode
@@ -124,7 +125,10 @@ export function Figure({
                             <TabsTrigger
                                 value={label}
                                 key={label}
-                                className="data-[state=active]:bg-transparent ring-white"
+                                className={cn("data-[state=active]:bg-transparent ring-white",
+                                    "focus-visible:ring-0 focus-visible:outline-0",
+                                    "data-[state=active]:shadow-none"
+                                )}
                             >
                                 <div className="px-3 pt-0.5 pb-1.5 text-xs/5"> {label} </div>
                             </TabsTrigger>

@@ -172,8 +172,7 @@ function SelectItem({
         "[&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
 
         // Focus State
-        "focus:bg-accent focus:text-accent-foreground",
-        "focus:inset-ring-1",
+        "portal-item",
 
         // Icon Color
         "[&_svg:not([class*='text-'])]:text-muted-foreground",

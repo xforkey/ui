@@ -40,7 +40,7 @@ export function TeamSwitcher({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <div className="bg-primary/16 ring ring-primary dark:bg-primary/16 dark:ring-primary text-sidebar-primary-foreground dark:text-primary flex aspect-square size-8 items-center justify-center rounded-lg">
+              <div className="bg-primary border border-primary dark:bg-primary/16 dark:border-primary text-primary-foreground dark:text-primary flex aspect-square size-8 items-center justify-center rounded-lg">
                 <activeTeam.logo className="size-4" />
               </div>
               <div className="grid flex-1 text-left text-sm leading-tight">

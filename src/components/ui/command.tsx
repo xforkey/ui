@@ -218,7 +218,7 @@ function CommandItem({
         "data-[selected=true]:[&_svg:not([class*='text-'])]:text-accent-foreground",
         "data-[selected=true]:[&_[data-slot=command-shortcut]]:text-accent-foreground",
         "data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50",
-        "data-[selected=true]:inset-ring-1 data-[selected=true]:ring-accent-foreground",
+        "dark:data-[selected=true]:inset-ring-1 dark:data-[selected=true]:ring-accent-foreground",
 
         className
       )}
