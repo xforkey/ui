@@ -4,45 +4,18 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const TableContext = React.createContext<{
-  bleed?: boolean
-  dense?: boolean
-  grid?: boolean
-  striped?: boolean
-}>({
-  bleed: false,
-  dense: false,
-  grid: false,
-  striped: false,
-})
-
-function Table({
-  className,
-  bleed = false,
-  dense = false,
-  grid = false,
-  striped = false,
-  ...props
-}: React.ComponentProps<"table"> & {
-  bleed?: boolean
-  dense?: boolean
-  grid?: boolean
-  striped?: boolean
-}) {
+function Table({ className, ...props }: React.ComponentProps<"table">) {
   return (
-    <TableContext.Provider value={{ bleed, dense, grid, striped }}>
-      <div className="flow-root">
-        <div className={cn("-mx-4 overflow-x-auto whitespace-nowrap", className)}>
-          <div className={cn("inline-block min-w-full align-middle", !bleed && "sm:px-4")}>
-            <table
-              data-slot="table"
-              className={cn("min-w-full text-left text-sm/6 text-foreground", className)}
-              {...props}
-            />
-          </div>
-        </div>
-      </div>
-    </TableContext.Provider>
+    <div
+      data-slot="table-container"
+      className="relative w-full overflow-x-auto"
+    >
+      <table
+        data-slot="table"
+        className={cn("w-full caption-bottom text-sm", className)}
+        {...props}
+      />
+    </div>
   )
 }
 
@@ -50,7 +23,7 @@ function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
   return (
     <thead
       data-slot="table-header"
-      className={cn("text-muted-foreground", className)}
+      className={cn("[&_tr]:border-b", className)}
       {...props}
     />
   )
@@ -80,15 +53,11 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
 }
 
 function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
-  const { striped } = React.useContext(TableContext)
-
   return (
     <tr
       data-slot="table-row"
       className={cn(
-        striped && "even:bg-background/50 dark:even:bg-white/[2.5%]",
-        !striped && "hover:bg-background/50 dark:hover:bg-white/[2.5%]",
-        "transition-colors",
+        "hover:bg-muted/50 data-[state=selected]:bg-muted border-b transition-colors",
         className
       )}
       {...props}
@@ -97,15 +66,11 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
 }
 
 function TableHead({ className, ...props }: React.ComponentProps<"th">) {
-  const { bleed, grid } = React.useContext(TableContext)
-
   return (
     <th
       data-slot="table-head"
       className={cn(
-        "border-b border-b-border/50 px-4 py-2 text-left font-medium first:pl-4 last:pr-4 dark:border-b-white/10",
-        grid && "border-l border-l-border/30 first:border-l-0 dark:border-l-white/5",
-        !bleed && "sm:first:pl-2 sm:last:pr-2",
+        "text-foreground h-10 px-2 text-left align-middle font-medium whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
       )}
       {...props}
@@ -114,17 +79,11 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
 }
 
 function TableCell({ className, ...props }: React.ComponentProps<"td">) {
-  const { bleed, dense, grid, striped } = React.useContext(TableContext)
-
   return (
     <td
       data-slot="table-cell"
       className={cn(
-        "relative px-4 first:pl-4 last:pr-4",
-        !striped && "border-b border-border/50 dark:border-white/5",
-        grid && "border-l border-l-border/30 first:border-l-0 dark:border-l-white/5",
-        dense ? "py-2.5" : "py-4",
-        !bleed && "sm:first:pl-2 sm:last:pr-2",
+        "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pr-0 [&>[role=checkbox]]:translate-y-[2px]",
         className
       )}
       {...props}

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group"
+import { CircleIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
@@ -26,23 +27,7 @@ function RadioGroupItem({
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
       className={cn(
-        // Basic layout
-        "relative isolate flex aspect-square size-4 shrink-0 items-center justify-center rounded-full",
-        // Background and border
-        "before:absolute before:inset-0 before:-z-10 before:rounded-full before:bg-white before:shadow-sm",
-        "border border-input",
-        // Checked state
-        "data-[state=checked]:before:bg-primary data-[state=checked]:border-transparent data-[state=checked]:border-primary/90",
-        // Dark mode
-        "dark:before:hidden dark:bg-white/5 dark:data-[state=checked]:bg-primary",
-        "dark:border-white/15 dark:data-[state=checked]:border-white/5 dark:hover:data-[state=checked]:border-white/5 dark:hover:border-white/30",
-        // Inner highlight shadow
-        "after:absolute after:inset-0 after:rounded-full after:shadow-[inset_0_1px_theme(--color-white/15%)]",
-        "dark:after:-inset-px dark:after:hidden dark:after:rounded-full dark:data-[state=checked]:after:block",
-        // Focus state
-        "focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-ring",
-        // Disabled state
-        "disabled:opacity-50 disabled:cursor-not-allowed",
+        "border-input text-primary focus-visible:border-ring focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive dark:bg-input/30 aspect-square size-4 shrink-0 rounded-full border shadow-xs transition-[color,box-shadow] outline-none focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}
@@ -51,10 +36,7 @@ function RadioGroupItem({
         data-slot="radio-group-indicator"
         className="relative flex items-center justify-center"
       >
-        <span
-          className="size-2 rounded-full bg-primary-foreground"
-          aria-hidden="true"
-        />
+        <CircleIcon className="fill-primary absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2" />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>
   )
