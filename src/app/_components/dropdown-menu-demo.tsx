@@ -1,38 +1,15 @@
 "use client"
 
 import * as React from "react"
-import {
-    BadgeCheckIcon,
-    BellIcon,
-    ChevronsUpDownIcon,
-    CreditCardIcon,
-    LogOut,
-    LogOutIcon,
-    MoreHorizontalIcon,
-    PencilIcon,
-    Settings2Icon,
-    ShareIcon,
-    SparklesIcon,
-    TrashIcon,
-    UserIcon,
-} from "lucide-react"
 
-import {
-    Avatar,
-    AvatarFallback,
-    AvatarImage,
-} from "@/ui/avatar"
 import { Button } from "@/ui/button"
 import {
     DropdownMenu,
-    DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuGroup,
     DropdownMenuItem,
     DropdownMenuLabel,
     DropdownMenuPortal,
-    DropdownMenuRadioGroup,
-    DropdownMenuRadioItem,
     DropdownMenuSeparator,
     DropdownMenuShortcut,
     DropdownMenuSub,

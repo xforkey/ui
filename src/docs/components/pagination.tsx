@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { generateNavigationIndex, type NavItem } from "@/docs/utils";
+import { generateNavigationIndex } from "@/docs/utils";
 import { cache } from "react";
 
 // Create a cached version of the function to avoid regenerating the index on every request
@@ -16,7 +16,7 @@ export default async function Pagination({ slug }: { slug: string }) {
   const flatIndex = await getNavigationIndex();
 
   // Find the position of the current page
-  const position = flatIndex.findIndex(([_, path]) => path === `/docs/${slug}`);
+  const position = flatIndex.findIndex(([, path]) => path === `/docs/${slug}`);
   if (position === -1) return null;
 
   // Get the previous and next pages

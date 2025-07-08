@@ -10,11 +10,9 @@ import { ActivePageMarker, VisibleSectionHighlight } from "./active-page-marker"
 import { remToPx } from "@/lib/utils"
 import {
   AudioWaveform,
-  BookOpen,
   ChevronRightIcon,
   Command,
   PenLine,
-  Layers,
 } from "lucide-react"
 import { NavUser } from "./nav-user"
 import { TeamSwitcher } from "./team-switcher"
@@ -24,19 +22,14 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/ui/collapsible"
-import { Label } from "@/ui/label"
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
-  SidebarInput,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,

@@ -3,14 +3,13 @@
 import { RadioGroup } from "@/components/ui/radio-group";
 import React, { createContext, useContext, useEffect, useMemo, useState } from "react";
 import * as RadioGroupPrimitive from "@radix-ui/react-radio-group";
-import { RadioGroupItem } from "@radix-ui/react-radio-group"; // or from your re-export path
 import { cn } from "@/lib/utils";
 
 
 
 type Theme = "light" | "dark" | "system" | null;
 
-export let ThemeContext = createContext<{
+export const ThemeContext = createContext<{
     theme: Theme;
     setTheme: (theme: Theme) => void;
 }>({
@@ -19,13 +18,13 @@ export let ThemeContext = createContext<{
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-    let [theme, setTheme] = useState<Theme>(null);
+    const [theme, setTheme] = useState<Theme>(null);
 
     useEffect(() => {
         setTheme((localStorage.getItem("currentTheme") ?? "system") as Theme);
     }, []);
 
-    let themeValue = useMemo(() => ({ theme, setTheme }), [theme]);
+    const themeValue = useMemo(() => ({ theme, setTheme }), [theme]);
 
     return <ThemeContext.Provider value={themeValue}>{children}</ThemeContext.Provider>;
 }
@@ -36,7 +35,7 @@ function onChange(theme: Theme, setTheme: (theme: Theme) => void) {
     } else {
         localStorage.removeItem("currentTheme");
     }
-    (window as any)._updateTheme(theme);
+    (window as unknown as { _updateTheme: (theme: Theme) => void })._updateTheme(theme);
     setTheme(theme);
 }
 
@@ -64,7 +63,7 @@ function ThemeToggleButton({
 }
 
 export default function ThemeToggle() {
-    let { theme, setTheme } = useContext(ThemeContext);
+    const { theme, setTheme } = useContext(ThemeContext);
     return (
         <RadioGroup
             value={theme ?? "system"}

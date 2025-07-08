@@ -24,7 +24,6 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarRail,
 } from "@/ui/sidebar"
 
 // This is sample data.
@@ -162,7 +161,7 @@ export interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
   uiComponents?: UIComponentInfo[];
 }
 
-export function AppSidebar({ pathname, uiComponents, ...props }: AppSidebarProps) {
+export function AppSidebar({ pathname, ...props }: AppSidebarProps) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>

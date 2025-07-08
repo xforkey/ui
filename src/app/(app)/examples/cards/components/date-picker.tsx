@@ -1,6 +1,7 @@
-import DatePickerWithRange from "@/examples/date-picker-with-range"
 import { Card, CardContent } from "@/ui/card"
 import { Label } from "@/ui/label"
+import { Button } from "@/ui/button"
+import { CalendarIcon } from "lucide-react"
 
 export function DemoDatePicker() {
   return (
@@ -10,7 +11,10 @@ export function DemoDatePicker() {
           <Label htmlFor="date" className="shrink-0">
             Pick a date
           </Label>
-          <DatePickerWithRange className="[&>button]:w-[260px]" />
+          <Button variant="outline" className="w-[260px] justify-start text-left font-normal">
+            <CalendarIcon className="mr-2 h-4 w-4" />
+            Pick a date
+          </Button>
         </div>
       </CardContent>
     </Card>

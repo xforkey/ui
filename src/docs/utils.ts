@@ -30,16 +30,16 @@ export async function getDocPageBySlug(
             return null;
         }
 
-        let module = await import(`./mdx/${slug}.mdx`);
-        if (!module.default) {
+        const mdxModule = await import(`./mdx/${slug}.mdx`);
+        if (!mdxModule.default) {
             return null;
         }
 
         return {
-            Component: module.default,
-            title: module.title,
-            description: module.description,
-            links: module.links
+            Component: mdxModule.default,
+            title: mdxModule.title,
+            description: mdxModule.description,
+            links: mdxModule.links
         };
     } catch (e) {
         console.error(e);
@@ -48,8 +48,8 @@ export async function getDocPageBySlug(
 }
 
 export async function getDocPageSlugs() {
-    let slugs = [];
-    for (let file of await fs.readdir(path.join(__dirname, "./mdx"))) {
+    const slugs = [];
+    for (const file of await fs.readdir(path.join(__dirname, "./mdx"))) {
         if (!file.endsWith(".mdx")) continue;
         slugs.push(path.parse(file).name);
     }
@@ -62,13 +62,13 @@ export async function generateTableOfContents(slug: string) {
         return [];
     }
 
-    let markdown = await fs.readFile(path.join(process.cwd(), "./src/docs/mdx", `${slug}.mdx`), "utf8");
+    const markdown = await fs.readFile(path.join(process.cwd(), "./src/docs/mdx", `${slug}.mdx`), "utf8");
 
     return generateTableOfContentsFromMarkdown(markdown);
 }
 
 export async function generateTableOfContentsFromMarkdown(markdown: string) {
-    let headings = [
+    const headings = [
         // Match Markdown and HTML headings (e.g., ## Heading, <h2>Heading</h2>)
         ...markdown.matchAll(/^(#+)\s+(.+)$|^<h([1-6])(?:\s+[^>]*\bid=["'](.*?)["'][^>]*)?>(.*?)<\/h\3>/gm),
     ].map((match) => {
@@ -100,10 +100,10 @@ export async function generateTableOfContentsFromMarkdown(markdown: string) {
         return { level, text, slug, children: [] };
     });
 
-    let toc: TOCEntry[] = [];
-    let stack: TOCEntry[] = [{ level: 0, text: "", slug: "", children: toc }];
+    const toc: TOCEntry[] = [];
+    const stack: TOCEntry[] = [{ level: 0, text: "", slug: "", children: toc }];
 
-    let containsQuickReference = markdown.match(/\<ApiTable\s+rows=\{\[/);
+    const containsQuickReference = markdown.match(/\<ApiTable\s+rows=\{\[/);
     if (containsQuickReference) {
         toc.push({
             level: 0,
@@ -113,7 +113,7 @@ export async function generateTableOfContentsFromMarkdown(markdown: string) {
         });
     }
 
-    for (let heading of headings) {
+    for (const heading of headings) {
         while (stack[stack.length - 1].level >= heading.level) stack.pop();
         stack[stack.length - 1].children.push(heading);
         stack.push(heading);

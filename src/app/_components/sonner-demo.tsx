@@ -1,7 +1,6 @@
 "use client"
 
-import { toast } from "@/components/toast"
-import { toast as sonnerToast } from 'sonner'
+import { toast } from "sonner"
 
 import { Button } from "@/components/ui/button"
 
@@ -12,8 +11,7 @@ export function SonnerDemo() {
                 variant="outline"
                 size={'sm'}
                 onClick={() =>
-                    toast({
-                        title: 'This is a headless toast',
+                    toast.message('This is a headless toast', {
                         description: 'You have full control of styles and jsx, while still having the animations.',
                     })
                 }
@@ -24,10 +22,8 @@ export function SonnerDemo() {
                 variant="outline"
                 size={'sm'}
                 onClick={() =>
-                    toast({
-                        title: 'This is a headless toast',
+                    toast.error('This is a headless toast', {
                         description: 'You have full control of styles and jsx, while still having the animations.',
-                        variant: 'destructive',
                     })
                 }
             >
@@ -37,10 +33,8 @@ export function SonnerDemo() {
                 variant="outline"
                 size={'sm'}
                 onClick={() =>
-                    toast({
-                        title: 'This is a headless toast',
+                    toast.info('This is a headless toast', {
                         description: 'You have full control of styles and jsx, while still having the animations.',
-                        variant: 'info',
                     })
                 }
             >
@@ -50,10 +44,8 @@ export function SonnerDemo() {
                 variant="outline"
                 size={'sm'}
                 onClick={() =>
-                    toast({
-                        title: 'This is a headless toast',
+                    toast.success('This is a headless toast', {
                         description: 'You have full control of styles and jsx, while still having the animations.',
-                        variant: 'success',
                     })
                 }
             >
@@ -63,10 +55,8 @@ export function SonnerDemo() {
                 variant="outline"
                 size={'sm'}
                 onClick={() =>
-                    toast({
-                        title: 'This is a headless toast',
+                    toast.warning('This is a headless toast', {
                         description: 'You have full control of styles and jsx, while still having the animations.',
-                        variant: 'warning',
                     })
                 }
             >

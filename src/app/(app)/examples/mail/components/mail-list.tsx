@@ -1,10 +1,9 @@
 import { ComponentProps } from "react"
-import formatDistanceToNow from "date-fns/formatDistanceToNow"
+import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/ui/badge"
 import { ScrollArea } from "@/ui/scroll-area"
-import { Separator } from "@/ui/separator"
 import { Mail } from "@/app/(app)/examples/mail/data"
 import { useMail } from "@/app/(app)/examples/mail/use-mail"
 

@@ -62,7 +62,7 @@ export default function NoiseOverlay() {
             const shine = document.getElementById("shine-overlay");
             if (shine) document.body.removeChild(shine);
         };
-    }, []);
+    }, [opacity]);
 
     return null;
 }

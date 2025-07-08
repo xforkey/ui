@@ -9,7 +9,6 @@ import {
     BadgeCheckIcon,
     BadgeXIcon,
 } from "lucide-react"
-import { Button } from '@/ui/button'
 
 type Variant = 'default' | 'warning' | 'success' | 'info' | 'destructive';
 
@@ -43,10 +42,10 @@ export function toast(toast: Omit<ToastProps, 'id'>) {
 }
 
 /** A fully custom toast that still maintains the animations and interactions. */
-function Toast({ title, description, button, variant = 'default' }: ToastProps) {
+function Toast({ title, description, variant = 'default' }: ToastProps) {
 
     return (
-        <Alert variant={variant} >
+        <Alert variant={variant === 'warning' || variant === 'success' || variant === 'info' ? 'default' : variant} >
             <VariantIcon variant={variant} />
             <AlertTitle className="max-w-[calc(100%-4rem)] overflow-ellipsis">{title}</AlertTitle>
             <AlertDescription>{description}</AlertDescription>

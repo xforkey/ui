@@ -3,7 +3,6 @@
 import React from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Separator } from "@/components/ui/separator"
 
 // Context Menu
 import {
@@ -182,7 +181,7 @@ export default function PortalComponentsPage() {
                                 <DialogHeader>
                                     <DialogTitle>Edit profile</DialogTitle>
                                     <DialogDescription>
-                                        Make changes to your profile here. Click save when you're done.
+                                        Make changes to your profile here. Click save when you&apos;re done.
                                     </DialogDescription>
                                 </DialogHeader>
                                 <div className="grid gap-4 py-4">

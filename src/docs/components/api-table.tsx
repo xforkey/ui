@@ -30,18 +30,18 @@ function highlight(input: string) {
 }
 
 export function ApiTable({ rows }: { rows: [string, string][] }) {
-    let [isExpanded, setIsExpanded] = useState(false);
+    const [isExpanded, setIsExpanded] = useState(false);
 
-    let isExpandable = rows.length > 15;
+    const isExpandable = rows.length > 15;
 
-    let aboveTheFold = isExpandable ? rows.slice(0, 10) : rows;
-    let belowTheFold = isExpandable ? rows.slice(10) : [];
+    const aboveTheFold = isExpandable ? rows.slice(0, 10) : rows;
+    const belowTheFold = isExpandable ? rows.slice(10) : [];
 
-    let ref = useRef<HTMLTableSectionElement>(null);
+    const ref = useRef<HTMLTableSectionElement>(null);
 
     useEffect(
         function () {
-            let element = ref.current;
+            const element = ref.current;
             if (!element) return;
 
             if (!("onbeforematch" in document.body)) {

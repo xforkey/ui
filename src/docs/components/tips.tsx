@@ -1,6 +1,6 @@
 import React from "react";
 
-export function TipGood({ children }: React.PropsWithChildren<{}>) {
+export function TipGood({ children }: React.PropsWithChildren<Record<string, never>>) {
   return (
     <div className="flex items-center space-x-4">
       <div className="relative flex size-5.5 items-center justify-center rounded-full bg-teal-500/25 text-teal-800 inset-ring inset-ring-teal-600/25 dark:text-teal-400">
@@ -20,7 +20,7 @@ export function TipGood({ children }: React.PropsWithChildren<{}>) {
   );
 }
 
-export function TipBad({ children }: React.PropsWithChildren<{}>) {
+export function TipBad({ children }: React.PropsWithChildren<Record<string, never>>) {
   return (
     <div className="flex items-center space-x-4">
       <div className="relative flex size-5.5 items-center justify-center rounded-full bg-rose-500/25 text-rose-800 inset-ring inset-ring-rose-700/25 dark:text-rose-400">
@@ -40,7 +40,7 @@ export function TipBad({ children }: React.PropsWithChildren<{}>) {
   );
 }
 
-export function TipCompat({ children }: React.PropsWithChildren<{}>) {
+export function TipCompat({ children }: React.PropsWithChildren<Record<string, never>>) {
   return (
     <div className="flex items-center space-x-4 rounded-md border border-sky-500/10 bg-sky-500/5 p-3 text-sky-600 dark:border-sky-500/20 dark:text-sky-500">
       <svg fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
@@ -55,7 +55,7 @@ export function TipCompat({ children }: React.PropsWithChildren<{}>) {
   );
 }
 
-export function TipInfo({ children }: React.PropsWithChildren<{}>) {
+export function TipInfo({ children }: React.PropsWithChildren<Record<string, never>>) {
   return (
     <div className="-mb-1 flex items-center space-x-2 text-gray-700 dark:text-gray-200">
       <svg fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="size-6">

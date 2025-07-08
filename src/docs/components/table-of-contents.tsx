@@ -11,25 +11,25 @@ export type TOCEntry = {
 };
 
 export default function TableOfContents({ tableOfContents }: { tableOfContents: TOCEntry[] }) {
-  let [activeSection, setActiveSection] = useState<string | null>(null);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
   useEffect(() => {
     const root = document.querySelector('[data-content="true"]');
     if (!root) return;
 
-    let elements = root.children;
-    let sections: Map<Element, string> = new Map();
+    const elements = root.children;
+    const sections: Map<Element, string> = new Map();
     let currentSectionId: string | null = null;
-    for (let element of elements) {
+    for (const element of elements) {
       if (element.id && (element.tagName === "H2" || element.tagName === "H3")) currentSectionId = element.id;
       if (!currentSectionId) continue;
 
       sections.set(element, `#${currentSectionId}`);
     }
 
-    let visibleElements = new Set<Element>();
+    const visibleElements = new Set<Element>();
 
     const callback = (entries: IntersectionObserverEntry[]) => {
-      for (let entry of entries) {
+      for (const entry of entries) {
         if (entry.isIntersecting) {
           visibleElements.add(entry.target);
         } else {
@@ -37,7 +37,7 @@ export default function TableOfContents({ tableOfContents }: { tableOfContents: 
         }
       }
 
-      let firstVisibleSection = Array.from(sections.entries()).find(([element]) => visibleElements.has(element));
+      const firstVisibleSection = Array.from(sections.entries()).find(([element]) => visibleElements.has(element));
       if (!firstVisibleSection) return;
       setActiveSection(firstVisibleSection[1]);
     };

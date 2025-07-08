@@ -6,7 +6,6 @@ import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/ui/sonner"
 import { siteConfig } from "@/config/site"
-import { cookies } from "next/headers"
 
 import { AppSidebar } from "@/components/app-sidebar"
 import { getUIComponentsList } from "@/components/app-sidebar/ui-components-list"
@@ -101,17 +100,14 @@ export default async function RootLayout({
   children: React.ReactNode
 }>) {
   // Fetch data on the server
-  const [cookieStore, uiComponents] = await Promise.all([
-    cookies(),
-    getUIComponentsList()
-  ])
+  const uiComponents = await getUIComponentsList()
 
   const normalizedUiComponents = uiComponents.map(comp => ({
     ...comp,
     href: `/docs/${comp.name}`,
   }));
 
-  const defaultOpen = cookieStore.get("sidebar_state")?.value === "true"
+  const defaultOpen = true // Default to open for static export
 
   return (
     <html lang="en" suppressHydrationWarning>

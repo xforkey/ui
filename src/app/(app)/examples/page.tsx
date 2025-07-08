@@ -1,7 +1,5 @@
 import { Metadata } from "next"
-import Image from "next/image"
 import { CardsDemo } from "@/components/cards"
-import { ExamplesNav } from "../_components/examples-nav"
 
 const title = "Build your component library"
 const description =
@@ -11,23 +9,13 @@ export const metadata: Metadata = {
   title,
   description,
   openGraph: {
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
+    title,
+    description,
   },
   twitter: {
     card: "summary_large_image",
-    images: [
-      {
-        url: `/og?title=${encodeURIComponent(
-          title
-        )}&description=${encodeURIComponent(description)}`,
-      },
-    ],
+    title,
+    description,
   },
 }
 

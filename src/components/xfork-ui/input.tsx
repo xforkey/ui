@@ -43,8 +43,8 @@ export function InputGroup({ children }: React.ComponentPropsWithoutRef<'span'>)
   )
 }
 
-const dateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
-type DateType = (typeof dateTypes)[number]
+// const dateTypes = ['date', 'datetime-local', 'month', 'time', 'week']
+// type DateType = (typeof dateTypes)[number]
 
 export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> { }

@@ -43,7 +43,17 @@ function rewriteURL(url: string) {
   return url;
 }
 
-const SearchContext = createContext<any>({});
+const SearchContext = createContext<{
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onInput: (e: KeyboardEvent) => void;
+}>({
+  isOpen: false,
+  onOpen: () => { },
+  onClose: () => { },
+  onInput: () => { },
+});
 
 export function SearchProvider({ children }: React.PropsWithChildren) {
   const router = useRouter();
@@ -59,6 +69,7 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
   }, [setIsOpen]);
 
   const onInput = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Keyboard event from external library
     (e: any) => {
       setIsOpen(true);
       setInitialQuery(e.key);
@@ -75,20 +86,21 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
   useEffect(() => {
     // Prepend "Components" to Tailwind UI results that are shown in the "recent" view
     if (!isOpen) {
-      let key = `__DOCSEARCH_RECENT_SEARCHES__${INDEX_NAME}`;
+      const key = `__DOCSEARCH_RECENT_SEARCHES__${INDEX_NAME}`;
       try {
-        let data = JSON.parse(localStorage.getItem(key) as any);
-        for (let item of data) {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- LocalStorage data parsing
+        const data = JSON.parse(localStorage.getItem(key) as any);
+        for (const item of data) {
           if (isTailwindPlusURL(item.url) && !item.hierarchy.lvl1.startsWith("Components")) {
             item.hierarchy.lvl1 = `Components / ${item.hierarchy.lvl1}`;
           }
         }
         localStorage.setItem(key, JSON.stringify(data));
-      } catch {}
+      } catch { }
     }
   }, [isOpen]);
 
-  let searchContext = useMemo(
+  const searchContext = useMemo(
     () => ({
       isOpen,
       onOpen,
@@ -106,8 +118,8 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
         createPortal(
           <div
             onClick={(event) => {
-              // @ts-ignore
-              let link = event.target.closest("a");
+              // @ts-expect-error - Event target may not have closest method
+              const link = event.target.closest("a");
               if (!link) return;
               if (isExternalURL(link.href) && link.target !== "_blank") {
                 event.preventDefault();
@@ -142,7 +154,8 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
               apiKey={API_KEY}
               appId={APP_ID}
               navigator={{
-                navigate({ itemUrl }) {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch navigator callback
+                navigate({ itemUrl }: any) {
                   setIsOpen(false);
                   if (isExternalURL(itemUrl)) {
                     window.open(itemUrl, "_blank");
@@ -154,16 +167,19 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
                 },
               }}
               hitComponent={Hit}
-              transformItems={(items) => {
-                items = items.map((item) => {
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch items from external library
+              transformItems={(items: any) => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch item from external library
+                items = items.map((item: any) => {
                   item.url = rewriteURL(item.url);
                   return item;
                 });
 
                 // TODO: Remove this once only new stuff is indexed
-                items = items.filter((item) => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch item from external library
+                items = items.filter((item: any) => {
                   // Remove old prev-Tailwind plus search results
-                  // @ts-ignore
+                  // Remove old prev-Tailwind plus search results
                   if (item.hierarchy?.lvl0 === "Components") {
                     return false;
                   }
@@ -171,7 +187,8 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
                   return true;
                 });
 
-                return items.map((item, index) => {
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch item from external library
+                return items.map((item: any, index: number) => {
                   // We transform the absolute URL into a relative URL to
                   // leverage Next's preloading.
                   const a = document.createElement("a");
@@ -190,7 +207,7 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
                     );
                   }
 
-                  let isTailwindUI = isTailwindPlusURL(item.url);
+                  const isTailwindUI = isTailwindPlusURL(item.url);
 
                   if (isTailwindUI && item.hierarchy.lvl0 === "UI Blocks") {
                     if (item.hierarchy?.lvl0) {
@@ -207,8 +224,8 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
                     hierarchy: {
                       ...item.hierarchy,
                       ...(isTailwindUI
-                        ? // @ts-ignore
-                          { lvl1: `${item.product} / ${item.product_category}` }
+                        ? // Product properties exist on TailwindUI items
+                        { lvl1: `${item.product} / ${item.product_category}` }
                         : {}),
                     },
                     url: `${a.pathname}${hash}`,
@@ -231,6 +248,7 @@ export function SearchProvider({ children }: React.PropsWithChildren) {
   );
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- DocSearch hit object from external library
 function Hit({ hit, children }: { hit: any; children: React.ReactNode }) {
   return (
     <Link
@@ -250,11 +268,11 @@ function Hit({ hit, children }: { hit: any; children: React.ReactNode }) {
 }
 
 export function SearchButton({ children, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  let searchButtonRef = useRef(null);
-  let { onOpen, onInput } = useContext(SearchContext);
+  const searchButtonRef = useRef(null);
+  const { onOpen, onInput } = useContext(SearchContext);
 
   useEffect(() => {
-    // @ts-ignore
+    // @ts-expect-error - KeyboardEvent parameter for event handler
     function onKeyDown(event) {
       if (searchButtonRef && searchButtonRef.current === document.activeElement && onInput) {
         if (/[a-zA-Z0-9]/.test(String.fromCharCode(event.keyCode))) {
@@ -316,9 +334,9 @@ function useDocSearchKeyboardEvents({
   }, [isOpen, onOpen, onClose]);
 }
 
-// @ts-ignore
+// @ts-expect-error - Event parameter for editing content check
 function isEditingContent(event) {
-  let element = event.target;
-  let tagName = element.tagName;
+  const element = event.target;
+  const tagName = element.tagName;
   return element.isContentEditable || tagName === "INPUT" || tagName === "SELECT" || tagName === "TEXTAREA";
 }

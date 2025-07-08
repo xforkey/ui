@@ -5,7 +5,7 @@ import { DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
 import { CheckIcon, ClipboardIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button, ButtonProps } from "@/ui/button"
+import { Button } from "@/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/ui/dropdown-menu"
 
-interface CopyButtonProps extends ButtonProps {
+interface CopyButtonProps extends React.ComponentProps<typeof Button> {
   value: string
 }
 
@@ -61,7 +61,6 @@ export function CopyWithClassNames({
   value,
   classNames,
   className,
-  ...props
 }: CopyWithClassNamesProps) {
   const [hasCopied, setHasCopied] = React.useState(false)
 

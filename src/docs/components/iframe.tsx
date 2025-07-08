@@ -7,32 +7,32 @@ import { useTheme } from "next-themes";
 const css = String.raw;
 
 export function Iframe({ children, ...props }: React.ComponentProps<"iframe">) {
-  let [mountNode, setMountNode] = useState<HTMLElement | null>(null);
+  const [mountNode, setMountNode] = useState<HTMLElement | null>(null);
 
-  let { resolvedTheme: theme } = useTheme();
+  const { resolvedTheme: theme } = useTheme();
   useEffect(() => {
     if (!mountNode) return;
     mountNode.className = theme as string;
 
     // We need to add `light` or `dark` to the <html> element in the iframe
     // for Safari to work properly
-    let root = mountNode.getRootNode() as Document;
+    const root = mountNode.getRootNode() as Document;
     if (root) {
       root.documentElement.className = theme as string;
     }
   }, [mountNode, theme]);
 
   // Ensure all <link rel="stylesheet"> elements are cloned inside the iframe
-  let ref = (element: HTMLIFrameElement) => {
+  const ref = (element: HTMLIFrameElement) => {
     if (!element) {
       return;
     }
 
-    let innerDocument = element.contentWindow?.document;
+    const innerDocument = element.contentWindow?.document;
     if (!innerDocument) {
       return;
     }
-    let mountNode = innerDocument.body;
+    const mountNode = innerDocument.body;
 
     const styles = document.querySelectorAll("link[rel=stylesheet]");
     for (const style of styles) {
@@ -40,7 +40,7 @@ export function Iframe({ children, ...props }: React.ComponentProps<"iframe">) {
       innerDocument.head.appendChild(clone);
     }
 
-    let iframeStyles = innerDocument.createElement("style");
+    const iframeStyles = innerDocument.createElement("style");
     iframeStyles.innerHTML = css`
       html,
       body {
@@ -53,7 +53,7 @@ export function Iframe({ children, ...props }: React.ComponentProps<"iframe">) {
   };
 
   return (
-    // @ts-expect-error
+    // @ts-expect-error - allowtransparency is not in React types but is valid HTML
     <iframe {...props} ref={ref} allowtransparency="true">
       {mountNode && createPortal(children, mountNode)}
     </iframe>

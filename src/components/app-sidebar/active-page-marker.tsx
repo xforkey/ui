@@ -1,7 +1,7 @@
 "use client"
 
 import { remToPx } from "@/lib/utils"
-import { motion, useIsPresent } from "framer-motion"
+import { motion } from "framer-motion"
 
 interface ActivePageMarkerProps {
     activeIndex: number
@@ -40,11 +40,11 @@ export function VisibleSectionHighlight({
     activeIndex: number
 }) {
 
-    let isPresent = useIsPresent()
-    let firstVisibleSectionIndex = activeIndex
-    let itemHeight = remToPx(2)
-    let height = itemHeight
-    let top = firstVisibleSectionIndex * itemHeight
+    // const isPresent = useIsPresent()
+    const firstVisibleSectionIndex = activeIndex
+    const itemHeight = remToPx(2)
+    const height = itemHeight
+    const top = firstVisibleSectionIndex * itemHeight
 
     return (
         <motion.div

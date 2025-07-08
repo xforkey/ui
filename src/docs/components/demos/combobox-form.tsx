@@ -55,8 +55,7 @@ export default function ComboboxForm() {
   })
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
+    toast.message("You submitted the following values:", {
       description: (
         <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
           <code className="text-white">{JSON.stringify(data, null, 2)}</code>
@@ -87,8 +86,8 @@ export default function ComboboxForm() {
                     >
                       {field.value
                         ? languages.find(
-                            (language) => language.value === field.value
-                          )?.label
+                          (language) => language.value === field.value
+                        )?.label
                         : "Select language"}
                       <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                     </Button>

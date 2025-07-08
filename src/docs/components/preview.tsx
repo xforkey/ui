@@ -14,14 +14,15 @@ export function Preview({
     padding?: boolean;
     className?: string;
 }>) {
-    let [isDragging, setIsDragging] = useState(false);
-    let containerRef = useRef(null);
-    let constraintsRef = useRef(null);
-    let x = useMotionValue(0);
+    const [isDragging, setIsDragging] = useState(false);
+    const containerRef = useRef(null);
+    const constraintsRef = useRef(null);
+    const x = useMotionValue(0);
+    const marginRight = useTransform(x, (x) => -x);
 
     useEffect(() => {
         if (!resizable || !containerRef.current) return;
-        let observer = new window.ResizeObserver(() => x.set(0));
+        const observer = new window.ResizeObserver(() => x.set(0));
         observer.observe(containerRef.current);
         return () => {
             observer.disconnect();
@@ -49,7 +50,7 @@ export function Preview({
             className={clsx(className, "group not-prose relative overflow-hidden sm:overflow-visible")}
         >
             <motion.div
-                style={{ marginRight: useTransform(x, (x) => -x) }}
+                style={{ marginRight }}
                 className={clsx(
                     padding && "p-8",
                     "@container relative overflow-visible rounded-lg bg-white outline outline-white/5 dark:bg-background/50 dark:inset-ring dark:inset-ring-white/5",

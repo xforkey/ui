@@ -16,19 +16,19 @@ type Props = {
 };
 
 export async function generateStaticParams() {
-    let slugs = await getDocPageSlugs();
+    const slugs = await getDocPageSlugs();
     return slugs.map((slug) => ({ component: slug }));
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-    let params = await props.params;
-    let doc = await getDocPageBySlug(params.component);
+    const params = await props.params;
+    const doc = await getDocPageBySlug(params.component);
 
     if (!doc) {
         return notFound();
     }
 
-    let title = `${doc.title}`;
+    const title = `${doc.title}`;
 
     return {
         metadataBase: new URL("https://tailwindcss.com"),
@@ -39,13 +39,11 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
             description: doc.description,
             type: "article",
             url: `/docs/${params.component}`,
-            images: [{ url: `/api/og?path=/docs/${params.component}` }],
         },
         twitter: {
             card: "summary_large_image",
             title,
             description: doc.description,
-            images: [{ url: `/api/og?path=/docs/${params.component}` }],
             site: "@tailwindcss",
             creator: "@tailwindcss",
         },
@@ -53,9 +51,9 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 }
 
 export default async function DocPage(props: Props) {
-    let params = await props.params;
+    const params = await props.params;
 
-    let [doc, tableOfContents] = await Promise.all([
+    const [doc, tableOfContents] = await Promise.all([
         getDocPageBySlug(params.component),
         generateTableOfContents(params.component),
     ]);

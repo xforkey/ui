@@ -1,4 +1,3 @@
-import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import {
     transformerNotationDiff,
     transformerNotationHighlight,
@@ -19,35 +18,35 @@ import { CopyButton } from "@/components/copy-button"
 import { CollapseWrapper } from "./collapse-wrapper";
 
 
-export function js(strings: TemplateStringsArray, ...args: any[]) {
+export function js(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "js", code: dedent(strings, ...args) };
 }
 
-export function ts(strings: TemplateStringsArray, ...args: any[]) {
+export function ts(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "ts", code: dedent(strings, ...args) };
 }
 
-export function jsx(strings: TemplateStringsArray, ...args: any[]) {
+export function jsx(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "jsx", code: dedent(strings, ...args) };
 }
 
-export function html(strings: TemplateStringsArray, ...args: any[]) {
+export function html(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "html", code: dedent(strings, ...args) };
 }
 
-export function svelte(strings: TemplateStringsArray, ...args: any[]) {
+export function svelte(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "svelte", code: dedent(strings, ...args) };
 }
 
-export function css(strings: TemplateStringsArray, ...args: any[]) {
+export function css(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "css", code: dedent(strings, ...args) };
 }
 
-export function tsx(strings: TemplateStringsArray, ...args: any[]) {
+export function tsx(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "tsx", code: dedent(strings, ...args) };
 }
 
-export function bash(strings: TemplateStringsArray, ...args: any[]) {
+export function bash(strings: TemplateStringsArray, ...args: unknown[]) {
     return { lang: "bash", code: dedent(strings, ...args) };
 }
 
@@ -108,12 +107,12 @@ export function HighlightedCode({
     example: { lang: string; code: string };
     className?: string;
 }) {
-    let codeWithoutPrettierIgnore = example.code
+    const codeWithoutPrettierIgnore = example.code
         .split("\n")
         .filter((line) => !line.includes("prettier-ignore"))
         .join("\n");
 
-    let code = highlighter
+    const code = highlighter
         .codeToHtml(codeWithoutPrettierIgnore, {
             lang: example.lang,
             theme: theme.name,
@@ -147,9 +146,12 @@ export function HighlightedCode({
 const highlighter = await createHighlighter({
     themes: [theme],
     langs: [
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Language injection objects for Shiki
         atApplyInjection as any,
-        atRulesInjection,
-        themeFnInjection,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Language injection objects for Shiki
+        atRulesInjection as any,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- Language injection objects for Shiki
+        themeFnInjection as any,
         "astro",
         "blade",
         "css",
