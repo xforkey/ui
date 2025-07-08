@@ -237,7 +237,8 @@ function Sidebar({
           variant === "floating" || variant === "inset"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l",
-          className
+          className,
+          "group-data-[side=left]:border-0 group-data-[side=right]:border-0"
         )}
         {...props}
       >
@@ -311,7 +312,8 @@ function SidebarInset({ className, ...props }: React.ComponentProps<"main">) {
       className={cn(
         "bg-background relative flex w-full flex-1 flex-col",
         "md:peer-data-[variant=inset]:m-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow-sm md:peer-data-[variant=inset]:peer-data-[state=collapsed]:ml-2",
-        className
+        className,
+        "bg-transparent md:peer-data-[variant=inset]:shadow-none"
       )}
       {...props}
     />
@@ -569,7 +571,7 @@ function SidebarMenuAction({
         "peer-data-[size=lg]/menu-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         showOnHover &&
-          "peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
+        "peer-data-[active=true]/menu-button:text-sidebar-accent-foreground group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",
         className
       )}
       {...props}
@@ -645,7 +647,8 @@ function SidebarMenuSub({ className, ...props }: React.ComponentProps<"ul">) {
       className={cn(
         "border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5",
         "group-data-[collapsible=icon]:hidden",
-        className
+        className,
+        "relative pl-[8px]"
       )}
       {...props}
     />
@@ -691,7 +694,12 @@ function SidebarMenuSubButton({
         size === "sm" && "text-xs",
         size === "md" && "text-sm",
         "group-data-[collapsible=icon]:hidden",
-        className
+        className,
+
+        "data-[active=true]:bg-transparent data-[active=true]:text-sidebar-foreground",
+        "text-sidebar-accent-foreground",
+        "hover:bg-transparent hover:text-sidebar-foreground",
+        "relative flex items-center z-1",
       )}
       {...props}
     />

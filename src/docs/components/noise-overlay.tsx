@@ -51,7 +51,7 @@ export default function NoiseOverlay() {
             height: "100%",
             pointerEvents: "none",
             zIndex: "-9",
-            background: "radial-gradient(circle at 33% 33%, rgba(255,255,255,0.14), transparent 35%)",
+            background: "radial-gradient(circle at 65% 60%, rgba(255,255,255,0.20), transparent 70%)",
             mixBlendMode: "screen",
         });
         document.body.appendChild(shine);
