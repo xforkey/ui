@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/xfork-ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/xfork-ui/card"
 
 // Context Menu
 import {
@@ -12,7 +12,7 @@ import {
     ContextMenuTrigger,
     ContextMenuSeparator,
     ContextMenuShortcut,
-} from "@/components/ui/context-menu"
+} from "@/xfork-ui/context-menu"
 
 // Dialog
 import {
@@ -23,7 +23,7 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog"
+} from "@/xfork-ui/dialog"
 
 // Alert Dialog
 import {
@@ -36,17 +36,17 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+} from "@/xfork-ui/alert-dialog"
 
 // Calendar
-import { Calendar } from "@/components/ui/calendar"
+import { Calendar } from "@/xfork-ui/calendar"
 
 // Hover Card
 import {
     HoverCard,
     HoverCardContent,
     HoverCardTrigger,
-} from "@/components/ui/hover-card"
+} from "@/xfork-ui/hover-card"
 
 // Menubar
 import {
@@ -57,14 +57,14 @@ import {
     MenubarSeparator,
     MenubarShortcut,
     MenubarTrigger,
-} from "@/components/ui/menubar"
+} from "@/xfork-ui/menubar"
 
 // Popover
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/xfork-ui/popover"
 
 // Select
 import {
@@ -75,14 +75,17 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/xfork-ui/select"
 import CommandDemo from "@/docs/components/demos/command-demo"
 
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/ui/label"
 
 export default function PortalComponentsPage() {
     const [date, setDate] = React.useState<Date | undefined>(new Date())
+
+    // Grid background with proper radial mask fade effect
+    const gridBackgroundClass = "bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px,24px_24px]"
 
     return (
         <div className="container py-10">
@@ -93,7 +96,7 @@ export default function PortalComponentsPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Context Menu */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Command Menu</CardTitle>
                         <CardDescription>
@@ -105,7 +108,7 @@ export default function PortalComponentsPage() {
                     </CardContent>
                 </Card>
                 {/* Select */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Select</CardTitle>
                         <CardDescription>
@@ -131,7 +134,7 @@ export default function PortalComponentsPage() {
                     </CardContent>
                 </Card>
                 {/* Context Menu */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Context Menu</CardTitle>
                         <CardDescription>
@@ -165,7 +168,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Dialog */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Dialog</CardTitle>
                         <CardDescription>
@@ -215,7 +218,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Alert Dialog */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Alert Dialog</CardTitle>
                         <CardDescription>
@@ -245,7 +248,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Calendar */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Calendar</CardTitle>
                         <CardDescription>
@@ -263,7 +266,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Hover Card */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Hover Card</CardTitle>
                         <CardDescription>
@@ -290,7 +293,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Menubar */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Menubar</CardTitle>
                         <CardDescription>
@@ -341,7 +344,7 @@ export default function PortalComponentsPage() {
                 </Card>
 
                 {/* Popover */}
-                <Card>
+                <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Popover</CardTitle>
                         <CardDescription>
@@ -367,7 +370,7 @@ export default function PortalComponentsPage() {
                                             <Input
                                                 id="width"
                                                 defaultValue="100%"
-                                                className="col-span-2 h-8"
+                                                className="col-span-2"
                                             />
                                         </div>
                                         <div className="grid grid-cols-3 items-center gap-4">
@@ -375,7 +378,7 @@ export default function PortalComponentsPage() {
                                             <Input
                                                 id="height"
                                                 defaultValue="25px"
-                                                className="col-span-2 h-8"
+                                                className="col-span-2"
                                             />
                                         </div>
                                     </div>

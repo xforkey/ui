@@ -2,8 +2,8 @@
 
 import { addDays } from "date-fns"
 
-import { Calendar } from "@/ui/calendar"
-import { Card, CardContent } from "@/ui/card"
+import { Calendar } from "@/xfork-ui/calendar"
+import { Card, CardContent } from "@/xfork-ui/card"
 
 const start = new Date(2023, 5, 5)
 

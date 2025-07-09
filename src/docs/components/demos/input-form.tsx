@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Form,
   FormControl,
@@ -15,7 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/xfork-ui/input"
 
 const FormSchema = z.object({
   username: z.string().min(2, {

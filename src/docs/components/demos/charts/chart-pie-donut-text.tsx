@@ -11,7 +11,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import {
   ChartConfig,
   ChartContainer,

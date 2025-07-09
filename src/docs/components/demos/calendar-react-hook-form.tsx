@@ -8,8 +8,8 @@ import { z } from "zod"
 
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
+import { Button } from "@/components/xfork-ui/button"
+import { Calendar } from "@/components/xfork-ui/calendar"
 import {
   Form,
   FormControl,
@@ -23,7 +23,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/xfork-ui/popover"
 
 const FormSchema = z.object({
   dob: z.date({

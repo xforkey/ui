@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
@@ -8,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import { Label } from "@/ui/label"
 import { Switch } from "@/ui/switch"
 

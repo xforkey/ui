@@ -8,7 +8,7 @@ import {
     SelectLabel,
     SelectTrigger,
     SelectValue,
-} from "@/components/ui/select"
+} from "@/components/xfork-ui/select"
 
 export default function SelectDisabled() {
     return (

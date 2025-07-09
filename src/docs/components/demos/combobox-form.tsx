@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Command,
   CommandEmpty,
@@ -15,7 +15,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/xfork-ui/command"
 import {
   Form,
   FormControl,
@@ -29,7 +29,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/xfork-ui/popover"
 
 const languages = [
   { label: "English", value: "en" },

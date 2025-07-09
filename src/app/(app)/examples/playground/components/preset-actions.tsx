@@ -13,15 +13,15 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/ui/alert-dialog"
-import { Button } from "@/ui/button"
+} from "@/xfork-ui/alert-dialog"
+import { Button } from "@/xfork-ui/button"
 import {
   DialogContent,
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/ui/dialog"
+} from "@/xfork-ui/dialog"
 import {
   DropdownMenu,
   DropdownMenuContent,

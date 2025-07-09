@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Form,
   FormControl,
@@ -24,7 +24,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/ui/select"
+} from "@/xfork-ui/select"
 import { Textarea } from "@/ui/textarea"
 
 const profileFormSchema = z.object({

@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Collapsible,
   CollapsibleContent,

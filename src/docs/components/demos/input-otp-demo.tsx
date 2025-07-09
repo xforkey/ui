@@ -5,7 +5,7 @@ import {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/input-otp"
+} from "@/components/xfork-ui/input-otp"
 
 export default function InputOTPDemo() {
   return (

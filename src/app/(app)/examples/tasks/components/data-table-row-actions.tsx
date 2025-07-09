@@ -3,7 +3,7 @@
 import { Row } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,

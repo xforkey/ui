@@ -1,6 +1,6 @@
 import { Copy } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Dialog,
   DialogClose,
@@ -10,8 +10,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"
-import { Input } from "@/components/ui/input"
+} from "@/components/xfork-ui/dialog"
+import { Input } from "@/components/xfork-ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function DialogCloseButton() {

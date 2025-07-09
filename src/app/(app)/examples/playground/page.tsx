@@ -2,12 +2,12 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { RotateCcw } from "lucide-react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/ui/hover-card"
+} from "@/xfork-ui/hover-card"
 import { Label } from "@/ui/label"
 import { Separator } from "@/ui/separator"
 import {

@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import { cn } from "@/lib/utils"
 import { toast } from "sonner"
-import { Button, buttonVariants } from "@/ui/button"
+import { Button, buttonVariants } from "@/xfork-ui/button"
 import {
   Form,
   FormControl,

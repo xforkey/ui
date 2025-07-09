@@ -16,7 +16,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import { ChartConfig, ChartContainer } from "@/ui/chart"
 
 export const description = "A radial chart with text"

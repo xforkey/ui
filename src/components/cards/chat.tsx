@@ -9,13 +9,13 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import {
   Command,
   CommandEmpty,
@@ -23,7 +23,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/ui/command"
+} from "@/xfork-ui/command"
 import {
   Dialog,
   DialogContent,
@@ -31,7 +31,7 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/ui/dialog"
+} from "@/xfork-ui/dialog"
 import { Input } from "@/ui/input"
 import {
   Tooltip,

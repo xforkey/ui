@@ -1,4 +1,4 @@
-import { Input } from "@/components/ui/input"
+import { Input } from "@/components/xfork-ui/input"
 import { Label } from "@/components/ui/label"
 
 export default function InputWithText() {

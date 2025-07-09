@@ -1,7 +1,5 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
-
+import * as UiBadge from "@/components/ui/badge"
 import { cn } from "@/lib/utils"
 
 const colors = {
@@ -34,54 +32,82 @@ const colors = {
   zinc: 'bg-zinc-600/10 text-zinc-700 group-hover:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-hover:bg-white/10',
 }
 
-// Define color variants based on the new styles
-const badgeColors = {
-  default: colors.emerald,
-  secondary: "bg-secondary text-secondary-foreground group-hover:bg-secondary/25",
-  destructive: "bg-destructive/15 text-destructive-foreground group-hover:bg-destructive/25 dark:bg-destructive/10 dark:text-destructive-foreground dark:group-hover:bg-destructive/20",
-  outline: "bg-background text-foreground border-border [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
-  info: colors.blue,
-  success: colors.green,
-  warning: colors.yellow,
-}
+// Styles needed to transform UI badge to match xfork-ui appearance
+const xforkBadgeStyles = {
+  base: [
+    // Remove UI's border by default
+    "border-transparent",
+    // Focus differences - UI uses ring, xfork uses outline
+    "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring",
+    // Transition differences - UI uses transition-[color,box-shadow], xfork uses transition-colors
+    "transition-colors",
+    // Overflow differences - UI uses overflow-hidden, xfork uses overflow-auto
+    "overflow-auto",
+  ],
 
-const badgeVariants = cva(
-  "inline-flex items-center justify-center rounded-md px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring transition-colors overflow-auto",
-  {
-    variants: {
-      variant: {
-        default: cn(badgeColors.default),
-        secondary: cn(badgeColors.secondary),
-        destructive: cn(badgeColors.destructive),
-        outline: cn(badgeColors.outline, "border"),
-        info: cn(badgeColors.info),
-        success: cn(badgeColors.success),
-        warning: cn(badgeColors.warning),
-        ...colors
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
+  variants: {
+    default: [
+      // Use emerald color scheme instead of primary
+      colors.emerald,
+      // Remove UI's border-transparent and primary colors
+      "bg-emerald-500/15 text-emerald-700",
+      "group-hover:bg-emerald-500/25",
+      "dark:bg-emerald-500/10 dark:text-emerald-400 dark:group-hover:bg-emerald-500/20",
+    ],
+
+    secondary: [
+      // Different hover behavior
+      "bg-secondary text-secondary-foreground group-hover:bg-secondary/25",
+    ],
+
+    destructive: [
+      // Different styling approach
+      "bg-destructive/15 text-destructive-foreground group-hover:bg-destructive/25",
+      "dark:bg-destructive/10 dark:text-destructive-foreground dark:group-hover:bg-destructive/20",
+    ],
+
+    outline: [
+      // Add border for outline variant
+      "border border-border",
+      "bg-background text-foreground",
+      "[a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
+    ],
+
+    // Additional xfork variants not in UI
+    info: [colors.blue],
+    success: [colors.green],
+    warning: [colors.yellow],
   }
-)
+}
 
 function Badge({
   className,
-  variant,
-  asChild = false,
+  variant = "default",
   ...props
-}: React.ComponentProps<"span"> &
-  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
-  const Comp = asChild ? Slot : "span"
+}: React.ComponentProps<typeof UiBadge.Badge>) {
+  // Handle color variants that are strings (like "red", "blue", etc.)
+  const isColorVariant = typeof variant === 'string' && colors[variant as keyof typeof colors]
+  const colorStyles = isColorVariant ? colors[variant as keyof typeof colors] : []
 
   return (
-    <Comp
+    <UiBadge.Badge
       data-slot="badge"
-      className={cn(badgeVariants({ variant }), className)}
+      variant={isColorVariant ? "default" : variant}
+      className={cn(
+        // Base xfork styles
+        ...xforkBadgeStyles.base,
+        // Variant-specific styles
+        variant && xforkBadgeStyles.variants[variant as keyof typeof xforkBadgeStyles.variants]
+          ? xforkBadgeStyles.variants[variant as keyof typeof xforkBadgeStyles.variants]
+          : [],
+        // Color variant styles
+        colorStyles,
+        className
+      )}
       {...props}
     />
   )
 }
 
-export { Badge, badgeVariants }
+export { Badge, colors, xforkBadgeStyles }
+export * from "@/components/ui/badge"

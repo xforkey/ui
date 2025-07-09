@@ -1,14 +1,14 @@
 import { Metadata } from "next"
 import Image from "next/image"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import {
   Tabs,
   TabsContent,

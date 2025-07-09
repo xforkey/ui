@@ -7,7 +7,7 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/ui/hover-card"
+} from "@/xfork-ui/hover-card"
 import { Label } from "@/ui/label"
 import { Slider } from "@/ui/slider"
 

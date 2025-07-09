@@ -6,7 +6,7 @@ import { Check, ChevronsUpDown } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 import { useMutationObserver } from "@/hooks/use-mutation-observer"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Command,
   CommandEmpty,
@@ -14,18 +14,18 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/ui/command"
+} from "@/xfork-ui/command"
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/ui/hover-card"
+} from "@/xfork-ui/hover-card"
 import { Label } from "@/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/ui/popover"
+} from "@/xfork-ui/popover"
 
 import { Model, ModelType } from "../data/models"
 

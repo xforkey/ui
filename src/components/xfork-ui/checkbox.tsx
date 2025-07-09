@@ -1,74 +1,49 @@
-"use client"
-
 import * as React from "react"
-import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
-import { CheckIcon } from "lucide-react"
-
+import * as UiCheckbox from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 
-/*
-Color Variables Used:
-  Checkbox: border-input, data-[state=checked]:bg-primary, data-[state=checked]:text-primary-foreground,
-            data-[state=checked]:border-primary, focus-visible:border-ring, focus-visible:ring-ring/50,
-            aria-invalid:ring-destructive/20, dark:aria-invalid:ring-destructive/40, aria-invalid:border-destructive
-*/
+// Styles needed to transform UI checkbox to match xfork-ui appearance
+const xforkCheckboxStyles = {
+  base: [
+    // Border radius difference - UI uses rounded-sm, xfork uses rounded-[4px]
+    "rounded-[4px]",
+    // Shadow difference - add shadow-xs that UI lacks
+    "shadow-xs",
+    // Border difference - UI uses border-primary, xfork uses border-border
+    "border-border",
+    // Focus differences - UI uses focus-visible:ring-2, xfork uses focus-visible:ring-[3px]
+    "focus-visible:ring-[3px] focus-visible:border-ring focus-visible:ring-ring/50",
+    // Validation styles that UI lacks
+    "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
+    // Transition difference - UI uses no transition, xfork uses transition-shadow
+    "transition-shadow",
+    // Peer class for form integration
+    "peer",
+  ],
+
+  indicator: [
+    // Transition difference - UI uses no transition, xfork uses transition-none
+    "transition-none",
+    // Icon size difference - UI uses size-4, xfork uses size-3.5
+    "[&>svg]:size-3.5",
+  ]
+}
 
 function Checkbox({
   className,
   ...props
-}: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
+}: React.ComponentProps<typeof UiCheckbox.Checkbox>) {
   return (
-    <CheckboxPrimitive.Root
+    <UiCheckbox.Checkbox
       data-slot="checkbox"
       className={cn(
-        // Size
-        "size-4 shrink-0",
-
-        // Base Styles
-        "rounded-[4px] border shadow-xs outline-none",
-
-        // Colors
-        "border-border",
-
-        // Checked State
-        "data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary",
-
-        // Focus Styles
-        "focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
-
-        // Validation/Error Styles
-        "aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive",
-
-        // Transition
-        "transition-shadow",
-
-        // Disabled State
-        "disabled:cursor-not-allowed disabled:opacity-50",
-
-        // Peer Styles
-        "peer",
-
+        ...xforkCheckboxStyles.base,
         className
       )}
       {...props}
-    >
-      <CheckboxPrimitive.Indicator
-        data-slot="checkbox-indicator"
-        className={cn(
-          // Layout
-          "flex items-center justify-center",
-
-          // Text
-          "text-current",
-
-          // Transition
-          "transition-none"
-        )}
-      >
-        <CheckIcon className="size-3.5 " />
-      </CheckboxPrimitive.Indicator>
-    </CheckboxPrimitive.Root>
+    />
   )
 }
 
-export { Checkbox }
+export { Checkbox, xforkCheckboxStyles }
+export * from "@/components/ui/checkbox"

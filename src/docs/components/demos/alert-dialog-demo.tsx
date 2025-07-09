@@ -8,8 +8,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button"
+} from "@/components/xfork-ui/alert-dialog"
+import { Button } from "@/components/xfork-ui/button"
 
 export default function AlertDialogDemo() {
   return (

@@ -2,7 +2,7 @@
 
 import { ColumnDef } from "@tanstack/react-table"
 
-import { Badge } from "@/ui/badge"
+import { Badge } from "@/xfork-ui/badge"
 import { Checkbox } from "@/ui/checkbox"
 
 import { labels, priorities, statuses } from "../data/data"

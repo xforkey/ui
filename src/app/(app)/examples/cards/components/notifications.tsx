@@ -6,7 +6,7 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 
 export function DemoNotifications() {
   return (

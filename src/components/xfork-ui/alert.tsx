@@ -1,59 +1,102 @@
 import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-
+import * as UiAlert from "@/components/ui/alert"
 import { cn } from "@/lib/utils"
 
-/*
-emerald: 
-  'bg-emerald-500/15 text-emerald-700 group-hover:bg-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-400 dark:group-hover:bg-emerald-500/20',
+// Styles needed to transform UI alert to match xfork-ui appearance
+const xforkAlertStyles = {
+  base: [
+    // Add shadow that UI lacks
+    "shadow-sm",
+  ],
 
-  emerald: [
-      'text-white bg-emerald-600 border-emerald-700/90 [&>svg]:text-white/60',
- */
+  variants: {
+    default: [
+      // Override UI's bg-card with bg-background
+      "bg-background text-foreground border-border",
+    ],
 
-const alertVariants = cva(
-  "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current shadow-sm",
-  {
-    variants: {
-      variant: {
-        default: "bg-background text-foreground border-border",
-        warning:
-          'bg-amber-400/20 text-amber-700 group-hover:bg-amber-400/30 dark:bg-amber-400/10 dark:text-amber-400 dark:group-hover:bg-amber-400/15',
-        success:
-          'bg-emerald-500/15 text-emerald-700 group-hover:bg-emerald-500/25 dark:bg-emerald-500/10 dark:text-emerald-400 dark:group-hover:bg-emerald-500/20',
-        info: 'bg-blue-500/15 text-blue-700 group-hover:bg-blue-500/25 dark:text-blue-400 dark:group-hover:bg-blue-500/25',
-        destructive: 'bg-rose-400/15 text-rose-700 group-hover:bg-rose-400/25 dark:bg-rose-400/10 dark:text-rose-400 dark:group-hover:bg-rose-400/20',
-        /* red: 'bg-red-500/15 text-red-700 group-hover:bg-red-500/25 dark:bg-red-500/10 dark:text-red-400 dark:group-hover:bg-red-500/20', */
+    destructive: [
+      // Use xfork color scheme instead of UI's destructive colors
+      "bg-rose-400/15 text-rose-700 border-rose-400/20",
+      "group-hover:bg-rose-400/25",
+      "dark:bg-rose-400/10 dark:text-rose-400 dark:group-hover:bg-rose-400/20",
+      // Override UI's text-destructive and bg-card
+      "[&>svg]:text-current",
+      "*:data-[slot=alert-description]:text-rose-700/90 dark:*:data-[slot=alert-description]:text-rose-400/90",
+    ],
 
-      },
-    },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-)
+    // Additional xfork variants not in UI
+    warning: [
+      "bg-amber-400/20 text-amber-700 border-amber-400/25",
+      "group-hover:bg-amber-400/30",
+      "dark:bg-amber-400/10 dark:text-amber-400 dark:group-hover:bg-amber-400/15",
+    ],
+
+    success: [
+      "bg-emerald-500/15 text-emerald-700 border-emerald-500/20",
+      "group-hover:bg-emerald-500/25",
+      "dark:bg-emerald-500/10 dark:text-emerald-400 dark:group-hover:bg-emerald-500/20",
+    ],
+
+    info: [
+      "bg-blue-500/15 text-blue-700 border-blue-500/20",
+      "group-hover:bg-blue-500/25",
+      "dark:bg-blue-500/10 dark:text-blue-400 dark:group-hover:bg-blue-500/25",
+    ],
+  },
+
+  title: [
+    // Typography differences - UI uses font-medium, xfork uses font-semibold text-base/6
+    "font-semibold text-base/6",
+  ],
+
+  description: [
+    // Spacing differences - add top margin
+    "mt-1",
+  ]
+}
+
+type XforkAlertVariant = "default" | "destructive" | "warning" | "success" | "info"
+
+interface AlertProps extends Omit<React.ComponentProps<typeof UiAlert.Alert>, 'variant'> {
+  variant?: XforkAlertVariant
+}
 
 function Alert({
   className,
-  variant,
+  variant = "default",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof alertVariants>) {
+}: AlertProps) {
+  // Map xfork variants to UI variants
+  const uiVariant = (variant === "warning" || variant === "success" || variant === "info") ? "default" : variant
+
   return (
-    <div
+    <UiAlert.Alert
       data-slot="alert"
-      role="alert"
-      className={cn(alertVariants({ variant }), className)}
+      variant={uiVariant}
+      className={cn(
+        // Base xfork styles
+        ...xforkAlertStyles.base,
+        // Variant-specific styles
+        variant && xforkAlertStyles.variants[variant]
+          ? xforkAlertStyles.variants[variant]
+          : [],
+        className
+      )}
       {...props}
     />
   )
 }
 
-function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
+function AlertTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiAlert.AlertTitle>) {
   return (
-    <div
+    <UiAlert.AlertTitle
       data-slot="alert-title"
       className={cn(
-        "col-start-2 line-clamp-1 min-h-4 font-semibold text-base/6 tracking-tight",
+        ...xforkAlertStyles.title,
         className
       )}
       {...props}
@@ -64,12 +107,12 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
 function AlertDescription({
   className,
   ...props
-}: React.ComponentProps<"div">) {
+}: React.ComponentProps<typeof UiAlert.AlertDescription>) {
   return (
-    <div
+    <UiAlert.AlertDescription
       data-slot="alert-description"
       className={cn(
-        "text-muted-foreground col-start-2 grid justify-items-start gap-1 text-sm [&_p]:leading-relaxed mt-1",
+        ...xforkAlertStyles.description,
         className
       )}
       {...props}
@@ -77,4 +120,5 @@ function AlertDescription({
   )
 }
 
-export { Alert, AlertTitle, AlertDescription }
+export { Alert, AlertTitle, AlertDescription, xforkAlertStyles }
+export * from "@/components/ui/alert"

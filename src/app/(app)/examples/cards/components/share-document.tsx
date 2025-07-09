@@ -5,14 +5,14 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import { Input } from "@/ui/input"
 import {
   Select,
@@ -20,7 +20,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/ui/select"
+} from "@/xfork-ui/select"
 import { Separator } from "@/ui/separator"
 
 export function DemoShareDocument() {

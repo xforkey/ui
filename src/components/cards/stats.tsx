@@ -7,7 +7,7 @@ import {
   CardContent,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import { ChartConfig, ChartContainer } from "@/ui/chart"
 
 const data = [

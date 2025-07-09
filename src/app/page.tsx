@@ -1,18 +1,18 @@
 import React from 'react'
 import {
   Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
-} from '@/ui/card'
-import { Button } from '@/ui/button'
+} from '@/xfork-ui/card'
+import { Button } from '@/xfork-ui/button'
 import {
   Table, TableHeader, TableBody, TableRow, TableCell, TableHead,
 } from '@/ui/table'
 import { EllipsisVerticalIcon } from 'lucide-react'
-import { Badge } from '@/ui/badge'
+import { Badge } from '@/xfork-ui/badge'
 import { Input } from '@/ui/input'
 import { Avatar, AvatarImage } from '@/ui/avatar'
 import {
   Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue,
-} from '@/ui/select'
+} from '@/xfork-ui/select'
 import { RadioGroup } from '@/ui/radio-group'
 import { Checkbox } from '@/ui/checkbox'
 import { Switch } from '@/ui/switch'

@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Card,
   CardContent,
@@ -6,8 +6,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+} from "@/components/xfork-ui/card"
+import { Input } from "@/components/xfork-ui/input"
 import { Label } from "@/components/ui/label"
 import {
   Tabs,

@@ -9,7 +9,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/ui/select"
+} from "@/xfork-ui/select"
 
 interface AccountSwitcherProps {
   isCollapsed: boolean

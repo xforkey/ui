@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/xfork-ui/button"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaWithButton() {
   return (

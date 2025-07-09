@@ -1,7 +1,7 @@
 import { BellRing, Check } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Card,
   CardContent,
@@ -9,7 +9,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
+} from "@/components/xfork-ui/card"
 import { Switch } from "@/components/ui/switch"
 
 const notifications = [

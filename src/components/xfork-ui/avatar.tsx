@@ -1,19 +1,35 @@
-"use client"
-
 import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
-
+import * as UiAvatar from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI avatar to match xfork-ui appearance
+const xforkAvatarStyles = {
+  base: [
+    // Add outline that UI lacks
+    "outline outline-1 -outline-offset-1 outline-black/20 dark:outline-white/20",
+    // Size difference - UI uses size-10, xfork uses size-8
+    "size-8",
+  ],
+
+  image: [
+    // Same styling, no changes needed
+  ],
+
+  fallback: [
+    // Typography differences - UI uses text-sm, xfork uses text-sm font-medium uppercase
+    "font-medium uppercase",
+  ]
+}
 
 function Avatar({
   className,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+}: React.ComponentProps<typeof UiAvatar.Avatar>) {
   return (
-    <AvatarPrimitive.Root
+    <UiAvatar.Avatar
       data-slot="avatar"
       className={cn(
-        "relative flex size-8 shrink-0 overflow-hidden rounded-full outline outline-1 -outline-offset-1 outline-black/20 dark:outline-white/20",
+        ...xforkAvatarStyles.base,
         className
       )}
       {...props}
@@ -24,11 +40,14 @@ function Avatar({
 function AvatarImage({
   className,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+}: React.ComponentProps<typeof UiAvatar.AvatarImage>) {
   return (
-    <AvatarPrimitive.Image
+    <UiAvatar.AvatarImage
       data-slot="avatar-image"
-      className={cn("aspect-square size-full object-cover", className)}
+      className={cn(
+        ...xforkAvatarStyles.image,
+        className
+      )}
       {...props}
     />
   )
@@ -37,12 +56,12 @@ function AvatarImage({
 function AvatarFallback({
   className,
   ...props
-}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+}: React.ComponentProps<typeof UiAvatar.AvatarFallback>) {
   return (
-    <AvatarPrimitive.Fallback
+    <UiAvatar.AvatarFallback
       data-slot="avatar-fallback"
       className={cn(
-        "bg-muted flex size-full items-center justify-center rounded-full text-sm font-medium uppercase",
+        ...xforkAvatarStyles.fallback,
         className
       )}
       {...props}
@@ -50,4 +69,5 @@ function AvatarFallback({
   )
 }
 
-export { Avatar, AvatarImage, AvatarFallback }
+export { Avatar, AvatarImage, AvatarFallback, xforkAvatarStyles }
+export * from "@/components/ui/avatar"

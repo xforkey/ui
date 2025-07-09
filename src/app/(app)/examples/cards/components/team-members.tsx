@@ -5,14 +5,14 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import {
   Command,
   CommandEmpty,
@@ -20,12 +20,12 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/ui/command"
+} from "@/xfork-ui/command"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/ui/popover"
+} from "@/xfork-ui/popover"
 
 export function DemoTeamMembers() {
   return (

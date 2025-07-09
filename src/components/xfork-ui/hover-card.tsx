@@ -1,46 +1,48 @@
 "use client"
 
 import * as React from "react"
-import * as HoverCardPrimitive from "@radix-ui/react-hover-card"
-
 import { cn } from "@/lib/utils"
+
+// Import UI components
+import {
+  HoverCard as UIHoverCard,
+  HoverCardTrigger as UIHoverCardTrigger,
+  HoverCardContent as UIHoverCardContent,
+} from "@/components/ui/hover-card"
+
+// xfork-specific styling
+const xforkHoverCardContentStyles = cn(
+  "backdrop-blur-lg",
+  "dropdown-motion"
+)
 
 function HoverCard({
   ...props
-}: React.ComponentProps<typeof HoverCardPrimitive.Root>) {
-  return <HoverCardPrimitive.Root data-slot="hover-card" {...props} />
+}: React.ComponentProps<typeof UIHoverCard>) {
+  return (
+    <UIHoverCard
+      {...props}
+    />
+  )
 }
 
 function HoverCardTrigger({
   ...props
-}: React.ComponentProps<typeof HoverCardPrimitive.Trigger>) {
+}: React.ComponentProps<typeof UIHoverCardTrigger>) {
   return (
-    <HoverCardPrimitive.Trigger data-slot="hover-card-trigger" {...props} />
+    <UIHoverCardTrigger
+      {...props}
+    />
   )
 }
 
 function HoverCardContent({
   className,
-  align = "center",
-  sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof HoverCardPrimitive.Content>) {
+}: React.ComponentProps<typeof UIHoverCardContent>) {
   return (
-    <HoverCardPrimitive.Content
-      data-slot="hover-card-content"
-      align={align}
-      sideOffset={sideOffset}
-      className={cn(
-        // Layout
-        "z-50 w-64 rounded-md p-4 outline-hidden",
-
-        // Appearance
-        "bg-popover backdrop-blur-lg text-popover-foreground border shadow-md",
-
-        // Animation
-        "dropdown-motion",
-        className
-      )}
+    <UIHoverCardContent
+      className={cn(xforkHoverCardContentStyles, className)}
       {...props}
     />
   )

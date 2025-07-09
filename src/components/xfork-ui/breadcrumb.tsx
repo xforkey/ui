@@ -1,19 +1,48 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
-
+import * as UiBreadcrumb from "@/components/ui/breadcrumb"
 import { cn } from "@/lib/utils"
 
-function Breadcrumb({ ...props }: React.ComponentProps<"nav">) {
-  return <nav aria-label="breadcrumb" data-slot="breadcrumb" {...props} />
+// Styles needed to transform UI breadcrumb to match xfork-ui appearance
+const xforkBreadcrumbStyles = {
+  base: [
+    // No specific differences identified for the nav element
+  ],
+
+  list: [
+    // Same styling as UI
+  ],
+
+  item: [
+    // Same styling as UI
+  ],
+
+  link: [
+    // Same styling as UI
+  ],
+
+  page: [
+    // Same styling as UI
+  ],
+
+  separator: [
+    // Element type difference - UI uses span, xfork uses li
+    // This will be handled by wrapping the UI component
+  ],
+
+  ellipsis: [
+    // Same styling as UI
+  ]
 }
 
-function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
+function Breadcrumb({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiBreadcrumb.Breadcrumb>) {
   return (
-    <ol
-      data-slot="breadcrumb-list"
+    <UiBreadcrumb.Breadcrumb
+      data-slot="breadcrumb"
       className={cn(
-        "text-muted-foreground flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
+        ...xforkBreadcrumbStyles.base,
         className
       )}
       {...props}
@@ -21,50 +50,73 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
   )
 }
 
-function BreadcrumbItem({ className, ...props }: React.ComponentProps<"li">) {
+function BreadcrumbList({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiBreadcrumb.BreadcrumbList>) {
   return (
-    <li
+    <UiBreadcrumb.BreadcrumbList
+      data-slot="breadcrumb-list"
+      className={cn(
+        ...xforkBreadcrumbStyles.list,
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function BreadcrumbItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiBreadcrumb.BreadcrumbItem>) {
+  return (
+    <UiBreadcrumb.BreadcrumbItem
       data-slot="breadcrumb-item"
-      className={cn("inline-flex items-center gap-1.5", className)}
+      className={cn(
+        ...xforkBreadcrumbStyles.item,
+        className
+      )}
       {...props}
     />
   )
 }
 
 function BreadcrumbLink({
-  asChild,
   className,
   ...props
-}: React.ComponentProps<"a"> & {
-  asChild?: boolean
-}) {
-  const Comp = asChild ? Slot : "a"
-
+}: React.ComponentProps<typeof UiBreadcrumb.BreadcrumbLink>) {
   return (
-    <Comp
+    <UiBreadcrumb.BreadcrumbLink
       data-slot="breadcrumb-link"
-      className={cn("hover:text-foreground transition-colors", className)}
+      className={cn(
+        ...xforkBreadcrumbStyles.link,
+        className
+      )}
       {...props}
     />
   )
 }
 
-function BreadcrumbPage({ className, ...props }: React.ComponentProps<"span">) {
+function BreadcrumbPage({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiBreadcrumb.BreadcrumbPage>) {
   return (
-    <span
+    <UiBreadcrumb.BreadcrumbPage
       data-slot="breadcrumb-page"
-      role="link"
-      aria-disabled="true"
-      aria-current="page"
-      className={cn("text-foreground font-normal", className)}
+      className={cn(
+        ...xforkBreadcrumbStyles.page,
+        className
+      )}
       {...props}
     />
   )
 }
 
 function BreadcrumbSeparator({
-  children,
   className,
+  children,
   ...props
 }: React.ComponentProps<"li">) {
   return (
@@ -72,10 +124,16 @@ function BreadcrumbSeparator({
       data-slot="breadcrumb-separator"
       role="presentation"
       aria-hidden="true"
-      className={cn("[&>svg]:size-3.5", className)}
+      className={cn(
+        "[&>svg]:size-3.5",
+        ...xforkBreadcrumbStyles.separator,
+        className
+      )}
       {...props}
     >
-      {children ?? <ChevronRight />}
+      {children ?? (
+        <UiBreadcrumb.BreadcrumbSeparator className="[&>svg]:size-3.5" />
+      )}
     </li>
   )
 }
@@ -83,18 +141,16 @@ function BreadcrumbSeparator({
 function BreadcrumbEllipsis({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: React.ComponentProps<typeof UiBreadcrumb.BreadcrumbEllipsis>) {
   return (
-    <span
+    <UiBreadcrumb.BreadcrumbEllipsis
       data-slot="breadcrumb-ellipsis"
-      role="presentation"
-      aria-hidden="true"
-      className={cn("flex size-9 items-center justify-center", className)}
+      className={cn(
+        ...xforkBreadcrumbStyles.ellipsis,
+        className
+      )}
       {...props}
-    >
-      <MoreHorizontal className="size-4" />
-      <span className="sr-only">More</span>
-    </span>
+    />
   )
 }
 
@@ -106,4 +162,6 @@ export {
   BreadcrumbPage,
   BreadcrumbSeparator,
   BreadcrumbEllipsis,
+  xforkBreadcrumbStyles
 }
+export * from "@/components/ui/breadcrumb"

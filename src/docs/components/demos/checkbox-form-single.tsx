@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   Form,

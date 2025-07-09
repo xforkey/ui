@@ -313,7 +313,7 @@ Update our columns definition to add a new `actions` column. The `actions` cell 
 import { ColumnDef } from "@tanstack/react-table"
 import { MoreHorizontal } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -400,7 +400,7 @@ This will automatically paginate your rows into pages of 10. See the [pagination
 We can add pagination controls to our table using the `<Button />` component and the `table.previousPage()`, `table.nextPage()` API methods.
 
 ```tsx
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 
 export function DataTable<TData, TValue>({
   columns,
@@ -553,8 +553,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/xfork-ui/button"
+import { Input } from "@/components/xfork-ui/input"
 
 export function DataTable<TData, TValue>({
   columns,
@@ -629,7 +629,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -730,7 +730,7 @@ Next, we're going to add row selection to our table.
 
 import { ColumnDef } from "@tanstack/react-table"
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/xfork-ui/badge"
 import { Checkbox } from "@/components/ui/checkbox"
 
 export const columns: ColumnDef<Payment>[] = [

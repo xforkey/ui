@@ -1,169 +1,166 @@
 "use client"
 
 import * as React from "react"
-import * as DialogPrimitive from "@radix-ui/react-dialog"
-import { X } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
-const Dialog = DialogPrimitive.Root
+// Import UI components
+import {
+  Dialog as UIDialog,
+  DialogClose as UIDialogClose,
+  DialogContent as UIDialogContent,
+  DialogDescription as UIDialogDescription,
+  DialogFooter as UIDialogFooter,
+  DialogHeader as UIDialogHeader,
+  DialogOverlay as UIDialogOverlay,
+  DialogPortal as UIDialogPortal,
+  DialogTitle as UIDialogTitle,
+  DialogTrigger as UIDialogTrigger,
+} from "@/components/ui/dialog"
 
-const DialogTrigger = DialogPrimitive.Trigger
+// xfork-specific styling
+const xforkDialogOverlayStyles = cn(
+  "bg-black/60 backdrop-blur-xs"
+)
 
-const DialogPortal = DialogPrimitive.Portal
+const xforkDialogContentStyles = cn(
+  "bg-background/60 backdrop-blur-lg",
+  "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
+  "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]"
+)
 
-const DialogClose = DialogPrimitive.Close
+const xforkDialogHeaderStyles = cn(
+  "space-y-1.5"
+)
 
-const DialogOverlay = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Overlay>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Overlay>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Overlay
-    ref={ref}
-    className={cn(
-      // Layout
-      "fixed inset-0 z-50",
+const xforkDialogFooterStyles = cn(
+  "sm:space-x-2"
+)
 
-      // Appearance
-      "bg-black/60 backdrop-blur-xs",
+const xforkDialogTitleStyles = cn(
+  "tracking-tight"
+)
 
-      // Animation
-      "data-[state=open]:animate-in data-[state=closed]:animate-out",
-      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-
-      className
-    )}
-    {...props}
-  />
-))
-DialogOverlay.displayName = DialogPrimitive.Overlay.displayName
-
-const DialogContent = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content>
->(({ className, children, ...props }, ref) => (
-  <DialogPortal>
-    <DialogOverlay />
-    <DialogPrimitive.Content
-      ref={ref}
-      className={cn(
-        // Layout
-        "fixed left-[50%] top-[50%] z-50 grid w-full max-w-lg translate-x-[-50%] translate-y-[-50%] gap-4 p-6 sm:rounded-lg",
-
-        // Appearance
-        "border bg-background/60 backdrop-blur-lg shadow-lg duration-200",
-
-        // Animation
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[state=closed]:slide-out-to-left-1/2 data-[state=closed]:slide-out-to-top-[48%]",
-        "data-[state=open]:slide-in-from-left-1/2 data-[state=open]:slide-in-from-top-[48%]",
-        className
-      )}
+function Dialog({
+  ...props
+}: React.ComponentProps<typeof UIDialog>) {
+  return (
+    <UIDialog
       {...props}
-    >
-      {children}
-      <DialogPrimitive.Close
-        className={cn(
-          // Layout
-          "absolute right-4 top-4 rounded-sm",
+    />
+  )
+}
 
-          // Appearance
-          "opacity-70 ring-offset-background transition-opacity",
+function DialogTrigger({
+  ...props
+}: React.ComponentProps<typeof UIDialogTrigger>) {
+  return (
+    <UIDialogTrigger
+      {...props}
+    />
+  )
+}
 
-          // States
-          "hover:opacity-100",
-          "focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          "disabled:pointer-events-none",
-          "data-[state=open]:bg-accent data-[state=open]:text-muted-foreground"
-        )}>
-        <X className="h-4 w-4" />
-        <span className="sr-only">Close</span>
-      </DialogPrimitive.Close>
-    </DialogPrimitive.Content>
-  </DialogPortal>
-))
-DialogContent.displayName = DialogPrimitive.Content.displayName
+function DialogPortal({
+  ...props
+}: React.ComponentProps<typeof UIDialogPortal>) {
+  return (
+    <UIDialogPortal
+      {...props}
+    />
+  )
+}
 
-const DialogHeader = ({
+function DialogClose({
+  ...props
+}: React.ComponentProps<typeof UIDialogClose>) {
+  return (
+    <UIDialogClose
+      {...props}
+    />
+  )
+}
+
+function DialogOverlay({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      // Layout
-      "flex flex-col space-y-1.5",
+}: React.ComponentProps<typeof UIDialogOverlay>) {
+  return (
+    <UIDialogOverlay
+      className={cn(xforkDialogOverlayStyles, className)}
+      {...props}
+    />
+  )
+}
 
-      // Appearance
-      "text-center sm:text-left",
-
-      className
-    )}
-    {...props}
-  />
-)
-DialogHeader.displayName = "DialogHeader"
-
-const DialogFooter = ({
+function DialogContent({
   className,
   ...props
-}: React.HTMLAttributes<HTMLDivElement>) => (
-  <div
-    className={cn(
-      // Layout
-      "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2",
+}: React.ComponentProps<typeof UIDialogContent>) {
+  return (
+    <UIDialogContent
+      className={cn(xforkDialogContentStyles, className)}
+      {...props}
+    />
+  )
+}
 
-      className
-    )}
-    {...props}
-  />
-)
-DialogFooter.displayName = "DialogFooter"
+function DialogHeader({
+  className,
+  ...props
+}: React.ComponentProps<typeof UIDialogHeader>) {
+  return (
+    <UIDialogHeader
+      className={cn(xforkDialogHeaderStyles, className)}
+      {...props}
+    />
+  )
+}
 
-const DialogTitle = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Title>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Title
-    ref={ref}
-    className={cn(
-      // Typography
-      "text-lg font-semibold leading-none tracking-tight",
+function DialogFooter({
+  className,
+  ...props
+}: React.ComponentProps<typeof UIDialogFooter>) {
+  return (
+    <UIDialogFooter
+      className={cn(xforkDialogFooterStyles, className)}
+      {...props}
+    />
+  )
+}
 
-      className
-    )}
-    {...props}
-  />
-))
-DialogTitle.displayName = DialogPrimitive.Title.displayName
+function DialogTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof UIDialogTitle>) {
+  return (
+    <UIDialogTitle
+      className={cn(xforkDialogTitleStyles, className)}
+      {...props}
+    />
+  )
+}
 
-const DialogDescription = React.forwardRef<
-  React.ComponentRef<typeof DialogPrimitive.Description>,
-  React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-  <DialogPrimitive.Description
-    ref={ref}
-    className={cn(
-      // Typography
-      "text-sm text-muted-foreground",
-
-      className
-    )}
-    {...props}
-  />
-))
-DialogDescription.displayName = DialogPrimitive.Description.displayName
+function DialogDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof UIDialogDescription>) {
+  return (
+    <UIDialogDescription
+      className={cn(className)}
+      {...props}
+    />
+  )
+}
 
 export {
   Dialog,
-  DialogPortal,
-  DialogOverlay,
-  DialogTrigger,
   DialogClose,
   DialogContent,
-  DialogHeader,
-  DialogFooter,
-  DialogTitle,
   DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
 }

@@ -1,13 +1,13 @@
 import { Copy } from "lucide-react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import { Input } from "@/ui/input"
 import { Label } from "@/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/ui/popover"
+} from "@/xfork-ui/popover"
 
 export function PresetShare() {
   return (

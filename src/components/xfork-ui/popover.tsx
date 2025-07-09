@@ -1,55 +1,62 @@
 "use client"
 
 import * as React from "react"
-import * as PopoverPrimitive from "@radix-ui/react-popover"
-
 import { cn } from "@/lib/utils"
+
+// Import UI components
+import {
+  Popover as UIPopover,
+  PopoverTrigger as UIPopoverTrigger,
+  PopoverContent as UIPopoverContent,
+  PopoverAnchor as UIPopoverAnchor,
+} from "@/components/ui/popover"
+
+// xfork-specific styling
+const xforkPopoverContentStyles = cn(
+  "backdrop-blur-lg",
+  "dropdown-motion"
+)
 
 function Popover({
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Root>) {
-  return <PopoverPrimitive.Root data-slot="popover" {...props} />
+}: React.ComponentProps<typeof UIPopover>) {
+  return (
+    <UIPopover
+      {...props}
+    />
+  )
 }
 
 function PopoverTrigger({
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Trigger>) {
-  return <PopoverPrimitive.Trigger data-slot="popover-trigger" {...props} />
+}: React.ComponentProps<typeof UIPopoverTrigger>) {
+  return (
+    <UIPopoverTrigger
+      {...props}
+    />
+  )
 }
 
 function PopoverContent({
   className,
-  align = "center",
-  sideOffset = 4,
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Content>) {
+}: React.ComponentProps<typeof UIPopoverContent>) {
   return (
-    <PopoverPrimitive.Portal>
-      <PopoverPrimitive.Content
-        data-slot="popover-content"
-        align={align}
-        sideOffset={sideOffset}
-        className={cn(
-          // Layout
-          "z-50 w-72 rounded-md p-4 outline-hidden",
-
-          // Appearance
-          "bg-popover backdrop-blur-lg text-popover-foreground border shadow-md",
-
-          // Animation
-          "dropdown-motion",
-          className
-        )}
-        {...props}
-      />
-    </PopoverPrimitive.Portal>
+    <UIPopoverContent
+      className={cn(xforkPopoverContentStyles, className)}
+      {...props}
+    />
   )
 }
 
 function PopoverAnchor({
   ...props
-}: React.ComponentProps<typeof PopoverPrimitive.Anchor>) {
-  return <PopoverPrimitive.Anchor data-slot="popover-anchor" {...props} />
+}: React.ComponentProps<typeof UIPopoverAnchor>) {
+  return (
+    <UIPopoverAnchor
+      {...props}
+    />
+  )
 }
 
 export { Popover, PopoverTrigger, PopoverContent, PopoverAnchor }

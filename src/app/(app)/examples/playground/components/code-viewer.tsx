@@ -1,4 +1,4 @@
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Dialog,
   DialogContent,
@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/ui/dialog"
+} from "@/xfork-ui/dialog"
 
 export function CodeViewer() {
   return (

@@ -19,7 +19,7 @@ import {
   CommandList,
   CommandSeparator,
   CommandShortcut,
-} from "@/components/ui/command"
+} from "@/components/xfork-ui/command"
 
 export default function CommandDialogDemo() {
   const [open, setOpen] = React.useState(false)

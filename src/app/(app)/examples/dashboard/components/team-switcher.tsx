@@ -9,7 +9,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Command,
   CommandEmpty,
@@ -18,7 +18,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "@/ui/command"
+} from "@/xfork-ui/command"
 import {
   Dialog,
   DialogContent,
@@ -27,21 +27,21 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/ui/dialog"
+} from "@/xfork-ui/dialog"
 import { Input } from "@/ui/input"
 import { Label } from "@/ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/ui/popover"
+} from "@/xfork-ui/popover"
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/ui/select"
+} from "@/xfork-ui/select"
 
 const groups = [
   {

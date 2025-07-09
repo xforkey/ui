@@ -8,7 +8,7 @@ import { useTheme } from "next-themes"
 import { Search } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
     CommandDialog,
     CommandEmpty,
@@ -17,7 +17,7 @@ import {
     CommandItem,
     CommandList,
     CommandSeparator,
-} from "@/ui/command"
+} from "@/xfork-ui/command"
 
 export function CommandMenu({ ...props }: DialogProps) {
     const router = useRouter()

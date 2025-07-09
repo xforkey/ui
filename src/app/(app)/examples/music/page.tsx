@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { PlusCircle } from "lucide-react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import { ScrollArea, ScrollBar } from "@/ui/scroll-area"
 import { Separator } from "@/ui/separator"
 import {

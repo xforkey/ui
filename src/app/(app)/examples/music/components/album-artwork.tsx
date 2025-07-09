@@ -11,7 +11,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "@/ui/context-menu"
+} from "@/xfork-ui/context-menu"
 
 import { Album } from "../data/albums"
 import { playlists } from "../data/playlists"

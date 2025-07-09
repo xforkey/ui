@@ -5,7 +5,7 @@ import { DropdownMenuTriggerProps } from "@radix-ui/react-dropdown-menu"
 import { CheckIcon, ClipboardIcon } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,

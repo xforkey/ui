@@ -1,13 +1,13 @@
 import { ChevronDown, Circle, Plus, Star } from "lucide-react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/ui/card"
+} from "@/xfork-ui/card"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,

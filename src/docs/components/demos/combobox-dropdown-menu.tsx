@@ -3,7 +3,7 @@
 import * as React from "react"
 import { Calendar, MoreHorizontal, Tags, Trash, User } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Command,
   CommandEmpty,
@@ -11,7 +11,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/components/ui/command"
+} from "@/components/xfork-ui/command"
 import {
   DropdownMenu,
   DropdownMenuContent,

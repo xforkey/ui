@@ -3,7 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,

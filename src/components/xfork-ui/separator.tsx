@@ -1,28 +1,23 @@
-"use client"
-
 import * as React from "react"
-import * as SeparatorPrimitive from "@radix-ui/react-separator"
-
+import * as UiSeparator from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI separator to match xfork-ui appearance
+const xforkSeparatorStyles = {
+  base: [
+    // No specific differences identified - both use similar styling
+  ]
+}
 
 function Separator({
   className,
-  orientation = "horizontal",
-  decorative = true,
-  soft = false,
   ...props
-}: React.ComponentProps<typeof SeparatorPrimitive.Root> & {
-  soft?: boolean
-}) {
+}: React.ComponentProps<typeof UiSeparator.Separator>) {
   return (
-    <SeparatorPrimitive.Root
-      data-slot="separator-root"
-      decorative={decorative}
-      orientation={orientation}
+    <UiSeparator.Separator
+      data-slot="separator"
       className={cn(
-        "shrink-0",
-        orientation === "horizontal" ? "h-px w-full border-t" : "h-full w-px border-l",
-        soft ? "border-border/50 dark:border-white/5" : "border-border dark:border-white/10",
+        ...xforkSeparatorStyles.base,
         className
       )}
       {...props}
@@ -30,4 +25,5 @@ function Separator({
   )
 }
 
-export { Separator }
+export { Separator, xforkSeparatorStyles }
+export * from "@/components/ui/separator"

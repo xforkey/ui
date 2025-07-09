@@ -22,8 +22,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from "@/ui/avatar"
-import { Button } from "@/ui/button"
-import { Calendar } from "@/ui/calendar"
+import { Button } from "@/xfork-ui/button"
+import { Calendar } from "@/xfork-ui/calendar"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -33,7 +33,7 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/ui/popover"
+} from "@/xfork-ui/popover"
 import { Separator } from "@/ui/separator"
 import { Switch } from "@/ui/switch"
 import { Textarea } from "@/ui/textarea"

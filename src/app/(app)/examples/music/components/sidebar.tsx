@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import { ScrollArea } from "@/ui/scroll-area"
 
 import { Playlist } from "../data/playlists"

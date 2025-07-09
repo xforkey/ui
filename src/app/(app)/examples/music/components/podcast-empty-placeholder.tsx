@@ -1,4 +1,4 @@
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
   Dialog,
   DialogContent,
@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/ui/dialog"
+} from "@/xfork-ui/dialog"
 import { Input } from "@/ui/input"
 import { Label } from "@/ui/label"
 

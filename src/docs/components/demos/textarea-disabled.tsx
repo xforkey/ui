@@ -1,4 +1,4 @@
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaDisabled() {
   return <Textarea placeholder="Type your message here." disabled />

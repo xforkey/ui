@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import { Input } from "@/ui/input"
 import { Label } from "@/ui/label"
 

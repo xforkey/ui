@@ -2,7 +2,7 @@
 
 import * as React from "react"
 
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,

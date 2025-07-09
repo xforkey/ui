@@ -39,7 +39,7 @@ npx shadcn@latest add textarea
 ## Usage
 
 ```tsx
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 ```
 
 ```tsx
@@ -53,7 +53,7 @@ import { Textarea } from "@/components/ui/textarea"
 <ComponentPreview demoName="textarea-demo"  />
 
 ```tsx
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaDemo() {
   return <Textarea placeholder="Type your message here." />
@@ -66,7 +66,7 @@ export default function TextareaDemo() {
 
 ```tsx
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaWithLabel() {
   return (
@@ -83,8 +83,8 @@ export default function TextareaWithLabel() {
 <ComponentPreview demoName="textarea-with-button"  />
 
 ```tsx
-import { Button } from "@/components/ui/button"
-import { Textarea } from "@/components/ui/textarea"
+import { Button } from "@/components/xfork-ui/button"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaWithButton() {
   return (
@@ -101,7 +101,7 @@ export default function TextareaWithButton() {
 <ComponentPreview demoName="textarea-disabled"  />
 
 ```tsx
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 export default function TextareaDisabled() {
   return <Textarea placeholder="Type your message here." disabled />
@@ -120,7 +120,7 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 
 import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/xfork-ui/button"
 import {
   Form,
   FormControl,
@@ -130,7 +130,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form"
-import { Textarea } from "@/components/ui/textarea"
+import { Textarea } from "@/components/xfork-ui/textarea"
 
 const FormSchema = z.object({
   bio: z

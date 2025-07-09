@@ -1,11 +1,29 @@
-"use client"
+import * as React from "react"
+import * as UiAspectRatio from "@/components/ui/aspect-ratio"
+import { cn } from "@/lib/utils"
 
-import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio"
-
-function AspectRatio({
-  ...props
-}: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {
-  return <AspectRatioPrimitive.Root data-slot="aspect-ratio" {...props} />
+// Styles needed to transform UI aspect-ratio to match xfork-ui appearance
+const xforkAspectRatioStyles = {
+  base: [
+    // No specific differences identified, keeping same styling
+  ]
 }
 
-export { AspectRatio }
+function AspectRatio({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiAspectRatio.AspectRatio>) {
+  return (
+    <UiAspectRatio.AspectRatio
+      data-slot="aspect-ratio"
+      className={cn(
+        ...xforkAspectRatioStyles.base,
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { AspectRatio, xforkAspectRatioStyles }
+export * from "@/components/ui/aspect-ratio"

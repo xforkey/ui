@@ -1,53 +1,112 @@
 "use client"
 
 import * as React from "react"
-import * as ContextMenuPrimitive from "@radix-ui/react-context-menu"
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
+
+// Import UI components
+import {
+  ContextMenu as UIContextMenu,
+  ContextMenuTrigger as UIContextMenuTrigger,
+  ContextMenuContent as UIContextMenuContent,
+  ContextMenuItem as UIContextMenuItem,
+  ContextMenuCheckboxItem as UIContextMenuCheckboxItem,
+  ContextMenuRadioItem as UIContextMenuRadioItem,
+  ContextMenuLabel as UIContextMenuLabel,
+  ContextMenuSeparator as UIContextMenuSeparator,
+  ContextMenuShortcut as UIContextMenuShortcut,
+  ContextMenuGroup as UIContextMenuGroup,
+  ContextMenuPortal as UIContextMenuPortal,
+  ContextMenuSub as UIContextMenuSub,
+  ContextMenuSubContent as UIContextMenuSubContent,
+  ContextMenuSubTrigger as UIContextMenuSubTrigger,
+  ContextMenuRadioGroup as UIContextMenuRadioGroup,
+} from "@/components/ui/context-menu"
+
+// xfork-specific styling
+const xforkContextMenuContentStyles = cn(
+  "backdrop-blur-lg",
+  "dropdown-motion"
+)
+
+const xforkContextMenuSubContentStyles = cn(
+  "dropdown-motion"
+)
+
+const xforkContextMenuSubTriggerStyles = cn(
+  "dark:focus:inset-ring-1 dark:focus:ring-accent-foreground"
+)
+
+const xforkContextMenuItemStyles = cn(
+  "focus:inset-ring-1 focus:ring-accent-foreground",
+  "focus:[&_[data-slot=context-menu-shortcut]]:text-accent-foreground",
+  "data-[variant=destructive]:text-destructive-foreground",
+  "data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/40",
+  "data-[variant=destructive]:focus:text-destructive-foreground data-[variant=destructive]:*:[svg]:!text-destructive-foreground"
+)
+
+const xforkContextMenuCheckboxItemStyles = cn(
+  "focus:inset-ring-1 focus:ring-accent-foreground"
+)
+
+const xforkContextMenuRadioItemStyles = cn(
+  "focus:inset-ring-1 focus:ring-accent-foreground"
+)
 
 function ContextMenu({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Root>) {
-  return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />
+}: React.ComponentProps<typeof UIContextMenu>) {
+  return (
+    <UIContextMenu
+      {...props}
+    />
+  )
 }
 
 function ContextMenuTrigger({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Trigger>) {
+}: React.ComponentProps<typeof UIContextMenuTrigger>) {
   return (
-    <ContextMenuPrimitive.Trigger data-slot="context-menu-trigger" {...props} />
+    <UIContextMenuTrigger
+      {...props}
+    />
   )
 }
 
 function ContextMenuGroup({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Group>) {
+}: React.ComponentProps<typeof UIContextMenuGroup>) {
   return (
-    <ContextMenuPrimitive.Group data-slot="context-menu-group" {...props} />
+    <UIContextMenuGroup
+      {...props}
+    />
   )
 }
 
 function ContextMenuPortal({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Portal>) {
+}: React.ComponentProps<typeof UIContextMenuPortal>) {
   return (
-    <ContextMenuPrimitive.Portal data-slot="context-menu-portal" {...props} />
+    <UIContextMenuPortal
+      {...props}
+    />
   )
 }
 
 function ContextMenuSub({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Sub>) {
-  return <ContextMenuPrimitive.Sub data-slot="context-menu-sub" {...props} />
+}: React.ComponentProps<typeof UIContextMenuSub>) {
+  return (
+    <UIContextMenuSub
+      {...props}
+    />
+  )
 }
 
 function ContextMenuRadioGroup({
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.RadioGroup>) {
+}: React.ComponentProps<typeof UIContextMenuRadioGroup>) {
   return (
-    <ContextMenuPrimitive.RadioGroup
-      data-slot="context-menu-radio-group"
+    <UIContextMenuRadioGroup
       {...props}
     />
   )
@@ -55,54 +114,23 @@ function ContextMenuRadioGroup({
 
 function ContextMenuSubTrigger({
   className,
-  inset,
-  children,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.SubTrigger> & {
-  inset?: boolean
-}) {
+}: React.ComponentProps<typeof UIContextMenuSubTrigger>) {
   return (
-    <ContextMenuPrimitive.SubTrigger
-      data-slot="context-menu-sub-trigger"
-      data-inset={inset}
-      className={cn(
-        // Layout
-        "flex cursor-default items-center rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8",
-
-        // Appearance
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-
-        // States
-        "focus:bg-accent focus:text-accent-foreground dark:focus:inset-ring-1 dark:focus:ring-accent-foreground",
-        "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
-        className
-      )}
+    <UIContextMenuSubTrigger
+      className={cn(xforkContextMenuSubTriggerStyles, className)}
       {...props}
-    >
-      {children}
-      <ChevronRightIcon className="ml-auto" />
-    </ContextMenuPrimitive.SubTrigger>
+    />
   )
 }
 
 function ContextMenuSubContent({
   className,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.SubContent>) {
+}: React.ComponentProps<typeof UIContextMenuSubContent>) {
   return (
-    <ContextMenuPrimitive.SubContent
-      data-slot="context-menu-sub-content"
-      className={cn(
-        // Layout
-        "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
-
-        // Appearance
-        "bg-popover text-popover-foreground border shadow-lg",
-
-        // Animation
-        "dropdown-motion",
-        className
-      )}
+    <UIContextMenuSubContent
+      className={cn(xforkContextMenuSubContentStyles, className)}
       {...props}
     />
   )
@@ -111,61 +139,22 @@ function ContextMenuSubContent({
 function ContextMenuContent({
   className,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Content>) {
+}: React.ComponentProps<typeof UIContextMenuContent>) {
   return (
-    <ContextMenuPrimitive.Portal>
-      <ContextMenuPrimitive.Content
-        data-slot="context-menu-content"
-        className={cn(
-          // Layout
-          "z-50 min-w-[8rem] overflow-hidden rounded-md p-1",
-
-          // Appearance
-          "bg-popover backdrop-blur-lg text-popover-foreground border shadow-md",
-
-          // Animation
-          "dropdown-motion",
-          className
-        )}
-        {...props}
-      />
-    </ContextMenuPrimitive.Portal>
+    <UIContextMenuContent
+      className={cn(xforkContextMenuContentStyles, className)}
+      {...props}
+    />
   )
 }
 
 function ContextMenuItem({
   className,
-  inset,
-  variant = "default",
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Item> & {
-  inset?: boolean
-  variant?: "default" | "destructive"
-}) {
+}: React.ComponentProps<typeof UIContextMenuItem>) {
   return (
-    <ContextMenuPrimitive.Item
-      data-slot="context-menu-item"
-      data-inset={inset}
-      data-variant={variant}
-      className={cn(
-        // Layout
-        "relative flex cursor-default items-center gap-2 rounded-sm px-2 py-1.5 text-sm outline-hidden select-none data-[inset]:pl-8",
-
-        // Appearance
-        "[&_svg:not([class*='text-'])]:text-muted-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-
-        // States
-        "focus:bg-accent focus:text-accent-foreground",
-        "focus:inset-ring-1 focus:ring-accent-foreground",
-        "focus:[&_[data-slot=context-menu-shortcut]]:text-accent-foreground",
-        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-
-        // Variants
-        "data-[variant=destructive]:text-destructive-foreground",
-        "data-[variant=destructive]:focus:bg-destructive/10 dark:data-[variant=destructive]:focus:bg-destructive/40",
-        "data-[variant=destructive]:focus:text-destructive-foreground data-[variant=destructive]:*:[svg]:!text-destructive-foreground",
-        className
-      )}
+    <UIContextMenuItem
+      className={cn(xforkContextMenuItemStyles, className)}
       {...props}
     />
   )
@@ -173,90 +162,35 @@ function ContextMenuItem({
 
 function ContextMenuCheckboxItem({
   className,
-  children,
-  checked,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.CheckboxItem>) {
+}: React.ComponentProps<typeof UIContextMenuCheckboxItem>) {
   return (
-    <ContextMenuPrimitive.CheckboxItem
-      data-slot="context-menu-checkbox-item"
-      className={cn(
-        // Layout
-        "relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
-
-        // Appearance
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-
-        // States
-        "focus:bg-accent focus:text-accent-foreground focus:inset-ring-1 focus:ring-accent-foreground",
-        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
-      )}
-      checked={checked}
+    <UIContextMenuCheckboxItem
+      className={cn(xforkContextMenuCheckboxItemStyles, className)}
       {...props}
-    >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ContextMenuPrimitive.ItemIndicator>
-          <CheckIcon className="size-4" />
-        </ContextMenuPrimitive.ItemIndicator>
-      </span>
-      {children}
-    </ContextMenuPrimitive.CheckboxItem>
+    />
   )
 }
 
 function ContextMenuRadioItem({
   className,
-  children,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.RadioItem>) {
+}: React.ComponentProps<typeof UIContextMenuRadioItem>) {
   return (
-    <ContextMenuPrimitive.RadioItem
-      data-slot="context-menu-radio-item"
-      className={cn(
-        // Layout
-        "relative flex cursor-default items-center gap-2 rounded-sm py-1.5 pr-2 pl-8 text-sm outline-hidden select-none",
-
-        // Appearance
-        "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
-
-        // States
-        "focus:bg-accent focus:text-accent-foreground",
-        "focus:inset-ring-1 focus:ring-accent-foreground",
-        "data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
-      )}
+    <UIContextMenuRadioItem
+      className={cn(xforkContextMenuRadioItemStyles, className)}
       {...props}
-    >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
-        <ContextMenuPrimitive.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
-        </ContextMenuPrimitive.ItemIndicator>
-      </span>
-      {children}
-    </ContextMenuPrimitive.RadioItem>
+    />
   )
 }
 
 function ContextMenuLabel({
   className,
-  inset,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Label> & {
-  inset?: boolean
-}) {
+}: React.ComponentProps<typeof UIContextMenuLabel>) {
   return (
-    <ContextMenuPrimitive.Label
-      data-slot="context-menu-label"
-      data-inset={inset}
-      className={cn(
-        // Layout
-        "px-2 py-1.5 text-sm data-[inset]:pl-8",
-
-        // Appearance
-        "text-foreground font-medium",
-        className
-      )}
+    <UIContextMenuLabel
+      className={cn(className)}
       {...props}
     />
   )
@@ -265,19 +199,10 @@ function ContextMenuLabel({
 function ContextMenuSeparator({
   className,
   ...props
-}: React.ComponentProps<typeof ContextMenuPrimitive.Separator>) {
+}: React.ComponentProps<typeof UIContextMenuSeparator>) {
   return (
-    <ContextMenuPrimitive.Separator
-      data-slot="context-menu-separator"
-      className={cn(
-        // Layout
-        "-mx-1 my-1 h-px",
-
-        // Appearance
-        "bg-border",
-
-        className
-      )}
+    <UIContextMenuSeparator
+      className={cn(className)}
       {...props}
     />
   )
@@ -286,18 +211,10 @@ function ContextMenuSeparator({
 function ContextMenuShortcut({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: React.ComponentProps<typeof UIContextMenuShortcut>) {
   return (
-    <span
-      data-slot="context-menu-shortcut"
-      className={cn(
-        // Layout
-        "ml-auto text-xs",
-
-        // Appearance
-        "text-muted-foreground tracking-widest",
-        className
-      )}
+    <UIContextMenuShortcut
+      className={cn(className)}
       {...props}
     />
   )

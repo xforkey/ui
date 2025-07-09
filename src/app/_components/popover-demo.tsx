@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/xfork-ui/button"
+import { Input } from "@/components/xfork-ui/input"
 import { Label } from "@/components/ui/label"
 import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-} from "@/components/ui/popover"
+} from "@/components/xfork-ui/popover"
 
 export function PopoverDemo() {
     return (

@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/ui/card"
+import { Card, CardContent } from "@/xfork-ui/card"
 import { Label } from "@/ui/label"
-import { Button } from "@/ui/button"
+import { Button } from "@/xfork-ui/button"
 import { CalendarIcon } from "lucide-react"
 
 export function DemoDatePicker() {

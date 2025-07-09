@@ -4,7 +4,7 @@ import { Metadata } from "next/types";
 import { generateTableOfContents, getDocPageBySlug, getDocPageSlugs } from "@/docs/utils";
 import Pagination from "@/docs/components/pagination";
 import Link from "next/link"
-import { badgeVariants } from "@/components/ui/badge";
+import { badgeVariants } from "@/components/xfork-ui/badge";
 import { cn } from "@/lib/utils";
 import { ExternalLink } from "lucide-react";
 

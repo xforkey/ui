@@ -13,7 +13,7 @@ import {
   MenubarSubContent,
   MenubarSubTrigger,
   MenubarTrigger,
-} from "@/ui/menubar"
+} from "@/xfork-ui/menubar"
 
 export function Menu() {
   return (
