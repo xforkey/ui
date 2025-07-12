@@ -1,5 +1,5 @@
 import * as React from "react"
-import * as UiTextarea from "@/components/ui/textarea"
+import * as UiTextarea from "@/ui/textarea"
 import { cn } from "@/lib/utils"
 
 // Styles needed to transform UI textarea to match xfork-ui appearance

@@ -1,30 +1,49 @@
 "use client"
 
 import * as React from "react"
-import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area"
-
+import * as UiScrollArea from "@/components/ui/scroll-area"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI scroll-area to match xfork-ui appearance
+const xforkScrollAreaStyles = {
+  base: [
+    // Same styling as UI
+  ],
+
+  viewport: [
+    // Ring styles difference - UI uses focus-visible:ring-ring/50, xfork uses more complex ring styles
+    "ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1",
+  ],
+
+  scrollbar: [
+    // Same styling as UI
+  ],
+
+  thumb: [
+    // Same styling as UI
+  ]
+}
 
 function ScrollArea({
   className,
   children,
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.Root>) {
+}: React.ComponentProps<typeof UiScrollArea.ScrollArea>) {
   return (
-    <ScrollAreaPrimitive.Root
-      data-slot="scroll-area"
-      className={cn("relative", className)}
+    <UiScrollArea.ScrollArea
+      className={cn(
+        ...xforkScrollAreaStyles.base,
+        className
+      )}
       {...props}
     >
-      <ScrollAreaPrimitive.Viewport
+      <div
         data-slot="scroll-area-viewport"
-        className="ring-ring/10 dark:ring-ring/20 dark:outline-ring/40 outline-ring/50 size-full rounded-[inherit] transition-[color,box-shadow] focus-visible:ring-4 focus-visible:outline-1"
+        className={cn(...xforkScrollAreaStyles.viewport)}
       >
         {children}
-      </ScrollAreaPrimitive.Viewport>
-      <ScrollBar />
-      <ScrollAreaPrimitive.Corner />
-    </ScrollAreaPrimitive.Root>
+      </div>
+    </UiScrollArea.ScrollArea>
   )
 }
 
@@ -32,27 +51,18 @@ function ScrollBar({
   className,
   orientation = "vertical",
   ...props
-}: React.ComponentProps<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>) {
+}: React.ComponentProps<typeof UiScrollArea.ScrollBar>) {
   return (
-    <ScrollAreaPrimitive.ScrollAreaScrollbar
-      data-slot="scroll-area-scrollbar"
+    <UiScrollArea.ScrollBar
       orientation={orientation}
       className={cn(
-        "flex touch-none p-px transition-colors select-none",
-        orientation === "vertical" &&
-          "h-full w-2.5 border-l border-l-transparent",
-        orientation === "horizontal" &&
-          "h-2.5 flex-col border-t border-t-transparent",
+        ...xforkScrollAreaStyles.scrollbar,
         className
       )}
       {...props}
-    >
-      <ScrollAreaPrimitive.ScrollAreaThumb
-        data-slot="scroll-area-thumb"
-        className="bg-border relative flex-1 rounded-full"
-      />
-    </ScrollAreaPrimitive.ScrollAreaScrollbar>
+    />
   )
 }
 
-export { ScrollArea, ScrollBar }
+export { ScrollArea, ScrollBar, xforkScrollAreaStyles }
+export * from "@/components/ui/scroll-area"

@@ -1,18 +1,44 @@
 import * as React from "react"
-import { Button, buttonVariants } from "@/components/xfork-ui/button"
-
+import * as UiPagination from "@/components/ui/pagination"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI pagination to match xfork-ui appearance
+const xforkPaginationStyles = {
+  base: [
+    // Gap difference - UI uses no gap-x, xfork uses gap-x-2
+    "gap-x-2",
+  ],
+
+  content: [
+    // Gap difference - UI uses gap-1, xfork uses gap-2
+    "gap-2",
+  ],
+
+  link: [
+    // Active state styling difference - UI uses outline variant, xfork uses custom before pseudo-element
+    "min-w-[2.25rem] before:absolute before:-inset-px before:rounded-lg",
+    // Custom active state background
+    "data-[active=true]:before:bg-background/50 dark:data-[active=true]:before:bg-white/10",
+  ],
+
+  ellipsis: [
+    // Text styling difference - UI uses flex size-9 items-center justify-center, xfork uses custom text styling
+    "w-[2.25rem] text-center text-sm/6 font-semibold text-foreground select-none",
+  ]
+}
 
 function Pagination({
   className,
   'aria-label': ariaLabel = 'pagination',
   ...props
-}: React.ComponentProps<"nav">) {
+}: React.ComponentProps<typeof UiPagination.Pagination>) {
   return (
-    <nav
+    <UiPagination.Pagination
       aria-label={ariaLabel}
-      data-slot="pagination"
-      className={cn("mx-auto flex w-full justify-center gap-x-2", className)}
+      className={cn(
+        ...xforkPaginationStyles.base,
+        className
+      )}
       {...props}
     />
   )
@@ -21,43 +47,38 @@ function Pagination({
 function PaginationContent({
   className,
   ...props
-}: React.ComponentProps<"ul">) {
+}: React.ComponentProps<typeof UiPagination.PaginationContent>) {
   return (
-    <ul
-      data-slot="pagination-content"
-      className={cn("flex flex-row items-center gap-2", className)}
+    <UiPagination.PaginationContent
+      className={cn(
+        ...xforkPaginationStyles.content,
+        className
+      )}
       {...props}
     />
   )
 }
 
-function PaginationItem({ ...props }: React.ComponentProps<"li">) {
-  return <li data-slot="pagination-item" {...props} />
+function PaginationItem({
+  ...props
+}: React.ComponentProps<typeof UiPagination.PaginationItem>) {
+  return (
+    <UiPagination.PaginationItem
+      {...props}
+    />
+  )
 }
-
-type PaginationLinkProps = {
-  isActive?: boolean
-} & Pick<React.ComponentProps<typeof Button>, "size"> &
-  React.ComponentProps<"a">
 
 function PaginationLink({
   className,
   isActive,
-  size = "icon",
   ...props
-}: PaginationLinkProps) {
+}: React.ComponentProps<typeof UiPagination.PaginationLink>) {
   return (
-    <a
-      aria-current={isActive ? "page" : undefined}
-      data-slot="pagination-link"
-      data-active={isActive}
+    <UiPagination.PaginationLink
+      isActive={isActive}
       className={cn(
-        buttonVariants({
-          variant: "ghost",
-          size,
-        }),
-        "min-w-[2.25rem] before:absolute before:-inset-px before:rounded-lg",
-        isActive && "before:bg-background/50 dark:before:bg-white/10",
+        ...xforkPaginationStyles.link,
         className
       )}
       {...props}
@@ -68,12 +89,10 @@ function PaginationLink({
 function PaginationPrevious({
   className,
   ...props
-}: React.ComponentProps<typeof PaginationLink>) {
+}: React.ComponentProps<typeof UiPagination.PaginationPrevious>) {
   return (
-    <PaginationLink
-      aria-label="Go to previous page"
-      size="default"
-      className={cn("gap-1 px-2.5", className)}
+    <UiPagination.PaginationPrevious
+      className={cn(className)}
       {...props}
     >
       <svg className="stroke-current size-4" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -85,19 +104,17 @@ function PaginationPrevious({
         />
       </svg>
       <span className="hidden sm:block">Previous</span>
-    </PaginationLink>
+    </UiPagination.PaginationPrevious>
   )
 }
 
 function PaginationNext({
   className,
   ...props
-}: React.ComponentProps<typeof PaginationLink>) {
+}: React.ComponentProps<typeof UiPagination.PaginationNext>) {
   return (
-    <PaginationLink
-      aria-label="Go to next page"
-      size="default"
-      className={cn("gap-1 px-2.5", className)}
+    <UiPagination.PaginationNext
+      className={cn(className)}
       {...props}
     >
       <span className="hidden sm:block">Next</span>
@@ -109,19 +126,22 @@ function PaginationNext({
           strokeLinejoin="round"
         />
       </svg>
-    </PaginationLink>
+    </UiPagination.PaginationNext>
   )
 }
 
 function PaginationEllipsis({
   className,
   ...props
-}: React.ComponentProps<"span">) {
+}: React.ComponentProps<typeof UiPagination.PaginationEllipsis>) {
   return (
     <span
       aria-hidden="true"
       data-slot="pagination-ellipsis"
-      className={cn("w-[2.25rem] text-center text-sm/6 font-semibold text-foreground select-none", className)}
+      className={cn(
+        ...xforkPaginationStyles.ellipsis,
+        className
+      )}
       {...props}
     >
       &hellip;
@@ -138,4 +158,6 @@ export {
   PaginationPrevious,
   PaginationNext,
   PaginationEllipsis,
+  xforkPaginationStyles
 }
+export * from "@/components/ui/pagination"

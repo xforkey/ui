@@ -25,7 +25,7 @@ import {
 
 // xfork-specific styling
 const xforkMenubarItemStyles = cn(
-  "dark:focus:inset-ring-1 dark:focus:ring-accent-foreground"
+  "dark:focus:inset-ring-1 dark:focus:ring-accent-foreground dark:hover:[&_[data-slot=menubar-shortcut]]:text-accent-foreground"
 )
 
 function Menubar({
@@ -98,7 +98,7 @@ function MenubarContent({
 }: React.ComponentProps<typeof UIMenubarContent>) {
   return (
     <UIMenubarContent
-      className={cn(className)}
+      className={cn("backdrop-blur-lg", className)}
       {...props}
     />
   )
@@ -170,6 +170,7 @@ function MenubarShortcut({
 }: React.ComponentProps<typeof UIMenubarShortcut>) {
   return (
     <UIMenubarShortcut
+      data-slot="menubar-shortcut"
       className={cn(className)}
       {...props}
     />

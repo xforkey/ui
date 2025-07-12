@@ -1,53 +1,78 @@
 "use client"
 
 import * as React from "react"
-import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { XIcon } from "lucide-react"
-
+import * as UiSheet from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
-function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />
+// Styles needed to transform UI sheet to match xfork-ui appearance
+const xforkSheetStyles = {
+  base: [
+    // Same styling as UI
+  ],
+
+  trigger: [
+    // Same styling as UI
+  ],
+
+  close: [
+    // Same styling as UI
+  ],
+
+  portal: [
+    // Same styling as UI
+  ],
+
+  overlay: [
+    // Background opacity difference - UI uses bg-black/50, xfork uses bg-black/80
+    "bg-black/80",
+  ],
+
+  content: [
+    // Same styling as UI
+  ],
+
+  header: [
+    // Same styling as UI
+  ],
+
+  footer: [
+    // Same styling as UI
+  ],
+
+  title: [
+    // Same styling as UI
+  ],
+
+  description: [
+    // Same styling as UI
+  ]
+}
+
+function Sheet({
+  ...props
+}: React.ComponentProps<typeof UiSheet.Sheet>) {
+  return (
+    <UiSheet.Sheet
+      {...props}
+    />
+  )
 }
 
 function SheetTrigger({
   ...props
-}: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
-  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />
+}: React.ComponentProps<typeof UiSheet.SheetTrigger>) {
+  return (
+    <UiSheet.SheetTrigger
+      {...props}
+    />
+  )
 }
 
 function SheetClose({
   ...props
-}: React.ComponentProps<typeof SheetPrimitive.Close>) {
-  return <SheetPrimitive.Close data-slot="sheet-close" {...props} />
-}
-
-function SheetPortal({
-  ...props
-}: React.ComponentProps<typeof SheetPrimitive.Portal>) {
-  return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
-}
-
-function SheetOverlay({
-  className,
-  ...props
-}: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
+}: React.ComponentProps<typeof UiSheet.SheetClose>) {
   return (
-    <SheetPrimitive.Overlay
-      data-slot="sheet-overlay"
-      className={cn(
-        // Layout
-        "fixed inset-0 z-50",
-
-        // Appearance
-        "bg-black/80",
-
-        // Animation
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-
-        className
-      )}
+    <UiSheet.SheetClose
       {...props}
     />
   )
@@ -55,70 +80,12 @@ function SheetOverlay({
 
 function SheetContent({
   className,
-  children,
-  side = "right",
   ...props
-}: React.ComponentProps<typeof SheetPrimitive.Content> & {
-  side?: "top" | "right" | "bottom" | "left"
-}) {
+}: React.ComponentProps<typeof UiSheet.SheetContent>) {
   return (
-    <SheetPortal>
-      <SheetOverlay />
-      <SheetPrimitive.Content
-        data-slot="sheet-content"
-        className={cn(
-          // Layout
-          "fixed z-50 flex flex-col gap-4",
-
-          // Appearance
-          "bg-background shadow-lg transition ease-in-out",
-          "data-[state=closed]:duration-300 data-[state=open]:duration-500",
-
-          // Animation
-          "data-[state=open]:animate-in data-[state=closed]:animate-out",
-          side === "right" &&
-          "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right inset-y-0 right-0 h-full w-3/4 border-l sm:max-w-sm",
-          side === "left" &&
-          "data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left inset-y-0 left-0 h-full w-3/4 border-r sm:max-w-sm",
-          side === "top" &&
-          "data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top inset-x-0 top-0 h-auto border-b",
-          side === "bottom" &&
-          "data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom inset-x-0 bottom-0 h-auto border-t",
-          className
-        )}
-        {...props}
-      >
-        {children}
-        <SheetPrimitive.Close
-          className={cn(
-            // Layout
-            "absolute top-4 right-4 rounded-xs",
-
-            // Appearance
-            "ring-offset-background opacity-70 transition-opacity",
-
-            // States
-            "hover:opacity-100",
-            "focus:ring-ring focus:ring-2 focus:ring-offset-2 focus:outline-hidden",
-            "disabled:pointer-events-none",
-            "data-[state=open]:bg-secondary"
-          )}>
-          <XIcon className="size-4" />
-          <span className="sr-only">Close</span>
-        </SheetPrimitive.Close>
-      </SheetPrimitive.Content>
-    </SheetPortal>
-  )
-}
-
-function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="sheet-header"
+    <UiSheet.SheetContent
       className={cn(
-        // Layout
-        "flex flex-col gap-1.5 p-4",
-
+        ...xforkSheetStyles.content,
         className
       )}
       {...props}
@@ -126,14 +93,29 @@ function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+function SheetHeader({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiSheet.SheetHeader>) {
   return (
-    <div
-      data-slot="sheet-footer"
+    <UiSheet.SheetHeader
       className={cn(
-        // Layout
-        "mt-auto flex flex-col gap-2 p-4",
+        ...xforkSheetStyles.header,
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
+function SheetFooter({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiSheet.SheetFooter>) {
+  return (
+    <UiSheet.SheetFooter
+      className={cn(
+        ...xforkSheetStyles.footer,
         className
       )}
       {...props}
@@ -144,14 +126,11 @@ function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
 function SheetTitle({
   className,
   ...props
-}: React.ComponentProps<typeof SheetPrimitive.Title>) {
+}: React.ComponentProps<typeof UiSheet.SheetTitle>) {
   return (
-    <SheetPrimitive.Title
-      data-slot="sheet-title"
+    <UiSheet.SheetTitle
       className={cn(
-        // Typography
-        "text-foreground font-semibold",
-
+        ...xforkSheetStyles.title,
         className
       )}
       {...props}
@@ -162,14 +141,11 @@ function SheetTitle({
 function SheetDescription({
   className,
   ...props
-}: React.ComponentProps<typeof SheetPrimitive.Description>) {
+}: React.ComponentProps<typeof UiSheet.SheetDescription>) {
   return (
-    <SheetPrimitive.Description
-      data-slot="sheet-description"
+    <UiSheet.SheetDescription
       className={cn(
-        // Typography
-        "text-muted-foreground text-sm",
-
+        ...xforkSheetStyles.description,
         className
       )}
       {...props}
@@ -186,4 +162,6 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
+  xforkSheetStyles
 }
+export * from "@/components/ui/sheet"

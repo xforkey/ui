@@ -76,16 +76,49 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/xfork-ui/select"
+
+// Dropdown Menu
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/xfork-ui/dropdown-menu"
+
+// Avatar
+import {
+    Avatar,
+    AvatarFallback,
+    AvatarImage,
+} from "@/xfork-ui/avatar"
+
+// Icons
+import {
+    BadgeCheck,
+    Bell,
+    ChevronsUpDown,
+    CreditCard,
+    LogOut,
+    Sparkles,
+    User,
+} from "lucide-react"
+
 import CommandDemo from "@/docs/components/demos/command-demo"
 
 import { Input } from "@/xfork-ui/input"
 import { Label } from "@/ui/label"
 
+
+
 export default function PortalComponentsPage() {
     const [date, setDate] = React.useState<Date | undefined>(new Date())
 
     // Grid background with proper radial mask fade effect
-    const gridBackgroundClass = "bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px,24px_24px]"
+    const gridBackgroundClass = "bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px,24px_24px] "
+    {/* <div class="relative h-full w-full bg-white"><div class="absolute h-full w-full bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)]"></div></div> */ }
 
     return (
         <div className="container py-10">
@@ -94,8 +127,10 @@ export default function PortalComponentsPage() {
                 A showcase of all portal-based UI components that use React Portal for rendering outside the DOM hierarchy.
             </p>
 
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Context Menu */}
+
                 <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Command Menu</CardTitle>
@@ -104,10 +139,29 @@ export default function PortalComponentsPage() {
                         </CardDescription>
                     </CardHeader>
                     <CardContent className="flex justify-center">
+
                         <CommandDemo />
                     </CardContent>
                 </Card>
-                {/* Select */}
+
+                {/* Calendar */}
+                <Card className={gridBackgroundClass}>
+                    <CardHeader>
+                        <CardTitle>Calendar</CardTitle>
+                        <CardDescription>
+                            A date field component that allows users to enter and edit dates.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex justify-center">
+                        <Calendar
+                            mode="single"
+                            selected={date}
+                            onSelect={setDate}
+                            className="rounded-md border"
+                        />
+                    </CardContent>
+                </Card>
+
                 <Card className={gridBackgroundClass}>
                     <CardHeader>
                         <CardTitle>Select</CardTitle>
@@ -247,23 +301,7 @@ export default function PortalComponentsPage() {
                     </CardContent>
                 </Card>
 
-                {/* Calendar */}
-                <Card className={gridBackgroundClass}>
-                    <CardHeader>
-                        <CardTitle>Calendar</CardTitle>
-                        <CardDescription>
-                            A date field component that allows users to enter and edit dates.
-                        </CardDescription>
-                    </CardHeader>
-                    <CardContent className="flex justify-center">
-                        <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            className="rounded-md border"
-                        />
-                    </CardContent>
-                </Card>
+
 
                 {/* Hover Card */}
                 <Card className={gridBackgroundClass}>
@@ -388,6 +426,74 @@ export default function PortalComponentsPage() {
                     </CardContent>
                 </Card>
 
+                {/* Dropdown Menu */}
+                <Card className={gridBackgroundClass}>
+                    <CardHeader>
+                        <CardTitle>Dropdown Menu</CardTitle>
+                        <CardDescription>
+                            Displays a menu to the user — such as a set of actions or functions — triggered by a button.
+                        </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex justify-center">
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button
+                                    variant="outline"
+                                    className="w-[200px] justify-between"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <Avatar className="h-6 w-6">
+                                            <AvatarImage src="https://github.com/shadcn.png" alt="User" />
+                                            <AvatarFallback>JD</AvatarFallback>
+                                        </Avatar>
+                                        <div className="flex flex-col items-start">
+                                            <span className="text-sm font-medium">John Doe</span>
+                                            <span className="text-xs text-muted-foreground">john@example.com</span>
+                                        </div>
+                                    </div>
+                                    <ChevronsUpDown className="h-4 w-4 opacity-50" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56" align="end" forceMount>
+                                <DropdownMenuLabel className="font-normal">
+                                    <div className="flex flex-col space-y-1">
+                                        <p className="text-sm font-medium leading-none">John Doe</p>
+                                        <p className="text-xs leading-none text-muted-foreground">
+                                            john@example.com
+                                        </p>
+                                    </div>
+                                </DropdownMenuLabel>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem>
+                                        <User />
+                                        Profile
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <CreditCard />
+                                        Billing
+                                    </DropdownMenuItem>
+                                    <DropdownMenuItem>
+                                        <Bell />
+                                        Notifications
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuGroup>
+                                    <DropdownMenuItem>
+                                        <Sparkles />
+                                        Upgrade to Pro
+                                    </DropdownMenuItem>
+                                </DropdownMenuGroup>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuItem>
+                                    <LogOut />
+                                    Log out
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    </CardContent>
+                </Card>
 
             </div>
         </div>

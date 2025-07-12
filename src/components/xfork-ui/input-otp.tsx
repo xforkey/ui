@@ -1,77 +1,81 @@
 "use client"
 
 import * as React from "react"
-import { OTPInput, OTPInputContext } from "input-otp"
-import { MinusIcon } from "lucide-react"
-
+import * as UiInputOTP from "@/components/ui/input-otp"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI input-otp to match xfork-ui appearance
+const xforkInputOTPStyles = {
+  base: [
+    // More extensive disabled styles than UI
+    "disabled:cursor-not-allowed disabled:border-background/20 dark:disabled:border-white/15 dark:disabled:bg-white/[2.5%] dark:hover:disabled:border-white/15",
+  ],
+
+  slot: [
+    // Border and background differences
+    "border-border hover:border-border-hover bg-input text-foreground",
+    // Border radius difference - UI uses rounded-l-md/rounded-r-md, xfork uses rounded-l-lg/rounded-r-lg
+    "first:rounded-l-lg last:rounded-r-lg",
+    // Disabled state differences
+    "disabled:border-background/20 dark:disabled:border-white/15 dark:disabled:bg-white/[2.5%] dark:hover:disabled:border-white/15",
+    // System icons
+    "dark:[color-scheme:dark]",
+  ]
+}
 
 function InputOTP({
   className,
   containerClassName,
   ...props
-}: React.ComponentProps<typeof OTPInput> & {
-  containerClassName?: string
-}) {
+}: React.ComponentProps<typeof UiInputOTP.InputOTP>) {
   return (
-    <OTPInput
-      data-slot="input-otp"
-      containerClassName={cn(
-        "flex items-center gap-2 has-disabled:opacity-50",
-        containerClassName
+    <UiInputOTP.InputOTP
+      containerClassName={cn(containerClassName)}
+      className={cn(
+        ...xforkInputOTPStyles.base,
+        className
       )}
-      className={cn("disabled:cursor-not-allowed disabled:border-background/20 dark:disabled:border-white/15 dark:disabled:bg-white/[2.5%] dark:hover:disabled:border-white/15", className)}
       {...props}
     />
   )
 }
 
-function InputOTPGroup({ className, ...props }: React.ComponentProps<"div">) {
+function InputOTPGroup({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiInputOTP.InputOTPGroup>) {
   return (
-    <div
-      data-slot="input-otp-group"
-      className={cn("flex items-center", className)}
+    <UiInputOTP.InputOTPGroup
+      className={cn(className)}
       {...props}
     />
   )
 }
 
 function InputOTPSlot({
-  index,
   className,
   ...props
-}: React.ComponentProps<"div"> & {
-  index: number
-}) {
-  const inputOTPContext = React.useContext(OTPInputContext)
-  const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index]
-
+}: React.ComponentProps<typeof UiInputOTP.InputOTPSlot>) {
   return (
-    <div
-      data-slot="input-otp-slot"
-      data-active={isActive}
+    <UiInputOTP.InputOTPSlot
       className={cn(
-        "border-border hover:border-border-hover data-[active=true]:border-ring data-[active=true]:ring-primary data-[active=true]:aria-invalid:ring-destructive/20 dark:data-[active=true]:aria-invalid:ring-destructive/40 aria-invalid:border-destructive aria-invalid:hover:border-destructive dark:aria-invalid:border-destructive dark:aria-invalid:hover:border-destructive data-[active=true]:aria-invalid:border-destructive relative flex h-9 w-9 items-center justify-center border-y border-r text-sm shadow-xs transition-all outline-none first:rounded-l-lg first:border-l last:rounded-r-lg data-[active=true]:z-10 data-[active=true]:ring-[3px] bg-input text-foreground disabled:border-background/20 dark:disabled:border-white/15 dark:disabled:bg-white/[2.5%] dark:hover:disabled:border-white/15 dark:[color-scheme:dark]",
+        ...xforkInputOTPStyles.slot,
         className
       )}
       {...props}
-    >
-      {char}
-      {hasFakeCaret && (
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
-          <div className="animate-caret-blink bg-foreground h-4 w-px duration-1000" />
-        </div>
-      )}
-    </div>
+    />
   )
 }
 
-function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
+function InputOTPSeparator({
+  ...props
+}: React.ComponentProps<typeof UiInputOTP.InputOTPSeparator>) {
   return (
-    <div data-slot="input-otp-separator" role="separator" {...props}>
-      <MinusIcon />
-    </div>
+    <UiInputOTP.InputOTPSeparator
+      {...props}
+    />
   )
 }
 
-export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator }
+export { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator, xforkInputOTPStyles }
+export * from "@/components/ui/input-otp"

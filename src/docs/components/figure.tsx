@@ -53,34 +53,6 @@ function Hint({ children, className }: { children: React.ReactNode; className?: 
     );
 }
 
-/* export function Figure({
-    children,
-    hint,
-    desktopHint,
-    className,
-}: {
-    children: React.ReactNode;
-    hint?: string;
-    desktopHint?: string;
-    className?: string;
-}) {
-    return (
-        <div>
-            <div className="not-prose">
-                {(hint || desktopHint) && <Hint className={desktopHint && "max-sm:hidden"}>{hint || desktopHint}</Hint>}
-                <figure
-                    className={clsx(
-                        className,
-                        "flex flex-col gap-1 rounded-xl bg-foreground/20 p-1 inset-ring inset-ring-foreground/20 dark:bg-foreground/8 dark:inset-ring-foreground/8",
-                    )}
-                >
-                    {children}
-                </figure>
-            </div>
-        </div>
-    );
-} */
-
 export function Figure({
     filenames,
     children,
@@ -127,7 +99,8 @@ export function Figure({
                                 key={label}
                                 className={cn("data-[state=active]:bg-transparent ring-white",
                                     "focus-visible:ring-0 focus-visible:outline-0",
-                                    "data-[state=active]:shadow-none"
+                                    "data-[state=active]:shadow-none",
+                                    "dark:data-[state=active]:border-0 dark:data-[state=active]:bg-transparent"
                                 )}
                             >
                                 <div className="px-3 pt-0.5 pb-1.5 text-xs/5"> {label} </div>

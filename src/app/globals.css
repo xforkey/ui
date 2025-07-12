@@ -150,7 +150,7 @@
   --card-foreground: var(--foreground); 
   --popover: color-mix(in oklab, var(--color-zinc-950) 60%, transparent);
   --popover-foreground: var(--foreground); 
-  --primary: var(--color-emerald-500); 
+  --primary: var(--color-emerald-600); 
   --primary-foreground: var(--color-emerald-50); 
   --secondary: var(--color-zinc-800); 
   --secondary-foreground: var(--foreground); 

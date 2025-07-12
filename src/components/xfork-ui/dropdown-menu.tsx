@@ -17,7 +17,7 @@ const xforkDropdownMenuStyles = {
   ],
 
   content: [
-    // No specific differences identified
+    "backdrop-blur-lg",
   ],
 
   group: [
@@ -25,7 +25,9 @@ const xforkDropdownMenuStyles = {
   ],
 
   item: [
-    // No specific differences identified
+    "hover:[&_svg:not([class*='text-'])]:text-accent-foreground",
+    // Dark mode ring styling
+    "dark:focus:inset-ring-1 dark:focus:ring-accent-foreground"
   ],
 
   checkboxItem: [
@@ -308,4 +310,3 @@ export {
   DropdownMenuSubContent,
   xforkDropdownMenuStyles
 }
-export * from "@/components/ui/dropdown-menu"

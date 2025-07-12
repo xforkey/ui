@@ -1,17 +1,41 @@
 "use client"
 
 import * as React from "react"
-import * as TooltipPrimitive from "@radix-ui/react-tooltip"
-
+import * as UiTooltip from "@/components/ui/tooltip"
 import { cn } from "@/lib/utils"
+
+// Styles needed to transform UI tooltip to match xfork-ui appearance
+const xforkTooltipStyles = {
+  provider: [
+    // Same styling as UI
+  ],
+
+  base: [
+    // Same styling as UI
+  ],
+
+  trigger: [
+    // Same styling as UI
+  ],
+
+  content: [
+    // Background and text color differences - UI uses bg-primary text-primary-foreground, xfork uses bg-accent text-accent-foreground
+    "bg-accent text-accent-foreground border-accent-foreground border-1",
+  ],
+
+  arrow: [
+    // Arrow styling differences - UI uses simple bg-primary fill-primary, xfork uses complex border and gradient styling
+    "bg-accent fill-transparent border-accent-foreground border-t-0 border-r border-b border-l-0",
+    "bg-linear-to-br from-transparent to-accent",
+  ]
+}
 
 function TooltipProvider({
   delayDuration = 0,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Provider>) {
+}: React.ComponentProps<typeof UiTooltip.TooltipProvider>) {
   return (
-    <TooltipPrimitive.Provider
-      data-slot="tooltip-provider"
+    <UiTooltip.TooltipProvider
       delayDuration={delayDuration}
       {...props}
     />
@@ -20,18 +44,22 @@ function TooltipProvider({
 
 function Tooltip({
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Root>) {
+}: React.ComponentProps<typeof UiTooltip.Tooltip>) {
   return (
-    <TooltipProvider>
-      <TooltipPrimitive.Root data-slot="tooltip" {...props} />
-    </TooltipProvider>
+    <UiTooltip.Tooltip
+      {...props}
+    />
   )
 }
 
 function TooltipTrigger({
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Trigger>) {
-  return <TooltipPrimitive.Trigger data-slot="tooltip-trigger" {...props} />
+}: React.ComponentProps<typeof UiTooltip.TooltipTrigger>) {
+  return (
+    <UiTooltip.TooltipTrigger
+      {...props}
+    />
+  )
 }
 
 function TooltipContent({
@@ -39,43 +67,26 @@ function TooltipContent({
   sideOffset = 0,
   children,
   ...props
-}: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+}: React.ComponentProps<typeof UiTooltip.TooltipContent>) {
   return (
-    <TooltipPrimitive.Portal>
-      <TooltipPrimitive.Content
-        data-slot="tooltip-content"
-        sideOffset={sideOffset}
+    <UiTooltip.TooltipContent
+      sideOffset={sideOffset}
+      className={cn(
+        ...xforkTooltipStyles.content,
+        className
+      )}
+      {...props}
+    >
+      {children}
+      <div
         className={cn(
-          // Layout
-          "z-50 w-fit rounded-md px-3 py-1.5 text-xs text-balance",
-
-          // Appearance
-          "bg-accent text-accent-foreground border-accent-foreground border-1",
-
-          // Animation
-          "animate-in fade-in-0 zoom-in-95",
-          "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
-          "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
-          "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-          className
+          "z-50 size-2.5 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[2px]",
+          ...xforkTooltipStyles.arrow
         )}
-        {...props}
-      >
-        {children}
-        <TooltipPrimitive.Arrow
-          className={cn(
-            // Layout
-            "z-50 size-2.5 translate-y-[calc(-50%_-_1px)] rotate-45 rounded-[2px]",
-
-            // Appearance
-            "bg-accent fill-transparent border-accent-foreground border-t-0 border-r border-b border-l-0",
-
-            "bg-linear-to-br from-transparent to-accent"
-          )}
-        />
-      </TooltipPrimitive.Content>
-    </TooltipPrimitive.Portal>
+      />
+    </UiTooltip.TooltipContent>
   )
 }
 
-export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider }
+export { Tooltip, TooltipTrigger, TooltipContent, TooltipProvider, xforkTooltipStyles }
+export * from "@/components/ui/tooltip"

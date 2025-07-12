@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-
+import * as UiTable from "@/components/ui/table"
 import { cn } from "@/lib/utils"
 
 const TableContext = React.createContext<{
@@ -15,6 +15,61 @@ const TableContext = React.createContext<{
   grid: false,
   striped: false,
 })
+
+// Styles needed to transform UI table to match xfork-ui appearance
+const xforkTableStyles = {
+  wrapper: [
+    // Layout differences - xfork uses flow-root with complex nested structure
+    "flow-root",
+  ],
+
+  container: [
+    // Container differences - xfork uses -mx-4 overflow-x-auto whitespace-nowrap
+    "-mx-4 overflow-x-auto whitespace-nowrap",
+  ],
+
+  inner: [
+    // Inner container differences - xfork uses inline-block min-w-full align-middle
+    "inline-block min-w-full align-middle",
+  ],
+
+  table: [
+    // Table differences - xfork uses min-w-full text-left text-sm/6 text-foreground
+    "min-w-full text-left text-sm/6 text-foreground",
+  ],
+
+  header: [
+    // Header differences - xfork uses text-muted-foreground
+    "text-muted-foreground",
+  ],
+
+  body: [
+    // Same as UI
+  ],
+
+  footer: [
+    // Same as UI
+  ],
+
+  row: [
+    // Row differences - xfork has striped and hover logic
+    "transition-colors",
+  ],
+
+  head: [
+    // Head differences - xfork has complex border and grid logic
+    "border-b border-b-border/50 px-4 py-2 text-left font-medium first:pl-4 last:pr-4 dark:border-b-white/10",
+  ],
+
+  cell: [
+    // Cell differences - xfork has complex border, grid, and density logic
+    "relative px-4 first:pl-4 last:pr-4",
+  ],
+
+  caption: [
+    // Same as UI
+  ]
+}
 
 function Table({
   className,
@@ -31,12 +86,12 @@ function Table({
 }) {
   return (
     <TableContext.Provider value={{ bleed, dense, grid, striped }}>
-      <div className="flow-root">
-        <div className={cn("-mx-4 overflow-x-auto whitespace-nowrap", className)}>
-          <div className={cn("inline-block min-w-full align-middle", !bleed && "sm:px-4")}>
+      <div className={cn(...xforkTableStyles.wrapper)}>
+        <div className={cn(...xforkTableStyles.container, className)}>
+          <div className={cn(...xforkTableStyles.inner, !bleed && "sm:px-4")}>
             <table
               data-slot="table"
-              className={cn("min-w-full text-left text-sm/6 text-foreground", className)}
+              className={cn(...xforkTableStyles.table, className)}
               {...props}
             />
           </div>
@@ -46,32 +101,14 @@ function Table({
   )
 }
 
-function TableHeader({ className, ...props }: React.ComponentProps<"thead">) {
+function TableHeader({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableHeader>) {
   return (
-    <thead
-      data-slot="table-header"
-      className={cn("text-muted-foreground", className)}
-      {...props}
-    />
-  )
-}
-
-function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
-  return (
-    <tbody
-      data-slot="table-body"
-      className={cn("[&_tr:last-child]:border-0", className)}
-      {...props}
-    />
-  )
-}
-
-function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
-  return (
-    <tfoot
-      data-slot="table-footer"
+    <UiTable.TableHeader
       className={cn(
-        "bg-muted/50 border-t font-medium [&>tr]:last:border-b-0",
+        ...xforkTableStyles.header,
         className
       )}
       {...props}
@@ -79,16 +116,48 @@ function TableFooter({ className, ...props }: React.ComponentProps<"tfoot">) {
   )
 }
 
-function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
+function TableBody({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableBody>) {
+  return (
+    <UiTable.TableBody
+      className={cn(
+        ...xforkTableStyles.body,
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableFooter({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableFooter>) {
+  return (
+    <UiTable.TableFooter
+      className={cn(
+        ...xforkTableStyles.footer,
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TableRow({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableRow>) {
   const { striped } = React.useContext(TableContext)
 
   return (
-    <tr
-      data-slot="table-row"
+    <UiTable.TableRow
       className={cn(
         striped && "even:bg-background/50 dark:even:bg-white/[2.5%]",
         !striped && "hover:bg-background/50 dark:hover:bg-white/[2.5%]",
-        "transition-colors",
+        ...xforkTableStyles.row,
         className
       )}
       {...props}
@@ -96,14 +165,16 @@ function TableRow({ className, ...props }: React.ComponentProps<"tr">) {
   )
 }
 
-function TableHead({ className, ...props }: React.ComponentProps<"th">) {
+function TableHead({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableHead>) {
   const { bleed, grid } = React.useContext(TableContext)
 
   return (
-    <th
-      data-slot="table-head"
+    <UiTable.TableHead
       className={cn(
-        "border-b border-b-border/50 px-4 py-2 text-left font-medium first:pl-4 last:pr-4 dark:border-b-white/10",
+        ...xforkTableStyles.head,
         grid && "border-l border-l-border/30 first:border-l-0 dark:border-l-white/5",
         !bleed && "sm:first:pl-2 sm:last:pr-2",
         className
@@ -113,14 +184,16 @@ function TableHead({ className, ...props }: React.ComponentProps<"th">) {
   )
 }
 
-function TableCell({ className, ...props }: React.ComponentProps<"td">) {
+function TableCell({
+  className,
+  ...props
+}: React.ComponentProps<typeof UiTable.TableCell>) {
   const { bleed, dense, grid, striped } = React.useContext(TableContext)
 
   return (
-    <td
-      data-slot="table-cell"
+    <UiTable.TableCell
       className={cn(
-        "relative px-4 first:pl-4 last:pr-4",
+        ...xforkTableStyles.cell,
         !striped && "border-b border-border/50 dark:border-white/5",
         grid && "border-l border-l-border/30 first:border-l-0 dark:border-l-white/5",
         dense ? "py-2.5" : "py-4",
@@ -135,11 +208,13 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
 function TableCaption({
   className,
   ...props
-}: React.ComponentProps<"caption">) {
+}: React.ComponentProps<typeof UiTable.TableCaption>) {
   return (
-    <caption
-      data-slot="table-caption"
-      className={cn("text-muted-foreground mt-4 text-sm", className)}
+    <UiTable.TableCaption
+      className={cn(
+        ...xforkTableStyles.caption,
+        className
+      )}
       {...props}
     />
   )
@@ -154,4 +229,6 @@ export {
   TableRow,
   TableCell,
   TableCaption,
+  xforkTableStyles
 }
+export * from "@/components/ui/table"

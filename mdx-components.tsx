@@ -16,7 +16,7 @@ import { Preview } from "@/docs/components/preview";
 import { Figure } from "@/docs/components/figure";
 import { Iframe } from "@/docs/components/iframe";
 import { TipGood, TipBad, TipInfo } from "@/docs/components/tips";
-import { Tabs as UiTabs, TabsContent as UiTabsContent, TabsList as UiTabsList, TabsTrigger as UiTabsTrigger } from "@/components/ui/tabs";
+import { Tabs as UiTabs, TabsContent as UiTabsContent, TabsList as UiTabsList, TabsTrigger as UiTabsTrigger } from "@/components/xfork-ui/tabs";
 import getSourceCode from "@/docs/get-source-code";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
@@ -115,7 +115,7 @@ const TabsTrigger = ({ className, ...props }: React.ComponentProps<typeof UiTabs
         className={cn(
             'flex items-center gap-2 pb-2 rounded-none bg-transparent border-0 shadow-none',
             'data-[state=active]:border-b-2',
-            'dark:data-[state=active]:border-primary',
+            'dark:data-[state=active]:border-primary dark:data-[state=active]:bg-transparent',
             className
         )}
         {...props}

@@ -1,15 +1,25 @@
 "use client"
 
-import { useTheme } from "next-themes"
-import { Toaster as Sonner, ToasterProps } from "sonner"
+import * as React from "react"
+import * as UiSonner from "@/components/ui/sonner"
+import { cn } from "@/lib/utils"
 
-const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+// Styles needed to transform UI sonner to match xfork-ui appearance
+const xforkSonnerStyles = {
+  base: [
+    // Same styling as UI
+  ]
+}
 
+const Toaster = ({
+  ...props
+}: React.ComponentProps<typeof UiSonner.Toaster>) => {
   return (
-    <Sonner
-      theme={theme as ToasterProps["theme"]}
-      className="toaster group"
+    <UiSonner.Toaster
+      className={cn(
+        ...xforkSonnerStyles.base,
+        "toaster group"
+      )}
       toastOptions={{
         classNames: {
           toast:
@@ -26,4 +36,5 @@ const Toaster = ({ ...props }: ToasterProps) => {
   )
 }
 
-export { Toaster }
+export { Toaster, xforkSonnerStyles }
+export * from "@/components/ui/sonner"

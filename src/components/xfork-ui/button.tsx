@@ -112,7 +112,7 @@ const xforkStyles = {
     ],
 
     link: [
-      // Same as UI, no changes needed
+      "border-0"
     ],
   },
 
