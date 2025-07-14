@@ -47,7 +47,6 @@
     "@types/hast": "^3.0.4",
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.5.0",
-    "bongocat-avatar-generator": "file:/Users/kyleforkey/Documents/Coding/packages/bongocat",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.0",

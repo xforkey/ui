@@ -3,9 +3,8 @@ export const siteConfig = {
     url: "https://ui.xforkey.com",
     ogImage: "/api/og",
     description:
-        "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.",
+        "A wrapper around Shadcn UI components with tailwind inspired styles and animations.",
     links: {
-        twitter: "https://twitter.com/xforkey",
         github: "https://github.com/xforkey/ui",
     },
 }

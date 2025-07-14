@@ -19,7 +19,6 @@ import { Switch } from '@/xfork-ui/switch'
 import {
   ContextDemo, DialogDemo, DropdownMenuDemo, PopoverDemo, SheetDemo, SonnerDemo,
 } from './_components'
-import { Bongocat } from 'bongocat-avatar-generator'
 import { Label } from '@/components/ui/label'
 
 const badgeColors = ["default", "secondary", "destructive", "outline", "info", "success", "warning"]
@@ -185,7 +184,7 @@ export default async function Page() {
                   <TableCell>
                     <div className='flex items-center gap-2'>
                       <Avatar className='size-6'>
-                        <Bongocat className='size-6' email={order.customer.email} />
+                        <AvatarImage src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' />
                       </Avatar>
                       <span>{order.customer.name}
                       </span>
