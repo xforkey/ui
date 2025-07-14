@@ -8,7 +8,7 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/ui/navigation-menu"
+} from "@/xfork-ui/navigation-menu"
 
 export function NavHeader() {
   const pathname = usePathname()

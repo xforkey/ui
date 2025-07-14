@@ -4,7 +4,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 import { Button } from "@/xfork-ui/button"
 import {
   Card,

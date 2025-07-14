@@ -8,8 +8,8 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/xfork-ui/hover-card"
-import { Label } from "@/ui/label"
-import { Slider } from "@/ui/slider"
+import { Label } from "@/xfork-ui/label"
+import { Slider } from "@/xfork-ui/slider"
 
 interface MaxLengthSelectorProps {
   defaultValue: SliderProps["defaultValue"]

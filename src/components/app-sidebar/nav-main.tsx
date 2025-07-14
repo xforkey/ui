@@ -7,7 +7,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/ui/collapsible"
+} from "@/xfork-ui/collapsible"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -17,7 +17,7 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
-} from "@/ui/sidebar"
+} from "@/xfork-ui/sidebar"
 
 export function NavMain({
   items,

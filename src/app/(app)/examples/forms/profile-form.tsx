@@ -16,8 +16,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/ui/form"
-import { Input } from "@/ui/input"
+} from "@/xfork-ui/form"
+import { Input } from "@/xfork-ui/input"
 import {
   Select,
   SelectContent,
@@ -25,7 +25,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/xfork-ui/select"
-import { Textarea } from "@/ui/textarea"
+import { Textarea } from "@/xfork-ui/textarea"
 
 const profileFormSchema = z.object({
   username: z

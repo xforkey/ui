@@ -21,7 +21,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/ui/chart"
+} from "@/xfork-ui/chart"
 
 export const description = "A radar chart with a radius axis"
 

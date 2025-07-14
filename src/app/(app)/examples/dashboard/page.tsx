@@ -14,7 +14,7 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/ui/tabs"
+} from "@/xfork-ui/tabs"
 import { CalendarDateRangePicker } from "@/app/(app)/examples/dashboard/components/date-range-picker"
 import { MainNav } from "@/app/(app)/examples/dashboard/components/main-nav"
 import { Overview } from "@/app/(app)/examples/dashboard/components/overview"

@@ -4,7 +4,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 import { Button } from "@/xfork-ui/button"
 import {
   Card,
@@ -13,7 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Input } from "@/ui/input"
+import { Input } from "@/xfork-ui/input"
 import {
   Select,
   SelectContent,
@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/xfork-ui/select"
-import { Separator } from "@/ui/separator"
+import { Separator } from "@/xfork-ui/separator"
 
 export function DemoShareDocument() {
   return (

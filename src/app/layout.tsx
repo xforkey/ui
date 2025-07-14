@@ -4,19 +4,19 @@ import { Geist_Mono as FontMono, Inter as FontSans } from "next/font/google"
 import { cn } from "@/lib/utils"
 import { Analytics } from "@/components/analytics"
 import { ThemeProvider } from "@/components/theme-provider"
-import { Toaster } from "@/ui/sonner"
+import { Toaster } from "@/xfork-ui/sonner"
 import { siteConfig } from "@/config/site"
 
 import { SidebarWithSections } from "@/components/app-sidebar/sidebar-with-sections"
 import { ModeSwitcher } from "@/components/mode-switcher"
 import { componentMap } from "@/docs/component-map"
-import { Separator } from "@/ui/separator"
-import { ScrollArea } from "@/ui/scroll-area"
+import { Separator } from "@/xfork-ui/separator"
+import { ScrollArea } from "@/xfork-ui/scroll-area"
 import {
   SidebarInset,
   SidebarProvider,
   SidebarTrigger,
-} from "@/ui/sidebar"
+} from "@/xfork-ui/sidebar"
 import { Breadcrumbs } from "@/components/breadcrumb"
 import { CommandMenu } from "@/components/command-menu"
 
@@ -83,9 +83,9 @@ export const metadata: Metadata = {
     creator: "@xforkey",
   },
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    icon: "/api/favicon",
+    shortcut: "/api/favicon",
+    apple: "/api/favicon",
   },
   manifest: `${siteConfig.url}/site.webmanifest`,
 }

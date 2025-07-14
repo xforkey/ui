@@ -14,14 +14,14 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/ui/collapsible"
+} from "@/xfork-ui/collapsible"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
+} from "@/xfork-ui/dropdown-menu"
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -30,7 +30,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@/ui/sidebar"
+} from "@/xfork-ui/sidebar"
 
 export function NavProjects({
   projects,

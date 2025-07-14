@@ -15,7 +15,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/ui/chart"
+} from "@/xfork-ui/chart"
 
 export const description = "An interactive line chart"
 

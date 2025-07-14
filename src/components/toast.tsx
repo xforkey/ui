@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { toast as sonnerToast } from 'sonner';
-import { Alert, AlertTitle, AlertDescription } from '@/ui/alert'
+import { Alert, AlertTitle, AlertDescription } from '@/xfork-ui/alert'
 import {
     BadgeAlertIcon,
     BadgeInfoIcon,

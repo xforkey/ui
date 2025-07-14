@@ -8,8 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/xfork-ui/dialog"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
 
 export function PresetSave() {
   return (

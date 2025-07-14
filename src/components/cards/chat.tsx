@@ -8,7 +8,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 import { Button } from "@/xfork-ui/button"
 import {
   Card,
@@ -32,13 +32,13 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/xfork-ui/dialog"
-import { Input } from "@/ui/input"
+import { Input } from "@/xfork-ui/input"
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/ui/tooltip"
+} from "@/xfork-ui/tooltip"
 
 const users = [
   {

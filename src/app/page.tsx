@@ -5,17 +5,17 @@ import {
 import { Button } from '@/xfork-ui/button'
 import {
   Table, TableHeader, TableBody, TableRow, TableCell, TableHead,
-} from '@/ui/table'
+} from '@/xfork-ui/table'
 import { EllipsisVerticalIcon } from 'lucide-react'
 import { Badge } from '@/xfork-ui/badge'
-import { Input } from '@/ui/input'
-import { Avatar, AvatarImage } from '@/ui/avatar'
+import { Input } from '@/xfork-ui/input'
+import { Avatar, AvatarImage } from '@/xfork-ui/avatar'
 import {
   Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue,
 } from '@/xfork-ui/select'
-import { RadioGroup } from '@/ui/radio-group'
-import { Checkbox } from '@/ui/checkbox'
-import { Switch } from '@/ui/switch'
+import { RadioGroup } from '@/xfork-ui/radio-group'
+import { Checkbox } from '@/xfork-ui/checkbox'
+import { Switch } from '@/xfork-ui/switch'
 import {
   ContextDemo, DialogDemo, DropdownMenuDemo, PopoverDemo, SheetDemo, SonnerDemo,
 } from './_components'

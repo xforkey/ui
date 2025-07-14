@@ -16,20 +16,20 @@ import {
 } from "lucide-react"
 
 import { cn } from "@/lib/utils"
-import { Input } from "@/ui/input"
+import { Input } from "@/xfork-ui/input"
 import {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/ui/resizable"
-import { Separator } from "@/ui/separator"
+} from "@/xfork-ui/resizable"
+import { Separator } from "@/xfork-ui/separator"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/ui/tabs"
-import { TooltipProvider } from "@/ui/tooltip"
+} from "@/xfork-ui/tabs"
+import { TooltipProvider } from "@/xfork-ui/tooltip"
 import { AccountSwitcher } from "@/app/(app)/examples/mail/components/account-switcher"
 import { MailDisplay } from "@/app/(app)/examples/mail/components/mail-display"
 import { MailList } from "@/app/(app)/examples/mail/components/mail-list"

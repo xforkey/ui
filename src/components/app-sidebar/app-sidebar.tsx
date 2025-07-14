@@ -24,7 +24,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-} from "@/ui/sidebar"
+} from "@/xfork-ui/sidebar"
 
 // This is sample data.
 const data = {

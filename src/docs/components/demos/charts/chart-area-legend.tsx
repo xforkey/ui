@@ -18,7 +18,7 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/ui/chart"
+} from "@/xfork-ui/chart"
 
 export const description = "An area chart with a legend"
 

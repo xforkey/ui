@@ -9,8 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Label } from "@/ui/label"
-import { Switch } from "@/ui/switch"
+import { Label } from "@/xfork-ui/label"
+import { Switch } from "@/xfork-ui/switch"
 
 export function DemoCookieSettings() {
   return (

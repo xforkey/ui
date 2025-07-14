@@ -1,4 +1,4 @@
-import { Separator } from "@/ui/separator"
+import { Separator } from "@/xfork-ui/separator"
 import { ProfileForm } from "@/app/(app)/examples/forms/profile-form"
 
 export default function SettingsProfilePage() {

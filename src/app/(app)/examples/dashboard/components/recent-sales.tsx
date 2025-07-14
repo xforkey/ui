@@ -2,7 +2,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 
 export function RecentSales() {
   return (

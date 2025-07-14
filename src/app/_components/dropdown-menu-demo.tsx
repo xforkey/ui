@@ -16,7 +16,7 @@ import {
     DropdownMenuSubContent,
     DropdownMenuSubTrigger,
     DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
+} from "@/xfork-ui/dropdown-menu"
 export function DropdownMenuDemo() {
     return (
         <DropdownMenu>

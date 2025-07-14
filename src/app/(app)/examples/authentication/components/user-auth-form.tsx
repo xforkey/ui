@@ -5,8 +5,8 @@ import * as React from "react"
 import { cn } from "@/lib/utils"
 import { Icons } from "@/components/icons"
 import { Button } from "@/xfork-ui/button"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
 
 type UserAuthFormProps = React.HTMLAttributes<HTMLDivElement>
 

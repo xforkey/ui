@@ -28,9 +28,9 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
-import { Label } from "@/ui/label"
-import { Switch } from "@/ui/switch"
+} from "@/xfork-ui/dropdown-menu"
+import { Label } from "@/xfork-ui/label"
+import { Switch } from "@/xfork-ui/switch"
 
 export function PresetActions() {
   const [open, setIsOpen] = React.useState(false)

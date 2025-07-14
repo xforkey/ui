@@ -8,15 +8,15 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/xfork-ui/hover-card"
-import { Label } from "@/ui/label"
-import { Separator } from "@/ui/separator"
+import { Label } from "@/xfork-ui/label"
+import { Separator } from "@/xfork-ui/separator"
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
-} from "@/ui/tabs"
-import { Textarea } from "@/ui/textarea"
+} from "@/xfork-ui/tabs"
+import { Textarea } from "@/xfork-ui/textarea"
 
 import { CodeViewer } from "./components/code-viewer"
 import { MaxLengthSelector } from "./components/maxlength-selector"

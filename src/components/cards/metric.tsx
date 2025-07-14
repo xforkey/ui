@@ -14,7 +14,7 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/ui/chart"
+} from "@/xfork-ui/chart"
 
 const data = [
   {

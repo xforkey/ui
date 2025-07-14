@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/xfork-ui/card"
-import { Label } from "@/ui/label"
+import { Label } from "@/xfork-ui/label"
 import { Button } from "@/xfork-ui/button"
 import { CalendarIcon } from "lucide-react"
 

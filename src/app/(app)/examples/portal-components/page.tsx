@@ -108,7 +108,7 @@ import {
 import CommandDemo from "@/docs/components/demos/command-demo"
 
 import { Input } from "@/xfork-ui/input"
-import { Label } from "@/ui/label"
+import { Label } from "@/xfork-ui/label"
 
 
 

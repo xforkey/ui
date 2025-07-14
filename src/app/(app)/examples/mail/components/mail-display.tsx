@@ -16,32 +16,32 @@ import {
 import {
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/ui/dropdown-menu"
+} from "@/xfork-ui/dropdown-menu"
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 import { Button } from "@/xfork-ui/button"
 import { Calendar } from "@/xfork-ui/calendar"
 import {
   DropdownMenu,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
-import { Label } from "@/ui/label"
+} from "@/xfork-ui/dropdown-menu"
+import { Label } from "@/xfork-ui/label"
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/xfork-ui/popover"
-import { Separator } from "@/ui/separator"
-import { Switch } from "@/ui/switch"
-import { Textarea } from "@/ui/textarea"
+import { Separator } from "@/xfork-ui/separator"
+import { Switch } from "@/xfork-ui/switch"
+import { Textarea } from "@/xfork-ui/textarea"
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/ui/tooltip"
+} from "@/xfork-ui/tooltip"
 import { Mail } from "@/app/(app)/examples/mail/data"
 
 interface MailDisplayProps {

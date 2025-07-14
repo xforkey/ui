@@ -16,8 +16,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
-import { Separator } from "@/ui/separator"
+} from "@/xfork-ui/dropdown-menu"
+import { Separator } from "@/xfork-ui/separator"
 
 export function DemoGithub() {
   return (

@@ -3,7 +3,7 @@
 import { ColumnDef } from "@tanstack/react-table"
 
 import { Badge } from "@/xfork-ui/badge"
-import { Checkbox } from "@/ui/checkbox"
+import { Checkbox } from "@/xfork-ui/checkbox"
 
 import { labels, priorities, statuses } from "../data/data"
 import { Task } from "../data/schema"

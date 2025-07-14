@@ -11,7 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-} from "@/ui/dropdown-menu"
+} from "@/xfork-ui/dropdown-menu"
 
 interface DataTableViewOptionsProps<TData> {
   table: Table<TData>

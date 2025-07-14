@@ -7,7 +7,7 @@ import { z } from "zod"
 
 import { toast } from "sonner"
 import { Button } from "@/xfork-ui/button"
-import { Checkbox } from "@/ui/checkbox"
+import { Checkbox } from "@/xfork-ui/checkbox"
 import {
   Form,
   FormControl,
@@ -16,9 +16,9 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/ui/form"
-import { RadioGroup, RadioGroupItem } from "@/ui/radio-group"
-import { Switch } from "@/ui/switch"
+} from "@/xfork-ui/form"
+import { RadioGroup, RadioGroupItem } from "@/xfork-ui/radio-group"
+import { Switch } from "@/xfork-ui/switch"
 
 const notificationsFormSchema = z.object({
   type: z.enum(["all", "mentions", "none"], {

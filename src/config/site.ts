@@ -1,12 +1,12 @@
 export const siteConfig = {
-    name: "shadcn/ui",
-    url: "https://ui.shadcn.com",
-    ogImage: "https://ui.shadcn.com/og.jpg",
+    name: "xforkey/ui",
+    url: "https://ui.xforkey.com",
+    ogImage: "/api/og",
     description:
         "A set of beautifully-designed, accessible components and a code distribution platform. Works with your favorite frameworks. Open Source. Open Code.",
     links: {
-        twitter: "https://twitter.com/shadcn",
-        github: "https://github.com/shadcn-ui/ui",
+        twitter: "https://twitter.com/xforkey",
+        github: "https://github.com/xforkey/ui",
     },
 }
 

@@ -8,7 +8,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/ui/collapsible"
+} from "@/xfork-ui/collapsible"
 
 interface CollapseProps extends React.HTMLAttributes<HTMLDivElement> {
   expandButtonTitle?: string

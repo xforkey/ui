@@ -20,7 +20,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "@/xfork-ui/hover-card"
-import { Label } from "@/ui/label"
+import { Label } from "@/xfork-ui/label"
 import {
   Popover,
   PopoverContent,

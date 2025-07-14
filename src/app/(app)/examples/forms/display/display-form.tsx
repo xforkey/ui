@@ -6,7 +6,7 @@ import { z } from "zod"
 
 import { toast } from "sonner"
 import { Button } from "@/xfork-ui/button"
-import { Checkbox } from "@/ui/checkbox"
+import { Checkbox } from "@/xfork-ui/checkbox"
 import {
   Form,
   FormControl,
@@ -15,7 +15,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/ui/form"
+} from "@/xfork-ui/form"
 
 const items = [
   {

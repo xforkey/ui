@@ -9,7 +9,7 @@ import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/ui/tooltip"
+} from "@/xfork-ui/tooltip"
 
 interface NavProps {
   isCollapsed: boolean

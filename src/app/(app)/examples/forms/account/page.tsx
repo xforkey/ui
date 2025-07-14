@@ -1,4 +1,4 @@
-import { Separator } from "@/ui/separator"
+import { Separator } from "@/xfork-ui/separator"
 import { AccountForm } from "@/app/(app)/examples/forms/account/account-form"
 
 export default function SettingsAccountPage() {

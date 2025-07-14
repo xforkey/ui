@@ -17,7 +17,7 @@ import {
   ChartStyle,
   ChartTooltip,
   ChartTooltipContent,
-} from "@/ui/chart"
+} from "@/xfork-ui/chart"
 import {
   Select,
   SelectContent,

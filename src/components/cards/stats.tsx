@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { ChartConfig, ChartContainer } from "@/ui/chart"
+import { ChartConfig, ChartContainer } from "@/xfork-ui/chart"
 
 const data = [
   {

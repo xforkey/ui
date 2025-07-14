@@ -11,8 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
 import {
   Select,
   SelectContent,
@@ -20,7 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/xfork-ui/select"
-import { Textarea } from "@/ui/textarea"
+import { Textarea } from "@/xfork-ui/textarea"
 
 export function CardsReportIssue() {
   const id = React.useId()

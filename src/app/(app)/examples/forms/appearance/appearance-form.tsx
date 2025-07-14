@@ -16,8 +16,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/ui/form"
-import { RadioGroup, RadioGroupItem } from "@/ui/radio-group"
+} from "@/xfork-ui/form"
+import { RadioGroup, RadioGroupItem } from "@/xfork-ui/radio-group"
 
 const appearanceFormSchema = z.object({
   theme: z.enum(["light", "dark"], {

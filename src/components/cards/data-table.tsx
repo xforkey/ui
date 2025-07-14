@@ -23,7 +23,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Checkbox } from "@/ui/checkbox"
+import { Checkbox } from "@/xfork-ui/checkbox"
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -32,8 +32,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/ui/dropdown-menu"
-import { Input } from "@/ui/input"
+} from "@/xfork-ui/dropdown-menu"
+import { Input } from "@/xfork-ui/input"
 import {
   Table,
   TableBody,
@@ -41,7 +41,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/ui/table"
+} from "@/xfork-ui/table"
 
 const data: Payment[] = [
   {

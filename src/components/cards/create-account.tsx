@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
 
 export function CardsCreateAccount() {
   return (

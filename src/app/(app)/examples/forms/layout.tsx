@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import Image from "next/image"
 
-import { Separator } from "@/ui/separator"
+import { Separator } from "@/xfork-ui/separator"
 import { SidebarNav } from "@/app/(app)/examples/forms/components/sidebar-nav"
 
 export const metadata: Metadata = {

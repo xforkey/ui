@@ -3,7 +3,7 @@ import { formatDistanceToNow } from "date-fns/formatDistanceToNow"
 
 import { cn } from "@/lib/utils"
 import { Badge } from "@/xfork-ui/badge"
-import { ScrollArea } from "@/ui/scroll-area"
+import { ScrollArea } from "@/xfork-ui/scroll-area"
 import { Mail } from "@/app/(app)/examples/mail/data"
 import { useMail } from "@/app/(app)/examples/mail/use-mail"
 

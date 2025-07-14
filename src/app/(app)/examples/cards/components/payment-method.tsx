@@ -8,9 +8,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/xfork-ui/card"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/ui/radio-group"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
+import { RadioGroup, RadioGroupItem } from "@/xfork-ui/radio-group"
 import {
   Select,
   SelectContent,

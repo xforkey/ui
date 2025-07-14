@@ -19,7 +19,7 @@ import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/ui/collapsible"
+} from "@/xfork-ui/collapsible"
 import {
   Sidebar,
   SidebarContent,
@@ -32,7 +32,7 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@/ui/sidebar"
+} from "@/xfork-ui/sidebar"
 
 import type { ComponentInfo } from '@/docs/component-map'
 

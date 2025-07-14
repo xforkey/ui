@@ -4,7 +4,7 @@ import { Table } from "@tanstack/react-table"
 import { X } from "lucide-react"
 
 import { Button } from "@/xfork-ui/button"
-import { Input } from "@/ui/input"
+import { Input } from "@/xfork-ui/input"
 import { DataTableViewOptions } from "@/app/(app)/examples/tasks/components/data-table-view-options"
 
 import { priorities, statuses } from "../data/data"
