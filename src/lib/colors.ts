@@ -1,4 +1,4 @@
-const styles = {
+export const styles = {
     base: [
         // Base
         'relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold',

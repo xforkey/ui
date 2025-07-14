@@ -1,1 +1,1 @@
-export * from "@/ui/tabs"
+export * from "@/components/ui/tabs"

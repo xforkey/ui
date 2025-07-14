@@ -1,12 +1,11 @@
 "use client"
 
-import { type UIComponentInfo } from "./ui-components-list"
-
 import * as React from "react"
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 import { AnimatePresence, motion } from "framer-motion"
-import { ActivePageMarker, VisibleSectionHighlight } from "./active-page-marker"
+import { ActivePageMarker, VisibleSectionHighlight } from "./visible-section-highlight"
+import { useSections, type Section } from "./section-provider"
 import { remToPx } from "@/lib/utils"
 import {
   AudioWaveform,
@@ -16,7 +15,6 @@ import {
 } from "lucide-react"
 import { NavUser } from "./nav-user"
 import { TeamSwitcher } from "./team-switcher"
-import { examples } from "@/app/(app)/_components/examples-nav"
 import {
   Collapsible,
   CollapsibleContent,
@@ -35,6 +33,124 @@ import {
   SidebarMenuSubItem,
   SidebarRail,
 } from "@/ui/sidebar"
+
+import type { ComponentInfo } from '@/docs/component-map'
+
+interface NavGroup {
+  category: string
+  links: ComponentInfo[]
+}
+
+function NavGroupComponent({ group, sections }: { group: NavGroup; sections: Section[] }) {
+  const pathname = usePathname()
+
+  const activeItemIndex = group.links.findIndex(item => pathname === item.href);
+  const isDocsPage = pathname?.startsWith('/docs/') || pathname?.startsWith('/examples/');
+
+  // Debug logging
+  if (activeItemIndex !== -1) {
+    console.log('Active item found:', {
+      pathname,
+      activeItemIndex,
+      groupTitle: group.category,
+      activeItem: group.links[activeItemIndex],
+      isDocsPage,
+      willShowHighlight: isDocsPage
+    });
+  }
+
+  return (
+    <Collapsible
+      key={group.category}
+      defaultOpen={true}
+      className="group/collapsible"
+    >
+      <SidebarGroup className="group-data-[collapsible=icon]:hidden">
+        <CollapsibleTrigger asChild>
+          <SidebarMenuButton className="flex items-center justify-between w-full">
+            <span>{group.category}</span>
+            <ChevronRightIcon className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+          </SidebarMenuButton>
+        </CollapsibleTrigger>
+        <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
+          <SidebarMenu>
+            <SidebarMenuSub>
+              <>
+                <AnimatePresence initial={true}>
+                  {activeItemIndex !== -1 && isDocsPage && (
+                    <VisibleSectionHighlight group={group} pathname={pathname} itemHeight={32} />
+                  )}
+                </AnimatePresence>
+                <motion.div
+                  layout
+                  className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
+                />
+                <AnimatePresence initial={false}>
+                  {activeItemIndex !== -1 && (
+                    <ActivePageMarker
+                      activeIndex={activeItemIndex}
+                      itemHeight={32}
+                      offset={remToPx(0.25)}
+                    />
+                  )}
+                </AnimatePresence>
+
+                {group.links.map((item) => {
+                  const isActive = pathname === item.href;
+                  return (
+                    <motion.div key={item.href} layout="position" className="relative">
+                      <SidebarMenuSubItem>
+                        <SidebarMenuSubButton asChild data-active={isActive}>
+                          <Link href={item.href} className="w-full">
+                            <span>{item.displayName}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                      <AnimatePresence mode="popLayout" initial={false}>
+                        {isActive && sections.length > 0 && isDocsPage && (
+                          <motion.ul
+                            role="list"
+                            initial={{ opacity: 0 }}
+                            animate={{
+                              opacity: 1,
+                              transition: { delay: 0.1 },
+                            }}
+                            exit={{
+                              opacity: 0,
+                              transition: { duration: 0.15 },
+                            }}
+                          >
+                            {sections.map((section) => (
+                              <SidebarMenuSubItem key={section.id} className="my-1">
+                                <SidebarMenuSubButton asChild>
+                                  <Link
+                                    href={`${item.href}#${section.id}`}
+                                    className="w-full pl-6"
+                                  >
+                                    {section.title}
+                                    {section.tag && (
+                                      <span className="ml-auto text-xs text-muted-foreground">
+                                        {section.tag}
+                                      </span>
+                                    )}
+                                  </Link>
+                                </SidebarMenuSubButton>
+                              </SidebarMenuSubItem>
+                            ))}
+                          </motion.ul>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })}
+              </>
+            </SidebarMenuSub>
+          </SidebarMenu>
+        </CollapsibleContent>
+      </SidebarGroup>
+    </Collapsible>
+  );
+}
 
 // This is sample data.
 const data = {
@@ -62,14 +178,14 @@ const data = {
   ]
 }
 
-// Client component that renders the sidebar with UI components passed from the server
+// Client component that renders the sidebar with nav groups passed from the server
 export function AppSidebar({
-  uiComponents,
+  navGroups,
   ...props
 }: React.ComponentProps<typeof Sidebar> & {
-  uiComponents: UIComponentInfo[]
+  navGroups: NavGroup[]
 }) {
-  const pathname = usePathname()
+  const sections = useSections()
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -77,120 +193,10 @@ export function AppSidebar({
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
       <SidebarContent>
-        <Collapsible
-          key={'Examples'}
-          defaultOpen={true}
-          className="group/collapsible"
-        >
-          <SidebarGroup>
-            <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="flex items-center justify-between w-full">
-                <span>Examples</span>
-                <ChevronRightIcon className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-              </SidebarMenuButton>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-              <SidebarMenu>
-                {/* Check if any example is active */}
-                <SidebarMenuSub>
-                  {/* Find the active example index */}
-                  {(() => {
-                    const activeExampleIndex = examples.findIndex(example => pathname === example.href);
-
-                    return (
-                      <>
-                        <motion.div
-                          layout
-                          className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
-                        />
-                        <AnimatePresence initial={false}>
-                          {activeExampleIndex !== -1 && (
-                            <ActivePageMarker
-                              activeIndex={activeExampleIndex}
-                              itemHeight={remToPx(2)}
-                              offset={remToPx(0.25)}
-                            />
-                          )}
-                        </AnimatePresence>
-
-                        {examples.map((example: { name: string; href: string; code: string; hidden: boolean }) => (
-                          <SidebarMenuSubItem key={example.href}>
-                            <SidebarMenuSubButton asChild>
-                              <Link href={example.href} className="w-full">
-                                <span>{example.name}</span>
-                              </Link>
-                            </SidebarMenuSubButton>
-                          </SidebarMenuSubItem>
-                        ))}
-                      </>
-                    );
-                  })()}
-                </SidebarMenuSub>
-              </SidebarMenu>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
-        <Collapsible
-          key={'Components'}
-          defaultOpen={true}
-          className="group/collapsible"
-        >
-          <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-            <CollapsibleTrigger asChild>
-              <SidebarMenuButton className="flex items-center justify-between w-full">
-                <span>Components</span>
-                <ChevronRightIcon className="h-4 w-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
-              </SidebarMenuButton>
-            </CollapsibleTrigger>
-            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down">
-              <SidebarMenu>
-                {/* Check if any component is active */}
-                <SidebarMenuSub>
-                  {/* Find the active component index */}
-                  {(() => {
-
-                    const activeComponentIndex = uiComponents.findIndex(item => pathname === item.href);
-
-                    return (
-                      <>
-                        <AnimatePresence initial={true}>
-                          {activeComponentIndex !== -1 && (
-                            <VisibleSectionHighlight activeIndex={activeComponentIndex} />
-                          )}
-                        </AnimatePresence>
-                        <motion.div
-                          layout
-                          className="absolute inset-y-0 left-0 w-px bg-sidebar-border"
-                        />
-                        <AnimatePresence initial={false}>
-                          {activeComponentIndex !== -1 && (
-                            <ActivePageMarker
-                              activeIndex={activeComponentIndex}
-                              itemHeight={remToPx(2)}
-                              offset={remToPx(0.25)}
-                            />
-                          )}
-                        </AnimatePresence>
-
-                        {uiComponents.map((item) => {
-                          return (
-                            <SidebarMenuSubItem key={item.name}>
-                              <SidebarMenuSubButton asChild data-active={pathname === item.href}>
-                                <Link href={item.href} className="w-full">
-                                  <span>{item.displayName}</span>
-                                </Link>
-                              </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          );
-                        })}
-                      </>
-                    );
-                  })()}
-                </SidebarMenuSub>
-              </SidebarMenu>
-            </CollapsibleContent>
-          </SidebarGroup>
-        </Collapsible>
+        {/* Dynamic nav groups */}
+        {navGroups.map((group) => (
+          <NavGroupComponent key={group.category} group={group} sections={sections} />
+        ))}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
@@ -199,3 +205,4 @@ export function AppSidebar({
     </Sidebar>
   )
 }
+

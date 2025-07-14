@@ -3,12 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next lint --fix && next build",
+    "dev": "next dev",
+    "build": "npm run generate:sections && next lint --fix && next build",
     "start": "next start",
     "lint": "next lint --fix",
     "build:registry": "tsx --tsconfig tsconfig.scripts.json src/scripts/build-registry.mts",
-    "generate:component-map": "tsx --tsconfig tsconfig.scripts.json src/scripts/generate-component-map.mts"
+    "generate:component-map": "tsx --tsconfig tsconfig.scripts.json src/scripts/generate-component-map.mts",
+    "generate:sections": "tsx --tsconfig tsconfig.scripts.json src/scripts/generate-sections.mts"
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",

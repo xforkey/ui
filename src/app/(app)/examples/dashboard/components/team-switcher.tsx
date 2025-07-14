@@ -8,7 +8,7 @@ import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/ui/avatar"
+} from "@/xfork-ui/avatar"
 import { Button } from "@/xfork-ui/button"
 import {
   Command,
@@ -28,8 +28,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/xfork-ui/dialog"
-import { Input } from "@/ui/input"
-import { Label } from "@/ui/label"
+import { Input } from "@/xfork-ui/input"
+import { Label } from "@/xfork-ui/label"
 import {
   Popover,
   PopoverContent,

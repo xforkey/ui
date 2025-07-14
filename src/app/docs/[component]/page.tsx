@@ -1,7 +1,6 @@
-import TableOfContents from "@/docs/components/table-of-contents";
 import { notFound } from "next/navigation";
 import { Metadata } from "next/types";
-import { generateTableOfContents, getDocPageBySlug, getDocPageSlugs } from "@/docs/utils";
+import { getDocPageBySlug, getDocPageSlugs } from "@/docs/utils";
 import Pagination from "@/docs/components/pagination";
 import Link from "next/link"
 import { badgeVariants } from "@/components/xfork-ui/badge";
@@ -53,18 +52,15 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
 export default async function DocPage(props: Props) {
     const params = await props.params;
 
-    const [doc, tableOfContents] = await Promise.all([
-        getDocPageBySlug(params.component),
-        generateTableOfContents(params.component),
-    ]);
+    const doc = await getDocPageBySlug(params.component);
 
     if (!doc) {
         return notFound();
     }
 
     return (
-        <div className="mx-auto grid w-full max-w-2xl grid-cols-1 gap-10 xl:max-w-5xl xl:grid-cols-[minmax(0,1fr)_var(--container-2xs)]">
-            <div className="px-4 pt-10 pb-24 sm:px-6 xl:pr-0">
+        <div className="mx-auto max-w-2xl">
+            <div className="px-4 pt-10 pb-24 sm:px-6">
                 <h1 data-title="true" className="mt-2 text-3xl font-medium tracking-tight text-gray-950 dark:text-white">
                     {doc.title}
                 </h1>
@@ -103,12 +99,6 @@ export default async function DocPage(props: Props) {
                 </div>
                 <Pagination slug={params.component} />
             </div>
-            <div className="max-xl:hidden">
-                <div className="sticky top-14 max-h-[calc(100svh-3.5rem)] overflow-x-hidden px-6 pt-10 pb-24">
-                    <TableOfContents tableOfContents={tableOfContents} />
-                </div>
-            </div>
         </div>
-
     );
 }

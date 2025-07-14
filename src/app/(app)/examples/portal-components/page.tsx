@@ -97,7 +97,6 @@ import {
 
 // Icons
 import {
-    BadgeCheck,
     Bell,
     ChevronsUpDown,
     CreditCard,

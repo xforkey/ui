@@ -7,9 +7,9 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/ui/sonner"
 import { siteConfig } from "@/config/site"
 
-import { AppSidebar } from "@/components/app-sidebar"
-import { getUIComponentsList } from "@/components/app-sidebar/ui-components-list"
+import { SidebarWithSections } from "@/components/app-sidebar/sidebar-with-sections"
 import { ModeSwitcher } from "@/components/mode-switcher"
+import { componentMap } from "@/docs/component-map"
 import { Separator } from "@/ui/separator"
 import { ScrollArea } from "@/ui/scroll-area"
 import {
@@ -99,13 +99,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  // Fetch data on the server
-  const uiComponents = await getUIComponentsList()
-
-  const normalizedUiComponents = uiComponents.map(comp => ({
-    ...comp,
-    href: `/docs/${comp.name}`,
-  }));
+  // Pass the component map directly to the sidebar
 
   const defaultOpen = true // Default to open for static export
 
@@ -140,7 +134,7 @@ export default async function RootLayout({
         >
           <NoiseOverlay />
           <SidebarProvider defaultOpen={defaultOpen}>
-            <AppSidebar uiComponents={normalizedUiComponents} />
+            <SidebarWithSections componentMap={componentMap} />
             <SidebarInset>
               <header className="sticky inset-x-0 top-0 isolate z-10 flex shrink-0 items-center gap-2">
                 <div className="flex h-14 w-full items-center gap-2 px-4">
