@@ -59,7 +59,7 @@ export default async function DocPage(props: Props) {
     }
 
     return (
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-4xl">
             <div className="px-4 pt-10 pb-24 sm:px-6">
                 <h1 data-title="true" className="mt-2 text-3xl font-medium tracking-tight text-gray-950 dark:text-white">
                     {doc.title}

@@ -101,6 +101,29 @@ function scanExamplesDirectory(): string[] {
         .filter(name => !['layout.tsx', 'page.tsx'].includes(name)); // Filter out non-example files
 }
 
+function scanAllFiles(): Record<string, string> {
+    const fileMap: Record<string, string> = {};
+
+    const directories = [
+        'src/components/xfork-ui/',
+        'src/docs/components/demos/',
+        'src/docs/components/demos/charts/'
+    ];
+
+    for (const directory of directories) {
+        const dirPath = path.resolve(directory);
+        if (fs.existsSync(dirPath)) {
+            const files = fs.readdirSync(dirPath).filter(file => file.endsWith('.tsx'));
+            for (const file of files) {
+                const fileName = path.basename(file, '.tsx');
+                fileMap[fileName] = path.join(directory, file);
+            }
+        }
+    }
+
+    return fileMap;
+}
+
 function generateComponentMap() {
     const components: Record<string, {
         path: string | null;
@@ -110,6 +133,9 @@ function generateComponentMap() {
         href: string;
         sections: Array<{ id: string; title: string }>;
     }> = {};
+
+    // Generate the demo map
+    const demoMap = scanAllFiles();
 
     // Scan MDX files to get the list of documented components
     const mdxPath = path.resolve(MDX_DIRECTORY);
@@ -180,6 +206,7 @@ function generateComponentMap() {
   }
   
   export type ComponentMap = Record<string, ComponentInfo>
+  export type DemoMap = Record<string, string>
   
   export const componentMap: ComponentMap = {
   ${Object.entries(components).map(([name, info]) =>
@@ -191,6 +218,12 @@ function generateComponentMap() {
       href: "${info.href}",
       sections: ${JSON.stringify(info.sections)}
     }`
+    ).join(',\n')}
+  } as const;
+  
+  export const demoMap: DemoMap = {
+  ${Object.entries(demoMap).map(([name, path]) =>
+        `  "${name}": "${path}"`
     ).join(',\n')}
   } as const;
   

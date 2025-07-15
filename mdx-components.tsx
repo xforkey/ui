@@ -233,13 +233,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
                 });
 
             return (
-                <Figure filenames={["preview", "code"]} hint={hint}>
-                    <Preview resizable={resizable}>
-                        <DynamicComponent {...props} />
-                    </Preview>
-                    <CodeExample example={tsx`${getSourceCode(demoName)}`} />
-                </Figure>
-
+                <div className="mt-6">
+                    <Figure filenames={["preview", "code"]} hint={hint}>
+                        <Preview resizable={resizable}>
+                            <DynamicComponent {...props} />
+                        </Preview>
+                        <CodeExample example={tsx`${getSourceCode(demoName)}`} />
+                    </Figure>
+                </div>
             );
         },
         ComponentSource: ({ name, collapsible = true }: { name: string, collapsible?: boolean }) => {

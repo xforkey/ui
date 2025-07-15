@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { componentMap } from './component-map';
+import { componentMap, demoMap } from './component-map';
 
 /**
  * Get the source code for a component by name
@@ -8,11 +8,21 @@ import { componentMap } from './component-map';
  */
 export default function getSourceCode(componentName: string): string {
     try {
-        // Get the component info directly from the flattened map
+        // First, try to find the file directly in the demoMap
+        const filePath = demoMap[componentName];
+
+        if (filePath) {
+            // File found in demoMap, read it directly
+            const fullPath = path.resolve(process.cwd(), filePath);
+            const code = fs.readFileSync(fullPath, 'utf-8');
+            return code;
+        }
+
+        // If not found in demoMap, check if it's a component in the componentMap
         const componentInfo = componentMap[componentName];
 
         if (!componentInfo || typeof componentInfo === 'string') {
-            return `// Component "${componentName}" not found in component map`;
+            return `// Component "${componentName}" not found`;
         }
 
         // Handle different component types
@@ -24,7 +34,7 @@ export default function getSourceCode(componentName: string): string {
             return `// No source path defined for component: ${componentName}`;
         }
 
-        // Read the file directly using the mapped path
+        // Read the component source file
         const fullPath = path.resolve(process.cwd(), componentInfo.path);
         const code = fs.readFileSync(fullPath, 'utf-8');
         return code;
@@ -34,3 +44,4 @@ export default function getSourceCode(componentName: string): string {
         return `// Error loading component source for: ${componentName}`;
     }
 }
+
